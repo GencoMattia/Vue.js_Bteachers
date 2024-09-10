@@ -134,10 +134,10 @@ import { FontAwesomeIcon } from "../js/font-awesome";
         padding: 1.2rem;
 
         a {
-            color: green;
+            color:$link-color;
             text-decoration: none;
             &:hover {
-            color: greenyellow;
+            color: $link-hover-color;
             }
         }
 
