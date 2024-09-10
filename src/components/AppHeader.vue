@@ -20,7 +20,7 @@ export default {
 <template>
     <header class="header d-flex align-items-center">
         <!-- Logo -->
-        <div class="logo">MyGitHub</div>
+        <div class="logo">BTeachers</div>
 
         <!-- Barra di ricerca che occupa tutto lo spazio disponibile -->
         <form class="d-flex flex-grow-1 mx-3" role="search">
