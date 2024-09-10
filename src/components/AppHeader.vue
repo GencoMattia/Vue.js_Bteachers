@@ -4,12 +4,12 @@ export default {
         return {
             navLinkNames: [
                 {
-                    label: "Teachers",
-                    name: "teachers-list",
-                },
-                {
                     label: "Home",
                     name: "home",
+                },
+                {
+                    label: "Projects",
+                    name: "projects-list",
                 },
             ]
         };
@@ -18,26 +18,11 @@ export default {
 </script>
 
 <template>
-    <header class="header d-flex align-items-center">
-        <!-- Logo -->
+    <header class="header">
         <div class="logo">MyGitHub</div>
-
-        <!-- Barra di ricerca che occupa tutto lo spazio disponibile -->
-        <form class="d-flex flex-grow-1 mx-3" role="search">
-            <input 
-                class="form-control me-2 flex-grow-1" 
-                type="search" 
-                placeholder="Search" 
-                aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-
-        <!-- Link di navigazione -->
-        <ul class="nav-links d-flex mb-0">
-            <li v-for="navItem in navLinkNames" :key="navItem.name">
-                <router-link :to="{ name: navItem.name }">
-                    {{ navItem.label }}
-                </router-link>
+        <ul class="nav-links">
+            <li v-for="navItem in navLinkNames">
+                <router-link :to="{ name: navItem.name}">{{ navItem.label }}</router-link>
             </li>
         </ul>
     </header>
@@ -52,7 +37,7 @@ export default {
         padding: 10px 20px;
         display: flex;
         align-items: center;
-        // justify-content: space-between;
+        justify-content: space-between;
         color: #fff;
 
         .logo {
