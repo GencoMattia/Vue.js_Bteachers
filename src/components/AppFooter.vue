@@ -72,6 +72,11 @@ export default {
 
             <ul>
                 <li>
+                    <h4>
+                        Contacts
+                    </h4>
+                </li>
+                <li>
                     <a href="#">
                         <i class="fa-solid fa-location-dot"></i>
                         Palermo 90100
@@ -79,7 +84,7 @@ export default {
                 </li>
                 <li>
                     <a href="#">
-                        Blog
+                        Info@BTeacher.com
                     </a>
                 </li>
                 <li>
