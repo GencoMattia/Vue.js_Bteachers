@@ -15,7 +15,7 @@ const router = createRouter({
         },
         {
             path: "/index",
-            name: "teachers-list",
+            name: "projects-list",
             component: PageProjectsList
         },
         {
