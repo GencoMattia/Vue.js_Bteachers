@@ -115,7 +115,7 @@ import { FontAwesomeIcon } from "../js/font-awesome";
                 </li>
             </ul>
         </section>
-<hr>
+        <hr>
         <p>&copy; 2024 BTeacher - <a href="#">Privacy</a> - <a href="#">Terms</a></p>
 
 </footer>
@@ -159,6 +159,12 @@ import { FontAwesomeIcon } from "../js/font-awesome";
 
         span{
             padding-left: .3rem;
+        }
+
+        .footer-link{
+            max-width: 1200px;
+            margin: 0 auto;
+
         }
     }
 </style>
