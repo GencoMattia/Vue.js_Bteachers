@@ -1,9 +1,9 @@
 <script>
-import ProjectsList from '../components/ProjectsList.vue';
+// import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
     components: {
-        ProjectsList,
+        // ProjectsList,
     },
 
     data() {
@@ -21,34 +21,36 @@ export default {
 <template>
     <main>
         <div class="home-page">
+            <!-- Sezione Hero -->
             <section class="hero-section">
                 <div class="container text-center">
-                    <h1 class="display-3">Benvenuto su Project Manager</h1>
-                    <p class="lead">Gestisci i tuoi progetti in modo semplice e intuitivo.</p>
+                    <h1 class="display-3">Benvenuto su BTeachers!</h1>
+                    <p class="lead">Trova l'insegnante perfetto per imparare ciò che desideri.</p>
                     <div class="mt-4">
-                        <router-link :to="{ name: 'projects-list' }" class="btn btn-main btn-lg">Esplora i Progetti</router-link>
+                        <!-- <router-link :to="{ name: 'projects-list' }" class="btn btn-main btn-lg">Trova il tuo Insegnante</router-link> -->
                     </div>
                 </div>
             </section>
         </div>
 
+        <!-- Sezione Caratteristiche -->
         <section class="features-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 text-center">
-                    <i class="bi bi-folder-plus feature-icon"></i>
-                    <h3>Crea Nuovi Progetti</h3>
-                    <p>Crea, organizza e tieni traccia dei tuoi progetti in modo semplice.</p>
+                    <i class="bi bi-search feature-icon"></i>
+                    <h3>Cerca Insegnanti</h3>
+                    <p>Trova insegnanti qualificati per qualsiasi materia o abilità che vuoi imparare.</p>
                     </div>
                     <div class="col-md-4 text-center">
-                    <i class="bi bi-graph-up feature-icon"></i>
-                    <h3>Monitora i Progressi</h3>
-                    <p>Controlla l'avanzamento dei tuoi progetti con statistiche dettagliate.</p>
+                    <i class="bi bi-chat-dots feature-icon"></i>
+                    <h3>Contatta e Pianifica</h3>
+                    <p>Comunica con gli insegnanti e pianifica facilmente le tue lezioni.</p>
                     </div>
                     <div class="col-md-4 text-center">
-                    <i class="bi bi-person-check feature-icon"></i>
-                    <h3>Collabora con il Team</h3>
-                    <p>Lavora insieme al tuo team e mantieni tutti aggiornati.</p>
+                    <i class="bi bi-star feature-icon"></i>
+                    <h3>Valuta le Lezioni</h3>
+                    <p>Lascia una valutazione per aiutare altri studenti a trovare gli insegnanti migliori.</p>
                     </div>
                 </div>
             </div>

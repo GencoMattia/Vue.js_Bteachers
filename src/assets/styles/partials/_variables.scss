@@ -1,11 +1,12 @@
-$primary-color: #2ea44f;
-$primary-hover-color: #2c974b;
-$secondary-color: #24292e;
-$background-color: #e9ecef;
-$text-color: #24292e;
-$link-color: green;
-$link-hover-color:greenyellow;
-$main-background-color: #ffffff;
+// Nuova palette colori caldi intensi
+$primary-color: #d32f2f; // Rosso scuro
+$primary-hover-color: #b71c1c; // Rosso più scuro
+$secondary-color: #f57c00; // Arancione intenso
+$background-color: #fbe9e7; // Beige rosato
+$text-color: #4e342e; // Marrone caldo
+$link-color: #ff6f00; // Arancione scuro
+$link-hover-color: #e65100; // Arancione molto scuro
+$main-background-color: #ffffff; // Bianco
 
 $card-margin-bottom: 20px;
 $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -13,13 +14,13 @@ $card-hover-transform: translateY(-5px);
 $card-title-font-size: 1.25rem;
 $card-title-font-weight: 600;
 $card-text-font-size: 0.9rem;
-$card-text-color: #6c757d;
-$btn-primary-bg: #2ea44f;
-$btn-primary-border: #2ea44f;
-$btn-primary-hover-bg: #2c974b;
-$btn-primary-hover-border: #298f46;
+$card-text-color: #6d4c41; // Marrone chiaro
+$btn-primary-bg: #d32f2f; // Rosso scuro
+$btn-primary-border: #d32f2f; // Rosso scuro
+$btn-primary-hover-bg: #b71c1c; // Rosso più scuro
+$btn-primary-hover-border: #b71c1c; // Rosso più scuro
 
-$main-btn-primary-bg: #0366d6;            
-$main-btn-primary-border: #0366d6;        
-$main-btn-primary-hover-bg: #0353a4;       
-$main-btn-primary-hover-border: #034a8c;
+$main-btn-primary-bg: #ff6f00; // Arancione scuro            
+$main-btn-primary-border: #ff6f00; // Arancione scuro        
+$main-btn-primary-hover-bg: #e65100; // Arancione molto scuro       
+$main-btn-primary-hover-border: #e65100; // Arancione molto scuro
