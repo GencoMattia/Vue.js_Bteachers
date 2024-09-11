@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-    <header class="header d-flex align-items-center">
+    <header class="header d-flex align-items-center sticky-top">
         <!-- Logo -->
         <div class="logo">BTeachers</div>
 
