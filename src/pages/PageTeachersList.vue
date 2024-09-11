@@ -23,7 +23,8 @@ export default {
             }).then((response) => {
                 console.log(response.data.results.data);
                 this.teachers.push(...response.data.results.data);
-                this.currentPage = response.data.results.currentPage;
+                // this.currentPage = response.data.results.currentPage;
+                this.currentPage=page;
             }).catch((error) => {
                 this.$router.push({ name: "404-not-found" });
                 console.log(error);
