@@ -13,6 +13,7 @@ export default {
             photo: '',
             cv: '',
             vote: [],
+            averageVote: '',
         };
     },
 
@@ -27,9 +28,20 @@ export default {
                 this.profile = response.data.results;
                 this.photo = response.data.results.photo;
                 this.cv = response.data.results.cv;
-                this.vote = response.data.results.votes
-                console.log(this.vote);
-            }).catch((error) => {
+                this.vote = response.data.results.votes;
+
+                if (!this.vote || this.vote.length === 0) {
+                    console.log('Vote is empty or undefined');
+                    return;
+                    }
+                    this.averageVote = 0;
+                    this.vote.forEach(element => {
+                    return this.averageVote = this.averageVote + element.vote
+                    });
+                    this.averageVote = this.averageVote / this.vote.length;
+                    console.log(this.averageVote)
+            
+                }).catch((error) => {
                 this.$router.push({name: "404-not-found"});
                 console.log(error);
             })
@@ -40,11 +52,8 @@ export default {
         return baseUrl + path;
     },
     getAverage(vote){
-        
-        for (let i = 0;  i < vote.length; i++) {
-            console.log(vote.vote)
-            i = i+1
-        }
+            console.log(vote)
+            
     },
         changePage(routeName){
             this.$router.push({name: routeName});
