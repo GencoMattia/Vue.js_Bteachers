@@ -23,7 +23,7 @@ export default {
             <P class="name">{{ project.user.name }} {{ project.user.surname }}</P>
         </div>
         <div class="card-body">
-            <P class="specialization">{{ project.specializations.object.name }}</P>
+            <P v-for="specialization in project.specializations" class="specialization">{{ specialization.field }}</P>
 
             <h5 class="card-title">Special title treatment</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>

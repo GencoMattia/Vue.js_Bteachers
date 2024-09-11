@@ -1,6 +1,8 @@
 <script>
-
+import { FontAwesomeIcon } from "../js/font-awesome";
+import CarouselCard from "./CarouselCard.vue";
 import axios from "axios";
+
 export default {
     components:{
         FontAwesomeIcon,
@@ -11,6 +13,8 @@ export default {
             projects: [
                 
             ],
+            
+            currentPage: 1,
         };
         
     },
@@ -36,18 +40,22 @@ export default {
         this.getTeacher();
     },
 };
-import { FontAwesomeIcon } from "../js/font-awesome";
-import CarouselCard from "./CarouselCard.vue";
 </script>
 
 <template>
-    <div id="carouselExampleSlidesOnly " class="carousel slide shadow p-2 " data-bs-ride="carousel">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner rounded-4">
-            <div class="carousel-item active">
-                <CarouselCard v-for="project in projects" :key="project.id" :project="project" /> 
-            </div>
+            <CarouselCard class="carousel-item active" v-for="project in projects" :key="project.id" :project="project"/> 
         </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </template>
 
 <style lang="scss" scoped>
