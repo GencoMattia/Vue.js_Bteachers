@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "../js/font-awesome";
 </script>
 
 <template>
-    <footer class=" footer position-absolute bottom-0 end-0">
+    <footer class="footer position-static bottom-0 end-0">
 
         <section class="footer-link d-flex justify-content-around text-start">
             <ul>
