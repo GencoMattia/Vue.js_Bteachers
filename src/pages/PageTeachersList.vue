@@ -1,15 +1,15 @@
 <script>
 import axios from 'axios';
-import SingleProjectCard from '../components/SingleProjectCard.vue';
+import SingleTeacherCard from '../components/SingleTeacherCard.vue';
 
 export default {
     components: {
-        SingleProjectCard,
+        SingleTeacherCard,
     }, 
 
     data() {
         return {
-            projects: [
+            teachers: [
 
             ],
 
@@ -18,15 +18,15 @@ export default {
     },
 
     methods: {
-        fetchProjects(page = 1){
-            axios.get("http://127.0.0.1:8000/api/projects", {
+        fetchTeachersProfiles(page = 1){
+            axios.get("http://127.0.0.1:8000/api/profiles", {
                 params: {
-                    page: page
+                    // page: page
                 }
             }).then((response) => {
-                console.log(response.data);
+                console.log(response.data.results.data);
     
-                this.projects.push(...response.data.results.data);
+                this.teachers.push(...response.data.results.data);
                 this.currentPage = response.data.results.currentPage;
             }).catch((error) => {
                 this.$router.push({name: "404-not-found"});
@@ -40,7 +40,7 @@ export default {
     },
 
     created() {
-        this.fetchProjects();
+        this.fetchTeachersProfiles();
     },
 };
 </script>
@@ -51,7 +51,7 @@ export default {
     </h1>
     <div class="container mt-4">
         <div class="row">
-            <SingleProjectCard v-for="project in projects" :key="project.id" class="col-md-4" :project="project"/>
+            <SingleTeacherCard v-for="teacher in teachers" :key="teacher.id" class="col-md-4" :teacher="teacher"/>
         </div>
 
         <div class="d-flex justify-content-center aling-items-center">
