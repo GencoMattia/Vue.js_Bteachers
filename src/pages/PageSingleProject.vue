@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import SingleProjectCard from '@/components/SingleProjectCard.vue';
+import SingleProjectCard from '@/components/SingleTeacherCard.vue';
 
 export default {
     components: {
