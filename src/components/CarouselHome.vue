@@ -80,7 +80,7 @@ export default {
     }
 }
     span{
-        color:$link-hover-color;
+        color:$link-color;
     }
 
 </style>
