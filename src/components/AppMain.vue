@@ -1,14 +1,17 @@
 <script>
+import { store } from "../store";
 import ProjectsList from './ProjectsList.vue';
+
 
 export default {
     components: {
         ProjectsList,
+        
     },
 
     data() {
         return {
-            
+            store,
         };
     },
 
@@ -21,6 +24,7 @@ export default {
 <template>
     <main>
         <ProjectsList />
+
     </main>
 </template>
 

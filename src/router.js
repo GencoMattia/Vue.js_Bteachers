@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import PageHome from "./pages/PageHome.vue";
-import PageProjectsList from "./pages/PageProjectsList.vue";
 import Error404 from "./pages/errors/Error404.vue";
-import PageSingleProject from "./pages/PageSingleTeacher.vue";
 import PageSingleTeacher from "./pages/PageSingleTeacher.vue";
+import PageTeachersList from "./pages/PageTeachersList.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -15,9 +14,9 @@ const router = createRouter({
             component: PageHome
         },
         {
-            path: "/index",
+            path: "/teachers",
             name: "teachers-list",
-            component: PageProjectsList
+            component: PageTeachersList
         },
         {
             path: "/teachers/:id",

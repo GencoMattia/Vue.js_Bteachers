@@ -9,9 +9,7 @@ export default {
 
     data() {
         return {
-            projects: [
-
-            ],
+            projects: [],
 
             currentPage: 1,
         };
