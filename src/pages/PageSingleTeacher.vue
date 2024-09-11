@@ -74,7 +74,7 @@ export default {
                     <!-- <embed :src="getImageUrl(cv)" class="w-100" alt="Profile-cv"> -->
                 </div>
                 <div>
-                    <h5 class="text-uppercase d-inline me-2"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
+                    <h5 class="text-uppercase me-2"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
                     <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success"> {{ specialization.name }} </div>
                     <p v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
@@ -94,14 +94,24 @@ export default {
             <!-- office section  -->
             <div class="col-5 office border rounded my-2">
                 <h3>Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3>
+
+                <!-- address  -->
+                
                 <div class="border border-success border-opacity-55 rounded px-2 mb-1">
                     <h4>Address</h4>
                     <p><font-awesome-icon icon="fa-solid fa-location-dot" /> {{ profile.address }}</p>
                 </div>
+
+                <!-- contacts  -->
+                
                 <div class="border border-success border-opacity-55 rounded px-2 mb-1">
                     <h4>Contacts</h4>
                     <p><font-awesome-icon icon="fa-solid fa-phone" /> {{ profile.telephone_number }}</p>
                     <p><font-awesome-icon icon="fa-solid fa-envelope" /> {{ profile.user.email }}</p>
+                </div>
+
+                <div class="d-flex justify-content-center my-4" >
+                    <a href="#" type="button" class="btn btn-success">Contact the teacher </a>
                 </div>
             </div>
         </div>
@@ -165,6 +175,9 @@ export default {
                 </div>
                 <div v-else>
                     The teacher has no reviews.
+                </div>
+                <div class="d-flex justify-content-center my-4" >
+                    <a href="#" type="button" class="btn btn-success">Review the teacher </a>
                 </div>
             </div>
         </div>
