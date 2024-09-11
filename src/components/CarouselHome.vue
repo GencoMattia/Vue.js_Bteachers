@@ -43,7 +43,7 @@ export default {
 </script>
 
 <template>
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleAutoplaying" class="carousel slide mb-3" data-bs-ride="carousel">
         <div class="carousel-inner rounded-4">
             <!-- Use `index` to manage the active class for the first item -->
             <CarouselCard
@@ -68,12 +68,17 @@ export default {
 <style lang="scss" scoped>
     @use "../assets/styles/partials/variables" as *;
 
-    $carousel-transition-duration:.2s;
+    $carousel-transition-duration:.3s;
     
     .carousel{
         margin: 0 auto;
-        margin-bottom: 3rem;
+        
+        .carousel-inner {
+            .carousel-item {
+            transition: transform $carousel-transition-duration ease;
+        }
     }
+}
     span{
         color:$link-hover-color;
     }
