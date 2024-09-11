@@ -12,6 +12,7 @@ export default {
             cv: '',
             vote: [],
             averageVote: '',
+            star: 5,
         };
     },
 
@@ -77,11 +78,14 @@ export default {
                     <span v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success"> {{ specialization.name }} </span>
                     <p v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
-                            <font-awesome-icon icon="fa-regular fa-id-badge" />
+                            <font-awesome-icon icon="fa-solid fa-star" />
+                        </span>
+                        <span v-for="x in star - averageVote" :key="x">
+                            <font-awesome-icon icon="fa-regular fa-star" />
                         </span>
                     </p>
                     <p v-else>
-                        L'insegnante non ha valutazioni
+                        The teacher has no ratings.
                     </p>
                     <p class="text-wrap word-wrap"><font-awesome-icon icon="fa-solid fa-chalkboard-user" /> {{ profile.service }}</p>
                 </div>

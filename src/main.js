@@ -18,9 +18,10 @@ import { faIdBadge } from '@fortawesome/free-solid-svg-icons'
 import { faChalkboardUser } from '@fortawesome/free-solid-svg-icons'
 import { faHouseLaptop } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-regular-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret,faUser, faLocation, faPhone, faEnvelope, faIdBadge, faChalkboardUser, faHouseLaptop)
+library.add(faUserSecret,faUser, faLocation, faPhone, faEnvelope, faIdBadge, faChalkboardUser, faHouseLaptop, faStar)
 
 import { router } from './router';
 
