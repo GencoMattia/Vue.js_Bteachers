@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import SingleTeacherCard from '../components/SingleTeacherCard.vue';
+import { store } from '@/store';
 
 export default {
     components: {
@@ -11,25 +12,47 @@ export default {
         return {
             teachers: [],
             currentPage: 1,
+            store,
         };
     },
 
     methods: {
-        fetchTeachersProfiles(page = 1) {
-            axios.get("http://127.0.0.1:8000/api/profiles", {
-                params: {
-                    page: page
-                }
-            }).then((response) => {
-                console.log(response.data.results.data);
-                this.teachers.push(...response.data.results.data);
-                // this.currentPage = response.data.results.currentPage;
-                this.currentPage=page;
-            }).catch((error) => {
-                this.$router.push({ name: "404-not-found" });
-                console.log(error);
-            });
+        fetchTeachersProfiles(page = 1, specialization = null) {
+            const params = {
+                page: page
+            };
+
+            if (specialization) {
+                params.specialization = specialization;
+            }
+
+            axios.get("http://127.0.0.1:8000/api/profiles", { params })
+                .then((response) => {
+                    console.log(response.data.results.data);
+                    this.teachers.push(...response.data.results.data);
+                    this.currentPage = page;
+                })
+                .catch((error) => {
+                    this.$router.push({ name: "404-not-found" });
+                    console.log(error);
+                });
         },
+
+        // fetchTeachersProfiles(page = 1) {
+        //     axios.get("http://127.0.0.1:8000/api/profiles", {
+        //         params: {
+        //             page: page
+        //         }
+        //     }).then((response) => {
+        //         console.log(response.data.results.data);
+        //         this.teachers.push(...response.data.results.data);
+        //         // this.currentPage = response.data.results.currentPage;
+        //         this.currentPage=page;
+        //     }).catch((error) => {
+        //         this.$router.push({ name: "404-not-found" });
+        //         console.log(error);
+        //     });
+        // },
 
         changePage(routeName) {
             this.$router.push({ name: routeName });
@@ -39,6 +62,10 @@ export default {
     created() {
         this.fetchTeachersProfiles();
     },
+
+    // computed() {
+    //     this.fetchTeachersProfiles(1);
+    // }
 };
 </script>
 
@@ -49,6 +76,15 @@ export default {
                 <h1 class="display-4">Trova il Tuo Insegnante Ideale</h1>
                 <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di apprendimento!</p>
             </div>
+
+            <select class="form-select" aria-label="default" name="" id="">
+                <option selected>
+                    Select desired specialization
+                </option>
+                <option v-for="specialization in store.specializations" :value="specialization.field" @click="fetchTeachersProfiles(1, specialization.field)">
+                    {{ specialization.field }}
+                </option>
+            </select>
 
             <div class="container">
                 <div class="row">
