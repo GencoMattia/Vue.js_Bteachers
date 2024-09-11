@@ -60,8 +60,8 @@ export default {
             </div>
         </section>
         <section>
-            <div class="row">
-                <div class="col-12">
+            <div class="row carousel justify-content-end">
+                <div class="col-6 ">
                     <CarouselHome/>
                 </div>
             </div>
@@ -114,5 +114,6 @@ export default {
         color: $text-color;
         }
     }
+
 }
 </style>

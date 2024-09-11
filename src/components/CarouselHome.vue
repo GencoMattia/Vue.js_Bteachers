@@ -2,6 +2,7 @@
 export default {
     components:{
         FontAwesomeIcon,
+        CarouselCard
     },
     data() {
         return {
@@ -10,13 +11,14 @@ export default {
     }
 };
 import { FontAwesomeIcon } from "../js/font-awesome";
+import CarouselCard from "./CarouselCard.vue";
 </script>
 
 <template>
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
+    <div id="carouselExampleSlidesOnly " class="carousel slide shadow p-2 " data-bs-ride="carousel">
+        <div class="carousel-inner rounded-4">
             <div class="carousel-item active">
-                <img src="https://www.mit.gov.it/nfsmitgov/files/styles/notizia_720x405_/public/media/notizia/2022-10/sen%20Salvini.jpg?itok=kjZ3SqCg" class="d-block w-100" alt="image1">
+                <CarouselCard/>
             </div>
             <div class="carousel-item">
                 <img src="https://cdn.pixabay.com/photo/2023/10/12/08/23/bird-8310172_1280.png" class="d-block w-100" alt="image2">
@@ -30,10 +32,10 @@ import { FontAwesomeIcon } from "../js/font-awesome";
 
 <style lang="scss" scoped>
     @use "../assets/styles/partials/variables" as *;
+
     $carousel-transition-duration:.2s;
     
     .carousel{
-        width: 1000px;
         margin: 0 auto;
         margin-bottom: 3rem;
     }
