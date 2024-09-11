@@ -10,7 +10,7 @@ export default {
     },
     data() {
         return {
-            projects: [
+            teachers: [
                 
             ],
             
@@ -28,7 +28,7 @@ export default {
             }).then((response) => {
                 console.log(response.data.results);
     
-                this.projects.push(...response.data.results.data);
+                this.teachers.push(...response.data.results.data);
                 this.currentPage = response.data.results.currentPage;
             }).catch((err) => {
                 console.error();
@@ -45,7 +45,7 @@ export default {
 <template>
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner rounded-4">
-            <CarouselCard class="carousel-item active" v-for="project in projects" :key="project.id" :project="project"/> 
+            <CarouselCard class="carousel-item active" v-for="teacher in teachers" :key="teacher.id" :teacher="teacher"/> 
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
