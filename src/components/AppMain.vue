@@ -1,5 +1,7 @@
 <script>
+import { store } from "../store";
 import ProjectsList from './ProjectsList.vue';
+
 
 export default {
     components: {
@@ -8,7 +10,7 @@ export default {
 
     data() {
         return {
-            
+            store,
         };
     },
 

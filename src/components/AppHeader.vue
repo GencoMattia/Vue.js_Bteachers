@@ -1,7 +1,11 @@
 <script>
+import { store } from "../store";
+
 export default {
     data() {
         return {
+            store,
+            
             navLinkNames: [
                 {
                     label: "Teachers",
