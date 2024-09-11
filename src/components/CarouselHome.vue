@@ -67,5 +67,8 @@ export default {
         margin: 0 auto;
         margin-bottom: 3rem;
     }
+    span{
+        background-color: rgb(201, 53, 53);
+    }
 
 </style>
