@@ -38,9 +38,9 @@ export default {
         </div>
         <div class="card-footer">
             <p v-for="specialization in teacher.specializations" class="specialization">{{ specialization.field }}</p>
-            <span v-if="teacher.votes.length" class="badge rounded-pill text-bg-warning card-text">
+            <p v-if="teacher.votes.length" class="badge rounded-pill text-bg-warning card-text">
                 Media voti: {{ averageVote }}
-            </span>
+            </p>
             <p> {{ teacher.telephone_number}}</p>
 
         </div>
