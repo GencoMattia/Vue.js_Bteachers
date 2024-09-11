@@ -1,8 +1,12 @@
 <script>
+import CarouselHome from '@/components/CarouselHome.vue';
+
 // import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
+    
     components: {
+        CarouselHome
         // ProjectsList,
     },
 
@@ -55,6 +59,13 @@ export default {
                 </div>
             </div>
         </section>
+        <section>
+            <div class="row carousel justify-content-end">
+                <div class="col-6 ">
+                    <CarouselHome/>
+                </div>
+            </div>
+        </section>
     </main>
 </template>
 
@@ -103,5 +114,11 @@ export default {
         color: $text-color;
         }
     }
+
+}
+
+.carousel{
+    max-width: 1200px;
+    margin: 0 auto;
 }
 </style>
