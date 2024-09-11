@@ -1,8 +1,12 @@
 <script>
+import CarouselHome from '@/components/CarouselHome.vue';
+
 // import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
+    
     components: {
+        CarouselHome
         // ProjectsList,
     },
 
@@ -52,6 +56,13 @@ export default {
                     <h3>Valuta le Lezioni</h3>
                     <p>Lascia una valutazione per aiutare altri studenti a trovare gli insegnanti migliori.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="row">
+                <div class="col-12">
+                    <CarouselHome/>
                 </div>
             </div>
         </section>
