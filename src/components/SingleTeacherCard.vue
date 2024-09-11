@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-        
+            img: 'http://127.0.0.1:8000/storage/',
         };
     },
 
@@ -33,7 +33,7 @@ export default {
             <h5 class="card-title">{{ teacher.user.surname }} {{ teacher.user.name }}</h5>
 
             <!-- teacher's profile picture -->
-            <img :src="`storate/app/public/${teacher.photo}`" class="card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
+            <img :src="`${img}${teacher.photo}`" class="card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
 
             <!-- specializations fields -->
             <p v-for="specialization in teacher.specializations" class="card-text">

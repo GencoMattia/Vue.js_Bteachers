@@ -21,7 +21,7 @@ export default {
         fetchTeachersProfiles(page = 1){
             axios.get("http://127.0.0.1:8000/api/profiles", {
                 params: {
-                    // page: page
+                    page: page
                 }
             }).then((response) => {
                 console.log(response.data.results.data);
