@@ -18,13 +18,13 @@ export default {
     },
 
     methods: {
-        fetchProjects(page = 1){
+        getTeacher(page = 1){
             axios.get("http://127.0.0.1:8000/api/profiles", {
                 params: {
                     page: page
                 }
             }).then((response) => {
-                console.log(response.data);
+                console.log(response.data.results);
     
                 this.projects.push(...response.data.results.data);
                 this.currentPage = response.data.results.currentPage;
@@ -35,15 +35,15 @@ export default {
     },
 
     created() {
-        this.fetchProjects();
+        this.getTeacher();
     },
 };
 </script>
 
 <template>
-    <div class="card text-center">
+    <div class="card text-center" v-for=" proj in projects">
         <div class="card-header">
-            Featured
+            <P class="name">{{ proj.user.name }}</P>
         </div>
         <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
