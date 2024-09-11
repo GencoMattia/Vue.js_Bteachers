@@ -1,51 +1,30 @@
 <script>
-import axios from 'axios';
 
 
 export default {
-    components: {
-        
-    }, 
-
     data() {
         return {
-            projects: [
-                
-            ],
-
-            currentPage: 1,
+        
         };
     },
 
-    methods: {
-        getTeacher(page = 1){
-            axios.get("http://127.0.0.1:8000/api/profiles", {
-                params: {
-                    page: page
-                }
-            }).then((response) => {
-                console.log(response.data.results);
-    
-                this.projects.push(...response.data.results.data);
-                this.currentPage = response.data.results.currentPage;
-            }).catch((err) => {
-                console.error();
-            })
+    props: {
+        project: {
+            type: Object,
+            required: true,
         }
-    },
-
-    created() {
-        this.getTeacher();
-    },
+    }
 };
 </script>
 
 <template>
-    <div class="card text-center" v-for=" proj in projects">
+    <div class="card text-center">
         <div class="card-header">
-            <P class="name">{{ proj.user.name }}</P>
+            <P class="name">{{ project.user.name }} {{ project.user.surname }}</P>
         </div>
         <div class="card-body">
+            <P class="specialization">{{ project.specializations.object.name }}</P>
+
             <h5 class="card-title">Special title treatment</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>

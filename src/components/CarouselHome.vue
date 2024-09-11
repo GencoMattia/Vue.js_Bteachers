@@ -1,4 +1,6 @@
 <script>
+
+import axios from "axios";
 export default {
     components:{
         FontAwesomeIcon,
@@ -6,9 +8,33 @@ export default {
     },
     data() {
         return {
-            
+            projects: [
+                
+            ],
         };
-    }
+        
+    },
+
+    methods: {
+        getTeacher(page = 1){
+            axios.get("http://127.0.0.1:8000/api/profiles", {
+                params: {
+                    page: page
+                }
+            }).then((response) => {
+                console.log(response.data.results);
+    
+                this.projects.push(...response.data.results.data);
+                this.currentPage = response.data.results.currentPage;
+            }).catch((err) => {
+                console.error();
+            })
+        }
+    },
+
+    created() {
+        this.getTeacher();
+    },
 };
 import { FontAwesomeIcon } from "../js/font-awesome";
 import CarouselCard from "./CarouselCard.vue";
@@ -18,13 +44,7 @@ import CarouselCard from "./CarouselCard.vue";
     <div id="carouselExampleSlidesOnly " class="carousel slide shadow p-2 " data-bs-ride="carousel">
         <div class="carousel-inner rounded-4">
             <div class="carousel-item active">
-                <CarouselCard/>
-            </div>
-            <div class="carousel-item">
-                <img src="https://cdn.pixabay.com/photo/2023/10/12/08/23/bird-8310172_1280.png" class="d-block w-100" alt="image2">
-            </div>
-            <div class="carousel-item">
-                <img src="https://cdn.pixabay.com/photo/2023/07/26/20/05/gull-8151932_1280.jpg" class="d-block w-100" alt="image3">
+                <CarouselCard v-for="project in projects" :key="project.id" :project="project" /> 
             </div>
         </div>
     </div>

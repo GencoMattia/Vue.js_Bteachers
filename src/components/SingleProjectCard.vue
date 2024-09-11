@@ -8,7 +8,7 @@ export default {
 
     props: {
         project: {
-            type: Object,
+            type: Array,
             required: true,
         }
     }
