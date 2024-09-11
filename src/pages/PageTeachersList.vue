@@ -9,33 +9,29 @@ export default {
 
     data() {
         return {
-            teachers: [
-
-            ],
-
+            teachers: [],
             currentPage: 1,
         };
     },
 
     methods: {
-        fetchTeachersProfiles(page = 1){
+        fetchTeachersProfiles(page = 1) {
             axios.get("http://127.0.0.1:8000/api/profiles", {
                 params: {
                     page: page
                 }
             }).then((response) => {
                 console.log(response.data.results.data);
-    
                 this.teachers.push(...response.data.results.data);
                 this.currentPage = response.data.results.currentPage;
             }).catch((error) => {
-                this.$router.push({name: "404-not-found"});
+                this.$router.push({ name: "404-not-found" });
                 console.log(error);
-            })
+            });
         },
 
-        changePage(routeName){
-            this.$router.push({name: routeName});
+        changePage(routeName) {
+            this.$router.push({ name: routeName });
         }
     },
 
@@ -46,31 +42,56 @@ export default {
 </script>
 
 <template>
-    <h1>
-        Projects List
-    </h1>
-    <div class="container mt-4">
-        <div class="row">
-            <SingleTeacherCard v-for="teacher in teachers" :key="teacher.id" class="col-md-4" :teacher="teacher"/>
-        </div>
+    <main>
+        <section class="teacher-list-section">
+            <div class="container mt-4 text-center">
+                <h1 class="display-4">Trova il Tuo Insegnante Ideale</h1>
+                <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di apprendimento!</p>
+            </div>
 
-        <div class="d-flex justify-content-center aling-items-center">
-            <a href="#" class="btn btn-primary" @click.prevent="fetchProjects(currentPage + 1)">Load More</a>
-        </div>
-    </div>
+            <div class="container">
+                <div class="row">
+                    <SingleTeacherCard v-for="teacher in teachers" :key="teacher.id" class="col-md-4" :teacher="teacher" />
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center mt-5">
+                    <a href="#" class="btn btn-main" @click.prevent="fetchTeachersProfiles(currentPage + 1)">Load More</a>
+                </div>
+            </div>
+        </section>
+    </main>
 </template>
 
 <style lang="scss" scoped>
-    @use "../assets/styles/partials/variables" as *;
+@use "../assets/styles/partials/variables" as *;
 
-    .btn-primary {
-        margin-top: auto;
+// Stile generale della sezione
+.teacher-list-section {
+    background-color: $background-color;
+    padding: 60px 0;
+
+    h1 {
+        color: $primary-color;
+        font-weight: 700;
+    }
+
+    p {
+        color: $text-color;
+        font-size: 1.2rem;
+    }
+}
+
+// Pulsante "Carica Altri"
+.btn-main {
+    background-color: $main-btn-primary-bg;
+    border-color: $main-btn-primary-border;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+
+    &:hover {
         background-color: $main-btn-primary-hover-bg;
         border-color: $main-btn-primary-hover-border;
-        
-        &:hover {
-            background-color: $main-btn-primary-bg;
-            border-color: $main-btn-primary-border;
-        }
     }
+}
 </style>
