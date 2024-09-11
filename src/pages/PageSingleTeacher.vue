@@ -39,7 +39,7 @@ export default {
                 this.vote.forEach(element => {
                     return this.averageVote = this.averageVote + element.vote
                 });
-                this.averageVote = this.averageVote / this.vote.length;
+                this.averageVote = Math.ceil(this.averageVote / this.vote.length);
                 console.log(this.averageVote)
             
                 }).catch((error) => {
@@ -75,7 +75,7 @@ export default {
                 </div>
                 <div>
                     <h5 class="text-uppercase d-inline me-2"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
-                    <span v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success"> {{ specialization.name }} </span>
+                    <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success"> {{ specialization.name }} </div>
                     <p v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
                             <font-awesome-icon icon="fa-solid fa-star" />
@@ -144,22 +144,27 @@ export default {
             <!-- section review  -->
             <div class="col-12 reviews border rounded my-2">
                 <h4>Reviews</h4>
-                <div v-for="(review, index) in profile.reviews" class="border border-warning border-opacity-75 rounded p-2 mb-2">
-                    <p>
-                        <strong>
-                            <font-awesome-icon icon="fa-solid fa-user" /> {{ review.name }} {{ review.surname }}
-                        </strong>
-                        <div>
-                            <em>
-                                <font-awesome-icon icon="fa-solid fa-envelope" /> {{ review.email }}
-                            </em>
-                        </div>
-                        <div>
-                            <p>
-                                {{ review.review_text }}
-                            </p>
-                        </div>
-                    </p>
+                <div v-if="profile.reviews.length > 0"  class="border border-warning border-opacity-75 rounded p-2 mb-2">
+                    <span v-for="(review, index) in profile.reviews" :key="review">
+                        <p>
+                            <strong>
+                                <font-awesome-icon icon="fa-solid fa-user" /> {{ review.name }} {{ review.surname }}
+                            </strong>
+                            <div>
+                                <em>
+                                    <font-awesome-icon icon="fa-solid fa-envelope" /> {{ review.email }}
+                                </em>
+                            </div>
+                            <div>
+                                <p>
+                                    {{ review.review_text }}
+                                </p>
+                            </div>
+                        </p>
+                    </span>
+                </div>
+                <div v-else>
+                    The teacher has no reviews.
                 </div>
             </div>
         </div>
