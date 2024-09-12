@@ -111,7 +111,7 @@ export default {
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
-                    <a href="#" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
+                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                     
                     <!-- message form modal  -->
                     <div class="modal fade" id="messageModel" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
@@ -208,7 +208,47 @@ export default {
                     The teacher has no reviews.
                 </div>
                 <div class="d-flex justify-content-center my-4" >
-                    <a href="#" type="button" class="btn btn-success">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+
+                    <!-- Review form modal  -->
+                    <div class="modal fade" id="reviewModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">New review</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <!-- reviewer name  -->
+                                <div class="mb-3">
+                                    <label for="reviewer-name" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="reviewer-name" name="name">
+                                </div>
+                                <!-- reviewer surname  -->
+                                <div class="mb-3">
+                                    <label for="reviewer-surname" class="col-form-label">Surname:</label>
+                                    <input type="text" class="form-control" id="reviewer-surname" name="surname">
+                                </div>
+                                <!-- reviewer email  -->
+                                <div class="mb-3">
+                                    <label for="reviewer-email" class="col-form-label">Email:</label>
+                                    <input type="email" class="form-control" id="reviewer-email" name="email">
+                                </div>
+                                <!-- review text  -->
+                                <div class="mb-3">
+                                    <label for="review-text" class="col-form-label">Review:</label>
+                                    <textarea class="form-control" id="review-text" name="review_text"></textarea>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success">Send message</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
