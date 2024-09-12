@@ -33,8 +33,8 @@ export default {
                     <div class="mt-4">
                         <!-- <router-link :to="{ name: 'projects-list' }" class="btn btn-main btn-lg">Trova il tuo Insegnante</router-link> -->
                     </div>
-                    <div>
-                        <a href="http://127.0.0.1:8000/" class="btn btn-primary">
+                    <div class="btn btn-primary">
+                        <a href="http://127.0.0.1:8000/">
                             Sei un insegnante?
                         </a>
                     </div>
