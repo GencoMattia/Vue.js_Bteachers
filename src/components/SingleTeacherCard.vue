@@ -45,6 +45,10 @@ export default {
             <p v-if="teacher.votes.length" class="card-text">
                 Media voti: {{ averageVote }}
             </p>
+
+            <p v-if="teacher.votes.length" class="card-text">
+                Total Reviews: {{ teacher.reviews_count }}
+            </p>
                 
             </div>
         </div>

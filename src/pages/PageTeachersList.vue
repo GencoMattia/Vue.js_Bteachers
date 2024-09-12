@@ -16,7 +16,8 @@ export default {
             selectedSpecialization: null, // Aggiunta per tracciare la specializzazione selezionata
             store,
             votoUtente : null,
-            sortOrder: 'desc',
+            orderBy: 'reviews_count',
+            orderDirection: "asc",
         };
     },
 
@@ -33,7 +34,8 @@ export default {
                 page: page,
                 specialization: specialization,
                 searchQuery: store.searchBarQuery, // Aggiunge la searchQuery attuale ai parametri
-                order_direction: this.sortOrder,
+                order_by: this.orderBy,
+                order_direction: this.orderDirection,
             };
             if (this.votoUtente) {
                 params.min_vote = this.votoUtente;
@@ -81,10 +83,9 @@ export default {
                 this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
             }
         },
+
         changeDisc() {
-            console.log('ha cambiato', this.sortOrder);
-            this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
-            console.log(this.sortOrder);
+            this.orderDirection = this.orderDirection === 'asc' ? 'desc' : 'asc'; 
             this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
         },
 
@@ -131,10 +132,10 @@ export default {
                             </option>
                         </select>
                     </div>
-                    <!-- <div class="form-check form-switch mx-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" :checked="sortOrder === 'asc'" @change="changeDisc">
+                    <div class="form-check form-switch mx-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" @change="changeDisc">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Order review</label>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
