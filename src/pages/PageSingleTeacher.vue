@@ -323,11 +323,11 @@ export default {
                     <!-- vote model form  -->
                     <a type="button" class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
 
-                    <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="reviewModalLabel">New review</h1>
+                                <h1 class="modal-title fs-5" id="voteModalLabel">New vote</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -336,7 +336,6 @@ export default {
                                     <input type="text" class="form-control" id="vote-profile-id" name="profile_id" :value="profile.id" hidden>
                                     <!-- vote  -->
                                     <select class="form-select" id="vote-id" name="vote-id" aria-label="Default select example">
-                                        <option selected disabled>Vote</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
