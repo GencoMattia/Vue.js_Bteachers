@@ -111,7 +111,52 @@ export default {
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
-                    <a href="#" type="button" class="btn btn-success">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
+                    <a href="#" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
+                    
+                    <!-- message form modal  -->
+                    <div class="modal fade" id="messageModel" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <!-- messager name  -->
+                                <div class="mb-3">
+                                    <label for="messager-name" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="messager-name" name="name">
+                                </div>
+                                <!-- messager surname  -->
+                                <div class="mb-3">
+                                    <label for="messager-surname" class="col-form-label">Surname:</label>
+                                    <input type="text" class="form-control" id="messager-surname" name="surname">
+                                </div>
+                                <!-- messager email  -->
+                                <div class="mb-3">
+                                    <label for="messager-email" class="col-form-label">Email:</label>
+                                    <input type="email" class="form-control" id="messager-email" name="email">
+                                </div>
+                                <!-- messager telephone_number  -->
+                                <div class="mb-3">
+                                    <label for="messager-telephone-number" class="col-form-label">Telephone number:</label>
+                                    <input type="text" class="form-control" id="messager-telephone-number" name="telephone_number">
+                                </div>
+                                <!-- message text  -->
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text" name="message_text"></textarea>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success">Send message</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
