@@ -28,28 +28,30 @@ export default {
 </script>
 
 <template>
-    <router-link  class="router-link" @click="navigateToProfile(teacher.id)" :to="{ name: 'single-teacher', params: { id: teacher.id }}">
-    <div class="card project-card">
-        <div class="card-body">
-            <h5 class="card-title">{{ teacher.user.surname }} {{ teacher.user.name }}</h5>
+    <router-link class="router-link" @click="navigateToProfile(teacher.id)" :to="{ name: 'single-teacher', params: { id: teacher.id }}">
+        <div class="card teacher-card">
+            <div class="card-body">
+                <!-- teacher's profile picture -->
+                <img :src="`${img}${teacher.photo}`" class="card-img-top mb-3" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
 
-            <!-- teacher's profile picture -->
-            <img :src="`${img}${teacher.photo}`" class="card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
+                <!-- teacher's name -->
+                <h5 class="card-title">{{ teacher.user.surname }} {{ teacher.user.name }}</h5>
 
-            <!-- specializations fields -->
-            <p v-for="specialization in teacher.specializations" class="card-text">
-                {{ specialization.field }}
-            </p>
+                <!-- specializations fields -->
+                <p v-for="specialization in teacher.specializations" :key="specialization.id" class="card-text specialization">
+                    {{ specialization.field }}
+                </p>
 
-            <!-- average votes -->
-            <p v-if="teacher.votes.length" class="card-text">
-                Media voti: {{ averageVote }}
-            </p>
+                <!-- average votes and reviews -->
+                <div class="teacher-info mt-3">
+                    <p v-if="teacher.votes.length" class="card-text">
+                        Media voti: <strong>{{ averageVote }}</strong>
+                    </p>
 
-            <p v-if="teacher.votes.length" class="card-text">
-                Total Reviews: {{ teacher.reviews_count }}
-            </p>
-                
+                    <p v-if="teacher.reviews_count" class="card-text">
+                        Recensioni totali: <strong>{{ teacher.reviews_count }}</strong>
+                    </p>
+                </div>
             </div>
         </div>
     </router-link>
@@ -58,60 +60,63 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
-.project-card {
+.teacher-card {
     margin-bottom: $card-margin-bottom;
     box-shadow: $card-box-shadow;
-    transition: transform 0.3s ease-in-out;
-    
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: $main-background-color;
+
     &:hover {
         transform: $card-hover-transform;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
-    
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-bottom: 2px solid $secondary-color;
+    }
+
     .card-body {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
+        padding: 20px;
+        text-align: center;
 
-    .card-title {
-        font-size: $card-title-font-size;
-        font-weight: $card-title-font-weight;
-    }
+        .card-title {
+            font-size: $card-title-font-size;
+            font-weight: $card-title-font-weight;
+            color: $primary-color;
+            margin-bottom: 10px;
+        }
 
-    .card-text {
-        font-size: $card-text-font-size;
-        color: $card-text-color;
-    }
+        .specialization {
+            font-size: $card-text-font-size;
+            color: $text-color;
+        }
 
-    .btn-primary {
-        background-color: $btn-primary-bg;
-        border-color: $btn-primary-border;
-        margin-top: auto;
+        .teacher-info {
+            font-size: 0.9rem;
+            color: $card-text-color;
+            margin-top: 10px;
 
-        &:hover {
-        background-color: $btn-primary-hover-bg;
-        border-color: $btn-primary-hover-border;
+            p {
+                margin: 0;
+            }
+
+            strong {
+                color: $primary-color;
+            }
         }
     }
-    
 }
+
 .router-link {
     text-decoration: none;
 
-    .project-card {
+    &:hover {
         text-decoration: none;
-
-        .card-body {
-            text-decoration: none;
-        }
-
-        .card-title {
-            text-decoration: none;
-        }
-
-        .card-text {
-            text-decoration: none;
-        }
     }
 }
 </style>
