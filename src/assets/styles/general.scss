@@ -22,3 +22,8 @@ body {
     border-color: $primary-hover-color;
     }
 }
+
+router-link{
+    text-decoration: none;
+    color:inherit;
+}

@@ -6,6 +6,7 @@ import ProjectsList from './ProjectsList.vue';
 export default {
     components: {
         ProjectsList,
+        
     },
 
     data() {
@@ -23,6 +24,7 @@ export default {
 <template>
     <main>
         <ProjectsList />
+
     </main>
 </template>
 
