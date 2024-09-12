@@ -49,15 +49,80 @@ export default {
                 console.log(error);
             })
         },
+        // send message to teacher 
+        sendMessage() {
+            const playload = {
+                messages: [
+                    {
+                    profile_id: document.getElementById('message-profile-id').value,
+                    name: document.getElementById('messager-name').value,
+                    surname: document.getElementById('messager-surname').value,
+                    email: document.getElementById('messager-email').value,
+                    telephone_number: document.getElementById('messager-telephone-number').value,
+                    message_text: document.getElementById('message-text').value,
+                    }
+                ]
+            }
+
+            axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
+            .then((response) => {
+            console.log('Message sent successfully:', response, playload);
+            })
+            .catch((error) => {
+            console.log('Error sending message:', error);
+            });
+        },
+        // send review 
+        sendReview() {
+            const playload = {
+                reviews: [
+                    {
+                    profile_id: document.getElementById('review-profile-id').value,
+                    name: document.getElementById('reviewer-name').value,
+                    surname: document.getElementById('reviewer-surname').value,
+                    email: document.getElementById('reviewer-email').value,
+                    review_text: document.getElementById('review-text').value,
+                    }
+                ]
+            }
+
+            axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
+            .then((response) => {
+            console.log('Message sent successfully:', response, playload);
+            })
+            .catch((error) => {
+            console.log('Error sending message:', error);
+            });
+        },
+
+
+        // send vote
+        sendVote() {
+            const playload = {
+                votes: [
+                    {
+                    profile_id: document.getElementById('vote-profile-id').value,
+                    vote_id: document.getElementById('vote-id').value,
+                    }
+                ]
+            }
+            axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
+            .then((response) => {
+            console.log('Message sent successfully:', response, playload);
+            })
+            .catch((error) => {
+            console.log('Error sending message:', error);
+            });
+        },
+
         getImageUrl(path) {
-        // Definisci il base URL del tuo server
-        const baseUrl = 'http://127.0.0.1:8000/storage/'; // Cambia con il tuo dominio
+        // server base url
+        const baseUrl = 'http://127.0.0.1:8000/storage/';
             return baseUrl + path;
         },
         changePage(routeName){
             this.$router.push({name: routeName});
         },
-
     },
 
     created() {
@@ -113,7 +178,55 @@ export default {
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
-                    <a href="#" type="button" class="btn btn-success">Contact the teacher </a>
+                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
+                    
+                    <!-- message form modal  -->
+                    <div class="modal fade" id="messageModel" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="messageModalLabel">New message</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <!-- messages profile_id  -->
+                                    <input type="text" class="form-control" id="message-profile-id" name="messageData.profile_id" :value="profile.id" hidden>
+
+                                    <!-- messager name  -->
+                                <div class="mb-3">
+                                    <label for="messager-name" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="messager-name" name="messageData.name">
+                                </div>
+                                <!-- messager surname  -->
+                                <div class="mb-3">
+                                    <label for="messager-surname" class="col-form-label">Surname:</label>
+                                    <input type="text" class="form-control" id="messager-surname" name="messageData.surname">
+                                </div>
+                                <!-- messager email  -->
+                                <div class="mb-3">
+                                    <label for="messager-email" class="col-form-label">Email:</label>
+                                    <input type="email" class="form-control" id="messager-email" name="messageData.email">
+                                </div>
+                                <!-- messager telephone_number  -->
+                                <div class="mb-3">
+                                    <label for="messager-telephone-number" class="col-form-label">Telephone number:</label>
+                                    <input type="text" class="form-control" id="messager-telephone-number" name="messageData.telephone_number">
+                                </div>
+                                <!-- message text  -->
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" @click="sendMessage()">Send message</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,26 +251,12 @@ export default {
             </div>
         </div>
 
+        <!-- reviews section  -->
         <div class="row justify-content-between">
-            <!-- section votes  -->
-            <!-- <div class="col-5 reviews border rounded my-2">
-                <h4>Votes</h4>
-                <div v-for="(vote, index) in profile.votes" class="border border-warning border-opacity-75 rounded p-2 mb-2">
-                    <p>
-                        <div>
-                                Vote: {{ vote.vote }}
-                        </div>
-                        <strong>
-                            {{ vote.name }}
-                        </strong>
-                    </p>
-                </div>
-            </div> -->
-            <!-- section review  -->
             <div class="col-12 reviews border rounded my-2">
                 <h4>Reviews</h4>
-                <div v-if="profile.reviews.length > 0"  class="border border-warning border-opacity-75 rounded p-2 mb-2">
-                    <span v-for="(review, index) in profile.reviews" :key="review">
+                <div v-if="profile.reviews.length > 0">
+                    <div v-for="(review, index) in profile.reviews" :key="review"  class="border border-warning border-opacity-75 rounded p-2 mb-2">
                         <p>
                             <strong>
                                 <font-awesome-icon icon="fa-solid fa-user" /> {{ review.name }} {{ review.surname }}
@@ -173,13 +272,87 @@ export default {
                                 </p>
                             </div>
                         </p>
-                    </span>
+                    </div>
                 </div>
                 <div v-else>
                     The teacher has no reviews.
                 </div>
                 <div class="d-flex justify-content-center my-4" >
-                    <a href="#" type="button" class="btn btn-success">Review the teacher </a>
+                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+
+                    <!-- Review form modal  -->
+                    <div class="modal fade" id="reviewModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="reviewModalLabel">New review</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <!-- reviews profile_id  -->
+                                    <input type="text" class="form-control" id="review-profile-id" name="profile_id" :value="profile.id" hidden>
+                                    <!-- reviewer name  -->
+                                <div class="mb-3">
+                                    <label for="reviewer-name" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="reviewer-name" name="name">
+                                </div>
+                                <!-- reviewer surname  -->
+                                <div class="mb-3">
+                                    <label for="reviewer-surname" class="col-form-label">Surname:</label>
+                                    <input type="text" class="form-control" id="reviewer-surname" name="surname">
+                                </div>
+                                <!-- reviewer email  -->
+                                <div class="mb-3">
+                                    <label for="reviewer-email" class="col-form-label">Email:</label>
+                                    <input type="email" class="form-control" id="reviewer-email" name="email">
+                                </div>
+                                <!-- review text  -->
+                                <div class="mb-3">
+                                    <label for="review-text" class="col-form-label">Review:</label>
+                                    <textarea class="form-control" id="review-text" name="review_text"></textarea>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" @click="sendReview">Send review</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- vote model form  -->
+                    <a type="button" class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+
+                    <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="voteModalLabel">New vote</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <!-- vote profile_id  -->
+                                    <input type="text" class="form-control" id="vote-profile-id" name="profile_id" :value="profile.id" hidden>
+                                    <!-- vote  -->
+                                    <select class="form-select" id="vote-id" name="vote-id" aria-label="Default select example">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" @click="sendVote">Send vote</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
