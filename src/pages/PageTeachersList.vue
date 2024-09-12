@@ -15,6 +15,8 @@ export default {
             currentPage: 1,
             selectedSpecialization: null, // Aggiunta per tracciare la specializzazione selezionata
             store,
+            votoUtente : null,
+            sortOrder: 'desc',
         };
     },
 
@@ -30,9 +32,13 @@ export default {
             const params = {
                 page: page,
                 specialization: specialization,
-                searchQuery: store.searchBarQuery // Aggiunge la searchQuery attuale ai parametri
+                searchQuery: store.searchBarQuery, // Aggiunge la searchQuery attuale ai parametri
+                order_direction: this.sortOrder,
             };
-
+            if (this.votoUtente) {
+                params.min_vote = this.votoUtente;
+            };
+            console.log('la chiamata è partita', this.sortOrder);
             axios.get("http://127.0.0.1:8000/api/profiles", { params })
                 .then((response) => {
                     // Se reset è true, sovrascrivi gli insegnanti; altrimenti aggiungi i risultati
@@ -66,6 +72,21 @@ export default {
                 this.fetchTeachersProfiles(1, specialization, true); // Resetta la pagina e filtra
             }
         },
+        onVoteChange(vote) {
+            if (vote === "") {
+                this.votoUtente = null;
+                this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+            } else {
+                this.votoUtente = vote;
+                this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+            }
+        },
+        changeDisc() {
+            console.log('ha cambiato', this.sortOrder);
+            this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+            console.log(this.sortOrder);
+            this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+        },
 
         // Caricamento di più insegnanti, mantenendo il filtro corrente
         loadMore() {
@@ -86,16 +107,36 @@ export default {
                 <h1 class="display-4">Trova il Tuo Insegnante Ideale</h1>
                 <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di apprendimento!</p>
             </div>
+            <div class="container">
 
-            <select class="form-select" aria-label="default" @change="onSpecializationChange($event.target.value)">
-                <option value="" selected>
-                    Select desired specialization
-                </option>
-                <option v-for="specialization in store.specializations" :value="specialization.field">
-                    {{ specialization.field }}
-                </option>
-            </select>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
+                        <select class="form-select " aria-label="default" @change="onSpecializationChange($event.target.value)">
+                            <option value="" selected>
+                                Select desired specialization
+                            </option>
+                            <option v-for="specialization in store.specializations" :value="specialization.field">
+                                {{ specialization.field }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
+                            <option value="" selected>
+                                Select minimum vote
+                            </option>
+                            <option v-for="voto in store.voteList" :value="voto.vote">
+                                {{ voto.vote }} -> {{ voto.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-check form-switch mx-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" :checked="sortOrder === 'asc'" @change="changeDisc">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Order review</label>
+                    </div>
+                </div>
+            </div>
 
             <div class="container">
                 <div class="row">
