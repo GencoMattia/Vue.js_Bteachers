@@ -16,15 +16,21 @@ export default {
             selectedSpecialization: null, // Aggiunta per tracciare la specializzazione selezionata
             store,
         };
-
     },
-    
+
+    watch: {
+        // Osserva i cambiamenti della query nello store
+        'store.searchBarQuery'(newQuery) {
+            this.getSearchBarValue(newQuery); // Attiva la chiamata API quando cambia la query
+        }
+    },
 
     methods: {
         fetchTeachersProfiles(page = 1, specialization = null, reset = false) {
             const params = {
                 page: page,
-                specialization: specialization
+                specialization: specialization,
+                searchQuery: store.searchBarQuery // Aggiunge la searchQuery attuale ai parametri
             };
 
             axios.get("http://127.0.0.1:8000/api/profiles", { params })
@@ -43,6 +49,11 @@ export default {
                 });
         },
 
+        // Effettua la chiamata API quando cambia la query
+        getSearchBarValue(query) {
+            this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+        },
+
         // Gestione della selezione delle specializzazioni
         onSpecializationChange(specialization) {
             if (specialization === "") {
@@ -59,13 +70,13 @@ export default {
         // Caricamento di più insegnanti, mantenendo il filtro corrente
         loadMore() {
             this.fetchTeachersProfiles(this.currentPage + 1, this.selectedSpecialization);
-        }
-    },
+        },
 
+    },
     created() {
         this.fetchTeachersProfiles();
     },
-};
+}
 </script>
 
 <template>
