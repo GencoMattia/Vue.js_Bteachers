@@ -13,6 +13,14 @@ export default {
             vote: [],
             averageVote: '',
             star: 5,
+            messageData: {
+                profile_id: '',
+                name: '',
+                surname: '',
+                email: '',
+                telephone_number: '',
+                message_text: ''
+            }
         };
     },
 
@@ -47,15 +55,46 @@ export default {
                 console.log(error);
             })
         },
+        // send message to teacher 
+        sendMessage() {
+            const playload = {
+                messages: [
+                    {
+                    profile_id: document.getElementById('message-profile-id').value,
+                    name: document.getElementById('messager-name').value,
+                    surname: document.getElementById('messager-surname').value,
+                    email: document.getElementById('messager-email').value,
+                    telephone_number: document.getElementById('messager-telephone-number').value,
+                    message_text: document.getElementById('message-text').value,
+                    }
+                ]
+            }
+
+            axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
+            .then((response) => {
+            console.log('Message sent successfully:', response, playload);
+            // Reset form data
+                this.messageData = {
+                    name: '',
+                    surname: '',
+                    email: '',
+                    telephone_number: '',
+                    message_text: ''
+                };
+            })
+            .catch((error) => {
+            console.log('Error sending message:', error);
+            });
+        },
+
         getImageUrl(path) {
-        // Definisci il base URL del tuo server
-        const baseUrl = 'http://127.0.0.1:8000/storage/'; // Cambia con il tuo dominio
+        // server base url
+        const baseUrl = 'http://127.0.0.1:8000/storage/';
             return baseUrl + path;
         },
         changePage(routeName){
             this.$router.push({name: routeName});
         },
-
     },
 
     created() {
@@ -118,41 +157,44 @@ export default {
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                                <h1 class="modal-title fs-5" id="messageModalLabel">New message</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form>
+                                    <!-- messages profile_id  -->
+                                    <input type="text" class="form-control" id="message-profile-id" name="messageData.profile_id" :value="profile.id" hidden>
+
                                     <!-- messager name  -->
                                 <div class="mb-3">
                                     <label for="messager-name" class="col-form-label">Name:</label>
-                                    <input type="text" class="form-control" id="messager-name" name="name">
+                                    <input type="text" class="form-control" id="messager-name" name="messageData.name">
                                 </div>
                                 <!-- messager surname  -->
                                 <div class="mb-3">
                                     <label for="messager-surname" class="col-form-label">Surname:</label>
-                                    <input type="text" class="form-control" id="messager-surname" name="surname">
+                                    <input type="text" class="form-control" id="messager-surname" name="messageData.surname">
                                 </div>
                                 <!-- messager email  -->
                                 <div class="mb-3">
                                     <label for="messager-email" class="col-form-label">Email:</label>
-                                    <input type="email" class="form-control" id="messager-email" name="email">
+                                    <input type="email" class="form-control" id="messager-email" name="messageData.email">
                                 </div>
                                 <!-- messager telephone_number  -->
                                 <div class="mb-3">
                                     <label for="messager-telephone-number" class="col-form-label">Telephone number:</label>
-                                    <input type="text" class="form-control" id="messager-telephone-number" name="telephone_number">
+                                    <input type="text" class="form-control" id="messager-telephone-number" name="messageData.telephone_number">
                                 </div>
                                 <!-- message text  -->
                                 <div class="mb-3">
                                     <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text" name="message_text"></textarea>
+                                    <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
                                 </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success">Send message</button>
+                                <button type="submit" class="btn btn-success" @click="sendMessage()">Send message</button>
                             </div>
                             </div>
                         </div>
@@ -215,11 +257,13 @@ export default {
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">New review</h1>
+                                <h1 class="modal-title fs-5" id="reviewModalLabel">New review</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form>
+                                    <!-- reviews profile_id  -->
+                                    <input type="text" class="form-control" id="reviews-profile_id" name="profile_id" :value="profile.id" hidden>
                                     <!-- reviewer name  -->
                                 <div class="mb-3">
                                     <label for="reviewer-name" class="col-form-label">Name:</label>
