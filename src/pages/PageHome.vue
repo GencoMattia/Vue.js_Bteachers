@@ -45,16 +45,16 @@ export default {
                         <div class="container-card bg-blue-box">
                             <svg width="50" height="50" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="1" y="1" width="118" height="118" rx="24" fill="url(#paint0_linear)" fill-opacity="0.15" stroke="url(#paint1_radial)" stroke-width="2"></rect>
-                                <circle cx="55" cy="55" r="25" stroke="#87A1FF" stroke-width="8"></circle>
-                                <line x1="75" y1="75" x2="95" y2="95" stroke="#87A1FF" stroke-width="8" stroke-linecap="round"></line>
+                                <circle cx="55" cy="55" r="25" stroke="#FFF" stroke-width="8"></circle>
+                                <line x1="75" y1="75" x2="95" y2="95" stroke="#FFF" stroke-width="8" stroke-linecap="round"></line>
                                 <defs>
                                     <linearGradient id="paint0_linear" x1="120" y1="120" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#61A0FF" stop-opacity="0.7"></stop>
-                                    <stop offset="1" stop-color="#61A0FF" stop-opacity="0.15"></stop>
+                                    <stop stop-color="#FFF" stop-opacity="0.7"></stop>
+                                    <stop offset="1" stop-color="#FFF" stop-opacity="0.15"></stop>
                                     </linearGradient>
                                     <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(60 60) rotate(90) scale(100)">
-                                    <stop stop-color="#87A1FF"></stop>
-                                    <stop offset="1" stop-color="#16161D" stop-opacity="0.2"></stop>
+                                    <stop stop-color="#FFF"></stop>
+                                    <stop offset="1" stop-color="#FFF" stop-opacity="0.2"></stop>
                                     </radialGradient>
                                 </defs>
                             </svg>
@@ -65,16 +65,16 @@ export default {
                     <div class="card m-0">
                         <div class="container-card bg-blue-box">
                             <svg width="50" height="50" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1" y="1" width="118" height="118" rx="24" fill="url(#paint0_linear)" fill-opacity="0.15" stroke="url(#paint1_radial)" stroke-width="2"></rect>
-                                <path d="M74 82C60 72 50 62 40 48C35 40 38 37 40 35C42 33 45 30 47 33L56 43C58 45 57 48 56 50C54 52 54 54 58 58C63 62 65 61 67 59C69 57 72 56 74 58L84 67C87 70 83 73 82 75C80 78 78 82 74 82Z" fill="#87A1FF"/>
+                                <rect x="1" y="1" width="118" height="118" rx="24" fill="url(#paint0_linear)" fill-opacity="0.15" stroke="#FFF" stroke-width="2"></rect>
+                                <path d="M74 82C60 72 50 62 40 48C35 40 38 37 40 35C42 33 45 30 47 33L56 43C58 45 57 48 56 50C54 52 54 54 58 58C63 62 65 61 67 59C69 57 72 56 74 58L84 67C87 70 83 73 82 75C80 78 78 82 74 82Z" fill="#FFF"/>
                                 <defs>
                                     <linearGradient id="paint0_linear" x1="120" y1="120" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#61A0FF" stop-opacity="0.7"></stop>
-                                    <stop offset="1" stop-color="#61A0FF" stop-opacity="0.15"></stop>
+                                    <stop stop-color="#FFF" stop-opacity="0.7"></stop>
+                                    <stop offset="1" stop-color="#FFF" stop-opacity="0.15"></stop>
                                     </linearGradient>
                                     <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(60 60) rotate(90) scale(100)">
-                                    <stop stop-color="#87A1FF"></stop>
-                                    <stop offset="1" stop-color="#16161D" stop-opacity="0.2"></stop>
+                                    <stop stop-color="#FFF"></stop>
+                                    <stop offset="1" stop-color="#FFF" stop-opacity="0.2"></stop>
                                     </radialGradient>
                                 </defs>
                             </svg>
@@ -86,15 +86,15 @@ export default {
                         <div class="container-card bg-blue-box">
                             <svg width="50" height="50" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="1" y="1" width="118" height="118" rx="24" fill="url(#paint0_linear)" fill-opacity="0.15" stroke="url(#paint1_radial)" stroke-width="2"></rect>
-                                <path d="M60 40L66 54H80L68 64L72 78L60 68L48 78L52 64L40 54H54L60 40Z" fill="#87A1FF"/>
+                                <path d="M60 40L66 54H80L68 64L72 78L60 68L48 78L52 64L40 54H54L60 40Z" fill="#FFF"/>
                                 <defs>
                                     <linearGradient id="paint0_linear" x1="120" y1="120" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#61A0FF" stop-opacity="0.7"></stop>
-                                    <stop offset="1" stop-color="#61A0FF" stop-opacity="0.15"></stop>
+                                    <stop stop-color="#FFF" stop-opacity="0.7"></stop>
+                                    <stop offset="1" stop-color="#FFF" stop-opacity="0.15"></stop>
                                     </linearGradient>
                                     <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(60 60) rotate(90) scale(100)">
-                                    <stop stop-color="#87A1FF"></stop>
-                                    <stop offset="1" stop-color="#16161D" stop-opacity="0.2"></stop>
+                                    <stop stop-color="#FFF"></stop>
+                                    <stop offset="1" stop-color="#FFF" stop-opacity="0.2"></stop>
                                     </radialGradient>
                                 </defs>
                             </svg>
@@ -182,6 +182,7 @@ export default {
 
 }
 
+
 .carousel{
     max-width: 1200px;
     margin: 0 auto;
@@ -240,14 +241,14 @@ export default {
 .container-card {
     position: relative;
     border: 2px solid transparent;
-    background: linear-gradient(71deg, #c008fd, #f06c00, #c008fd);
+    background: linear-gradient(71deg, #c008fd, #f13e08f5, #992abe);
     background-size: 200% 200%;
     background-clip: padding-box;
     border-radius: 45px;
     padding: 40px;
     height: 300px;
     // animation: spin 2s infinite linear;
-    animation: gradientAnimation 6s ease infinite;
+    animation: gradientAnimation 12s ease infinite;
 }
 
 @keyframes gradientAnimation {

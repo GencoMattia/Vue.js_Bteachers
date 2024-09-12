@@ -37,7 +37,7 @@ export default {
             </div>
             <div class="card-body row d-flex">
                 <div class="photo col-6">
-                    <img :src="`${img}${teacher.photo}`" class="pl-4 rounded-circle card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
+                    <img :src="`${img}${teacher.photo}`" class="pl-4 rounded-circle border border-3 border-success card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
                 </div>
                 <div class="specs col-6 text-start pt-5">
                     <p v-for="specialization in teacher.specializations" class="specialization">{{ specialization.field }}</p>
@@ -58,7 +58,7 @@ export default {
     @use "../assets/styles/partials/variables" as *;
 
     .card-body{
-        height: 265px;
+        height: 300px;
     }
 
     img{
