@@ -75,7 +75,7 @@ export default {
         
         .carousel-inner {
             .carousel-item {
-            transition: transform $carousel-transition-duration ease;
+            transition:$carousel-transition-duration ease;
         }
     }
 }
