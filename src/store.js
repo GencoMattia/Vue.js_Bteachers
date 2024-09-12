@@ -1,38 +1,50 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-    specializations : [
+    specializations: [
         {
-            name: "Educational Psychology",
-            field: "Psychology"
+            name: "Renaissance Art History",
+            field: "Art History"
         },
         {
-            name: "Mathematics Education",
-            field: "Mathematics"
-        },
-        {
-            name: "Computer Science Teaching",
-            field: "Computer Science"
-        },
-        {
-            name: "Italian Literature",
-            field: "Literature"
+            name: "Biotechnology",
+            field: "Biology"
         },
         {
             name: "Organic Chemistry",
             field: "Chemistry"
         },
         {
-            name: "Music Theory and Composition",
-            field: "Music"
+            name: "Civil Engineering",
+            field: "Engineering"
+        },
+        {
+            name: "International Economics",
+            field: "Economics"
         },
         {
             name: "Foreign Language Teaching",
             field: "Linguistics"
         },
         {
-            name: "Renaissance Art History",
-            field: "Art History"
+            name: "Italian Literature",
+            field: "Literature"
+        },
+        {
+            name: "Comparative Literature",
+            field: "Literature"
+        },
+        {
+            name: "Mathematics Education",
+            field: "Mathematics"
+        },
+        {
+            name: "Mathematical Analysis",
+            field: "Mathematics"
+        },
+        {
+            name: "Music Theory and Composition",
+            field: "Music"
         },
         {
             name: "Moral Philosophy",
@@ -43,45 +55,34 @@ export const store = reactive({
             field: "Physics"
         },
         {
-            name: "Sociology of Education",
-            field: "Sociology"
+            name: "Quantum Physics",
+            field: "Physics"
         },
         {
-            name: "International Economics",
-            field: "Economics"
+            name: "Educational Psychology",
+            field: "Psychology"
         },
         {
             name: "Clinical Psychology",
             field: "Psychology"
         },
         {
-            name: "Civil Engineering",
-            field: "Engineering"
-        },
-        {
-            name: "Biotechnology",
-            field: "Biology"
+            name: "Sociology of Education",
+            field: "Sociology"
         },
         {
             name: "Special Education Pedagogy",
             field: "Pedagogy"
         },
         {
-            name: "Comparative Literature",
-            field: "Literature"
-        },
-        {
-            name: "Mathematical Analysis",
-            field: "Mathematics"
-        },
-        {
-            name: "Quantum Physics",
-            field: "Physics"
+            name: "Computer Science Teaching",
+            field: "Computer Science"
         },
         {
             name: "Environmental Management",
             field: "Environmental Science"
         }
-    ],
+    ]
+    
     
 })
