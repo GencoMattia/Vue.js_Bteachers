@@ -70,8 +70,31 @@ export default {
             console.log('Error sending message:', error);
             });
         },
+        // send review 
+        sendReview() {
+            const playload = {
+                reviews: [
+                    {
+                    profile_id: document.getElementById('review-profile-id').value,
+                    name: document.getElementById('reviewer-name').value,
+                    surname: document.getElementById('reviewer-surname').value,
+                    email: document.getElementById('reviewer-email').value,
+                    review_text: document.getElementById('review-text').value,
+                    }
+                ]
+            }
 
-        // send vote to teacher 
+            axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
+            .then((response) => {
+            console.log('Message sent successfully:', response, playload);
+            })
+            .catch((error) => {
+            console.log('Error sending message:', error);
+            });
+        },
+
+
+        // send vote
         sendVote() {
             const playload = {
                 votes: [
@@ -266,7 +289,7 @@ export default {
                             <div class="modal-body">
                                 <form>
                                     <!-- reviews profile_id  -->
-                                    <input type="text" class="form-control" id="reviews-profile_id" name="profile_id" :value="profile.id" hidden>
+                                    <input type="text" class="form-control" id="review-profile-id" name="profile_id" :value="profile.id" hidden>
                                     <!-- reviewer name  -->
                                 <div class="mb-3">
                                     <label for="reviewer-name" class="col-form-label">Name:</label>
@@ -291,7 +314,7 @@ export default {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success">Send message</button>
+                                <button type="button" class="btn btn-success" @click="sendReview">Send review</button>
                             </div>
                             </div>
                         </div>
