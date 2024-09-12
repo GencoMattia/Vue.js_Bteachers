@@ -26,6 +26,11 @@ export default {
         getSearchBarValue() {
             this.store.setSearchQuery(this.searchBarQuery);
             console.log("Search query inviata allo store:", this.searchBarQuery);
+
+            if (this.$route.name !== 'teachers-list') {
+            // Naviga alla rotta 'teachers-list'
+            this.$router.push({ name: 'teachers-list' });
+        }
         }
     }
 };
