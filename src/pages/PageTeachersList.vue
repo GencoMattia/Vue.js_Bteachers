@@ -16,7 +16,7 @@ export default {
             selectedSpecialization: null, // Aggiunta per tracciare la specializzazione selezionata
             store,
             votoUtente : null,
-            sortOrder: 'desc',
+            sortOrder: 'asc',
         };
     },
 
