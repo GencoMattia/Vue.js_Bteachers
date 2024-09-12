@@ -131,10 +131,10 @@ export default {
                             </option>
                         </select>
                     </div>
-                    <div class="form-check form-switch mx-3">
+                    <!-- <div class="form-check form-switch mx-3">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" :checked="sortOrder === 'asc'" @change="changeDisc">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Order review</label>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
