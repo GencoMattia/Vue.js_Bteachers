@@ -12,32 +12,27 @@ export default {
         return {
             teachers: [],
             currentPage: 1,
+            selectedSpecialization: null, // Aggiunta per tracciare la specializzazione selezionata
             store,
         };
     },
 
     methods: {
-        fetchTeachersProfiles(page = 1, specialization = null) {
+        fetchTeachersProfiles(page = 1, specialization = null, reset = false) {
             const params = {
                 page: page,
                 specialization: specialization
             };
 
-
-
             axios.get("http://127.0.0.1:8000/api/profiles", { params })
                 .then((response) => {
-                    console.log(response.data.results.data);
-                    if (specialization) {
+                    // Se reset è true, sovrascrivi gli insegnanti; altrimenti aggiungi i risultati
+                    if (reset) {
                         this.teachers = response.data.results.data;
-                    }else{
+                    } else {
                         this.teachers.push(...response.data.results.data);
-
                     }
-                    console.log("current page",this.currentPage, "page", page);
                     this.currentPage = page;
-                    console.log("current page",this.currentPage, "page", page);
-
                 })
                 .catch((error) => {
                     this.$router.push({ name: "404-not-found" });
@@ -45,16 +40,28 @@ export default {
                 });
         },
 
+        // Gestione della selezione delle specializzazioni
+        onSpecializationChange(specialization) {
+            if (specialization === "") {
+                // Se la specializzazione è vuota, resetta il filtro e mostra tutti i risultati
+                this.selectedSpecialization = null;
+                this.fetchTeachersProfiles(1, null, true); // Mostra tutti gli insegnanti e resetta la paginazione
+            } else {
+                // Applica il filtro per la specializzazione selezionata
+                this.selectedSpecialization = specialization;
+                this.fetchTeachersProfiles(1, specialization, true); // Resetta la pagina e filtra
+            }
+        },
 
-        changePage(routeName) {
-            this.$router.push({ name: routeName });
+        // Caricamento di più insegnanti, mantenendo il filtro corrente
+        loadMore() {
+            this.fetchTeachersProfiles(this.currentPage + 1, this.selectedSpecialization);
         }
     },
 
     created() {
         this.fetchTeachersProfiles();
     },
-
 };
 </script>
 
@@ -66,14 +73,15 @@ export default {
                 <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di apprendimento!</p>
             </div>
 
-            <select class="form-select" aria-label="default" name="" id="">
-                <option selected @click="fetchTeachersProfiles(1, null)">
+            <select class="form-select" aria-label="default" @change="onSpecializationChange($event.target.value)">
+                <option value="" selected>
                     Select desired specialization
                 </option>
-                <option v-for="specialization in store.specializations" :value="specialization.field" @click="fetchTeachersProfiles(1, specialization.field)">
+                <option v-for="specialization in store.specializations" :value="specialization.field">
                     {{ specialization.field }}
                 </option>
             </select>
+
 
             <div class="container">
                 <div class="row">
@@ -81,7 +89,7 @@ export default {
                 </div>
 
                 <div class="d-flex justify-content-center align-items-center mt-5">
-                    <a href="#" class="btn btn-main" @click.prevent="fetchTeachersProfiles(currentPage + 1)">Load More</a>
+                    <a href="#" class="btn btn-main" @click.prevent="loadMore">Load More</a>
                 </div>
             </div>
         </section>
