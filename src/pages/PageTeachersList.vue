@@ -99,4 +99,23 @@ export default {
     }
 }
 
+.router-link {
+    text-decoration: none;
+
+    .project-card {
+        text-decoration: none;
+
+        .card-body {
+            text-decoration: none;
+        }
+
+        .card-title {
+            text-decoration: none;
+        }
+
+        .card-text {
+            text-decoration: none;
+        }
+    }
+}
 </style>

@@ -29,22 +29,25 @@ export default {
 </script>
 
 <template>
-    <div class="card text-center">
-        <div class="card-header">
-            <h1 class="name">{{ teacher.user.name }} {{ teacher.user.surname }}</h1>
-        </div>
-        <div class="card-body">
-            <img :src="`${img}${teacher.photo}`" class="card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
-        </div>
-        <div class="card-footer">
-            <p v-for="specialization in teacher.specializations" class="specialization">{{ specialization.field }}</p>
-            <p v-if="teacher.votes.length" class="badge rounded-pill text-bg-warning card-text">
-                Media voti: {{ averageVote }}
-            </p>
-            <p> {{ teacher.telephone_number}}</p>
+    <router-link  class="router-link" @click="navigateToProfile(teacher.id)" :to="{ name: 'single-teacher', params: { id: teacher.id }}">
 
+        <div class="card text-center">
+            <div class="card-header">
+                <h1 class="name">{{ teacher.user.name }} {{ teacher.user.surname }}</h1>
+            </div>
+            <div class="card-body">
+                <img :src="`${img}${teacher.photo}`" class="card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
+            </div>
+            <div class="card-footer">
+                <p v-for="specialization in teacher.specializations" class="specialization">{{ specialization.field }}</p>
+                <p v-if="teacher.votes.length" class="badge rounded-pill text-bg-warning card-text">
+                    Media voti: {{ averageVote }}
+                </p>
+                <p> {{ teacher.telephone_number}}</p>
+                
+            </div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <style lang="scss" scoped>
@@ -66,4 +69,23 @@ export default {
             border-color: $main-btn-primary-border;
         }
     }
+    .router-link {
+    text-decoration: none;
+
+    .project-card {
+        text-decoration: none;
+
+        .card-body {
+            text-decoration: none;
+        }
+
+        .card-title {
+            text-decoration: none;
+        }
+
+        .card-text {
+            text-decoration: none;
+        }
+    }
+}
 </style>
