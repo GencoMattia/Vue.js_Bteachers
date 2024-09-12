@@ -136,26 +136,12 @@ export default {
             </div>
         </div>
 
+        <!-- reviews section  -->
         <div class="row justify-content-between">
-            <!-- section votes  -->
-            <!-- <div class="col-5 reviews border rounded my-2">
-                <h4>Votes</h4>
-                <div v-for="(vote, index) in profile.votes" class="border border-warning border-opacity-75 rounded p-2 mb-2">
-                    <p>
-                        <div>
-                                Vote: {{ vote.vote }}
-                        </div>
-                        <strong>
-                            {{ vote.name }}
-                        </strong>
-                    </p>
-                </div>
-            </div> -->
-            <!-- section review  -->
             <div class="col-12 reviews border rounded my-2">
                 <h4>Reviews</h4>
-                <div v-if="profile.reviews.length > 0"  class="border border-warning border-opacity-75 rounded p-2 mb-2">
-                    <span v-for="(review, index) in profile.reviews" :key="review">
+                <div v-if="profile.reviews.length > 0">
+                    <div v-for="(review, index) in profile.reviews" :key="review"  class="border border-warning border-opacity-75 rounded p-2 mb-2">
                         <p>
                             <strong>
                                 <font-awesome-icon icon="fa-solid fa-user" /> {{ review.name }} {{ review.surname }}
@@ -171,7 +157,7 @@ export default {
                                 </p>
                             </div>
                         </p>
-                    </span>
+                    </div>
                 </div>
                 <div v-else>
                     The teacher has no reviews.
