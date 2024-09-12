@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+
 import SingleTeacherCard from '../components/SingleTeacherCard.vue';
 
 export default {
@@ -11,8 +12,11 @@ export default {
         return {
             teachers: [],
             currentPage: 1,
+            selectedTeacherId:''
         };
+
     },
+    
 
     methods: {
         fetchTeachersProfiles(page = 1) {
@@ -33,7 +37,7 @@ export default {
 
         changePage(routeName) {
             this.$router.push({ name: routeName });
-        }
+        },
     },
 
     created() {
@@ -52,11 +56,10 @@ export default {
 
             <div class="container">
                 <div class="row">
-                    <SingleTeacherCard v-for="teacher in teachers" :key="teacher.id" class="col-md-4" :teacher="teacher" />
+                    <SingleTeacherCard v-for="teacher in teachers" @click.prevent="selectedTeacherId(teacher.id)" :key="teacher.id" class="col-md-4" :teacher="teacher" />
                 </div>
-
                 <div class="d-flex justify-content-center align-items-center mt-5">
-                    <a href="#" class="btn btn-main" @click.prevent="fetchTeachersProfiles(currentPage + 1)">Load More</a>
+                    <a href="/" class="btn btn-main" @click.prevent="fetchTeachersProfiles(currentPage + 1)">Load More</a>
                 </div>
             </div>
         </section>
@@ -93,6 +96,26 @@ export default {
     &:hover {
         background-color: $main-btn-primary-hover-bg;
         border-color: $main-btn-primary-hover-border;
+    }
+}
+
+.router-link {
+    text-decoration: none;
+
+    .project-card {
+        text-decoration: none;
+
+        .card-body {
+            text-decoration: none;
+        }
+
+        .card-title {
+            text-decoration: none;
+        }
+
+        .card-text {
+            text-decoration: none;
+        }
     }
 }
 </style>
