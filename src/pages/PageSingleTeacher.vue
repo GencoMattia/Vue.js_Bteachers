@@ -111,7 +111,7 @@ export default {
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
-                    <a href="#" type="button" class="btn btn-success">Contact the teacher </a>
+                    <a href="#" type="button" class="btn btn-success">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@ export default {
                     The teacher has no reviews.
                 </div>
                 <div class="d-flex justify-content-center my-4" >
-                    <a href="#" type="button" class="btn btn-success">Review the teacher </a>
+                    <a href="#" type="button" class="btn btn-success">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
                 </div>
             </div>
         </div>
