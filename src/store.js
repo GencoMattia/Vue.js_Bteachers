@@ -82,7 +82,11 @@ export const store = reactive({
             name: "Environmental Management",
             field: "Environmental Science"
         }
-    ]
-    
-    
+    ],
+
+    searchBarQuery: '',
+
+    setSearchQuery(newQuery) {
+        this.searchBarQuery = newQuery;
+    }
 })
