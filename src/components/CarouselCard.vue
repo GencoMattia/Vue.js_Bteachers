@@ -35,15 +35,19 @@ export default {
             <div class="card-header">
                 <h1 class="name">{{ teacher.user.name }} {{ teacher.user.surname }}</h1>
             </div>
-            <div class="card-body">
-                <img :src="`${img}${teacher.photo}`" class="card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
+            <div class="card-body row d-flex">
+                <div class="photo col-6">
+                    <img :src="`${img}${teacher.photo}`" class="pl-4 rounded-circle card-img-top" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
+                </div>
+                <div class="specs col-6 text-start pt-5">
+                    <p v-for="specialization in teacher.specializations" class="specialization">{{ specialization.field }}</p>
+                    <p v-if="teacher.votes.length" class="badge rounded-pill text-bg-warning card-text">
+                        Media voti: {{ averageVote }}
+                    </p>
+                    <p> {{ teacher.telephone_number}}</p>
+                </div>
             </div>
             <div class="card-footer">
-                <p v-for="specialization in teacher.specializations" class="specialization">{{ specialization.field }}</p>
-                <p v-if="teacher.votes.length" class="badge rounded-pill text-bg-warning card-text">
-                    Media voti: {{ averageVote }}
-                </p>
-                <p> {{ teacher.telephone_number}}</p>
                 
             </div>
         </div>
@@ -53,7 +57,9 @@ export default {
 <style lang="scss" scoped>
     @use "../assets/styles/partials/variables" as *;
 
-    
+    .card-body{
+        height: 265px;
+    }
 
     img{
     width: 50%;
@@ -77,6 +83,7 @@ export default {
 
         .card-body {
             text-decoration: none;
+            
         }
 
         .card-title {
