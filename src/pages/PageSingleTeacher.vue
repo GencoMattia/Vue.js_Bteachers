@@ -1,4 +1,5 @@
 <script>
+import { store } from "@/store";
 import axios from "axios";
 
 export default {
@@ -13,6 +14,7 @@ export default {
             vote: [],
             averageVote: '',
             star: 5,
+            store,
         };
     },
 

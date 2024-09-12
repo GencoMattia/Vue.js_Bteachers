@@ -2,87 +2,48 @@ import { reactive } from 'vue'
 
 export const store = reactive({
     specializations: [
+        { field: "Art History" },
+        { field: "Biology" },
+        { field: "Chemistry" },
+        { field: "Engineering" },
+        { field: "Economics" },
+        { field: "Linguistics" },
+        { field: "Literature" },
+        { field: "Mathematics" },
+        { field: "Music" },
+        { field: "Philosophy" },
+        { field: "Physics" },
+        { field: "Psychology" },
+        { field: "Sociology" },
+        { field: "Pedagogy" },
+        { field: "Computer Science" },
+        { field: "Environmental Science" }
+    ],
+    voteList: [
         {
-            name: "Renaissance Art History",
-            field: "Art History"
+            name: "Needs Improvement",
+            vote: "1"
         },
         {
-            name: "Biotechnology",
-            field: "Biology"
+            name: "Below Average",
+            vote: "2"
         },
         {
-            name: "Organic Chemistry",
-            field: "Chemistry"
+            name: "Satisfactory",
+            vote: "3"
         },
         {
-            name: "Civil Engineering",
-            field: "Engineering"
+            name: "Very Good",
+            vote: "4"
         },
         {
-            name: "International Economics",
-            field: "Economics"
-        },
-        {
-            name: "Foreign Language Teaching",
-            field: "Linguistics"
-        },
-        {
-            name: "Italian Literature",
-            field: "Literature"
-        },
-        {
-            name: "Comparative Literature",
-            field: "Literature"
-        },
-        {
-            name: "Mathematics Education",
-            field: "Mathematics"
-        },
-        {
-            name: "Mathematical Analysis",
-            field: "Mathematics"
-        },
-        {
-            name: "Music Theory and Composition",
-            field: "Music"
-        },
-        {
-            name: "Moral Philosophy",
-            field: "Philosophy"
-        },
-        {
-            name: "Particle Physics",
-            field: "Physics"
-        },
-        {
-            name: "Quantum Physics",
-            field: "Physics"
-        },
-        {
-            name: "Educational Psychology",
-            field: "Psychology"
-        },
-        {
-            name: "Clinical Psychology",
-            field: "Psychology"
-        },
-        {
-            name: "Sociology of Education",
-            field: "Sociology"
-        },
-        {
-            name: "Special Education Pedagogy",
-            field: "Pedagogy"
-        },
-        {
-            name: "Computer Science Teaching",
-            field: "Computer Science"
-        },
-        {
-            name: "Environmental Management",
-            field: "Environmental Science"
+            name: "Outstanding",
+            vote: "5"
         }
-    ]
-    
-    
+    ],
+    searchBarQuery: '',
+
+    setSearchQuery(newQuery) {
+        this.searchBarQuery = newQuery;
+    }
 })

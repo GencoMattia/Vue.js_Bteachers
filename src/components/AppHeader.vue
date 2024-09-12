@@ -5,6 +5,8 @@ export default {
     data() {
         return {
             store,
+
+            searchBarQuery: "",
             
             navLinkNames: [
                 {
@@ -17,6 +19,14 @@ export default {
                 },
             ]
         };
+    },
+
+    methods: {
+        // Metodo per gestire l'invio del form e inviare la query al store
+        getSearchBarValue() {
+            this.store.setSearchQuery(this.searchBarQuery);
+            console.log("Search query inviata allo store:", this.searchBarQuery);
+        }
     }
 };
 </script>
@@ -27,11 +37,12 @@ export default {
         <div class="logo">BTeachers</div>
 
         <!-- Barra di ricerca che occupa tutto lo spazio disponibile -->
-        <form class="d-flex flex-grow-1 mx-3" role="search">
+        <form class="d-flex flex-grow-1 mx-3" role="search" @submit.prevent="getSearchBarValue">
             <input 
                 class="form-control me-2 flex-grow-1" 
                 type="search" 
-                placeholder="Search" 
+                placeholder="Search your Teacher" 
+                v-model="searchBarQuery"
                 aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
