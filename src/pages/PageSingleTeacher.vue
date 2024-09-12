@@ -13,14 +13,6 @@ export default {
             vote: [],
             averageVote: '',
             star: 5,
-            messageData: {
-                profile_id: '',
-                name: '',
-                surname: '',
-                email: '',
-                telephone_number: '',
-                message_text: ''
-            }
         };
     },
 
@@ -73,14 +65,25 @@ export default {
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
             console.log('Message sent successfully:', response, playload);
-            // Reset form data
-                this.messageData = {
-                    name: '',
-                    surname: '',
-                    email: '',
-                    telephone_number: '',
-                    message_text: ''
-                };
+            })
+            .catch((error) => {
+            console.log('Error sending message:', error);
+            });
+        },
+
+        // send vote to teacher 
+        sendVote() {
+            const playload = {
+                votes: [
+                    {
+                    profile_id: document.getElementById('vote-profile-id').value,
+                    vote_id: document.getElementById('vote-id').value,
+                    }
+                ]
+            }
+            axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
+            .then((response) => {
+            console.log('Message sent successfully:', response, playload);
             })
             .catch((error) => {
             console.log('Error sending message:', error);
@@ -289,6 +292,39 @@ export default {
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-success">Send message</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- vote model form  -->
+                    <a type="button" class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+
+                    <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="reviewModalLabel">New review</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <!-- vote profile_id  -->
+                                    <input type="text" class="form-control" id="vote-profile-id" name="profile_id" :value="profile.id" hidden>
+                                    <!-- vote  -->
+                                    <select class="form-select" id="vote-id" name="vote-id" aria-label="Default select example">
+                                        <option selected disabled>Vote</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" @click="sendVote">Send vote</button>
                             </div>
                             </div>
                         </div>
