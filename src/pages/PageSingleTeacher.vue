@@ -16,6 +16,8 @@ export default {
         };
     },
 
+    props: ['id'],
+    
     methods: {
         fetchProject(id){
             axios.get(`http://127.0.0.1:8000/api/profiles/${id}`, {

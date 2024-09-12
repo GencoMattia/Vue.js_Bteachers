@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+
 import SingleTeacherCard from '../components/SingleTeacherCard.vue';
 
 export default {
@@ -11,8 +12,11 @@ export default {
         return {
             teachers: [],
             currentPage: 1,
+            selectedTeacherId:''
         };
+
     },
+    
 
     methods: {
         fetchTeachersProfiles(page = 1) {
@@ -33,7 +37,12 @@ export default {
 
         changePage(routeName) {
             this.$router.push({ name: routeName });
-        }
+        },
+
+        getSelectedId(id){
+            this.selectedTeacherId='id';
+        },
+
     },
 
     created() {
@@ -52,11 +61,16 @@ export default {
 
             <div class="container">
                 <div class="row">
-                    <SingleTeacherCard v-for="teacher in teachers" :key="teacher.id" class="col-md-4" :teacher="teacher" />
+                    <div v-for="teacher in teachers" class="col">
+                        <router-link :to="{ name: navItem.name }">
+                            <SingleTeacherCard v-for="teacher in teachers" @click.prevent="getSelectedId(teacher.id)" :key="teacher.id" class="col-md-4" :teacher="teacher" />
+                            {{ navItem.label }}
+                        </router-link>
+                    </div>
+                    
                 </div>
-
                 <div class="d-flex justify-content-center align-items-center mt-5">
-                    <a href="#" class="btn btn-main" @click.prevent="fetchTeachersProfiles(currentPage + 1)">Load More</a>
+                    <a href="/" class="btn btn-main" @click.prevent="fetchTeachersProfiles(currentPage + 1)">Load More</a>
                 </div>
             </div>
         </section>
