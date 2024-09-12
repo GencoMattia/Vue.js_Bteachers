@@ -4,11 +4,11 @@ export const store = reactive({
     specializations : [
         {
             name: "Educational Psychology",
-            field: "Psychology"
+            field: "Psicologia"
         },
         {
             name: "Mathematics Education",
-            field: "Mathematics"
+            field: "Matematica"
         },
         {
             name: "Computer Science Teaching",

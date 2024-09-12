@@ -19,18 +19,25 @@ export default {
     methods: {
         fetchTeachersProfiles(page = 1, specialization = null) {
             const params = {
-                page: page
+                page: page,
+                specialization: specialization
             };
 
-            if (specialization) {
-                params.specialization = specialization;
-            }
+
 
             axios.get("http://127.0.0.1:8000/api/profiles", { params })
                 .then((response) => {
                     console.log(response.data.results.data);
-                    this.teachers.push(...response.data.results.data);
+                    if (specialization) {
+                        this.teachers = response.data.results.data;
+                    }else{
+                        this.teachers.push(...response.data.results.data);
+
+                    }
+                    console.log("current page",this.currentPage, "page", page);
                     this.currentPage = page;
+                    console.log("current page",this.currentPage, "page", page);
+
                 })
                 .catch((error) => {
                     this.$router.push({ name: "404-not-found" });
@@ -38,21 +45,6 @@ export default {
                 });
         },
 
-        // fetchTeachersProfiles(page = 1) {
-        //     axios.get("http://127.0.0.1:8000/api/profiles", {
-        //         params: {
-        //             page: page
-        //         }
-        //     }).then((response) => {
-        //         console.log(response.data.results.data);
-        //         this.teachers.push(...response.data.results.data);
-        //         // this.currentPage = response.data.results.currentPage;
-        //         this.currentPage=page;
-        //     }).catch((error) => {
-        //         this.$router.push({ name: "404-not-found" });
-        //         console.log(error);
-        //     });
-        // },
 
         changePage(routeName) {
             this.$router.push({ name: routeName });
@@ -63,9 +55,6 @@ export default {
         this.fetchTeachersProfiles();
     },
 
-    // computed() {
-    //     this.fetchTeachersProfiles(1);
-    // }
 };
 </script>
 
@@ -78,7 +67,7 @@ export default {
             </div>
 
             <select class="form-select" aria-label="default" name="" id="">
-                <option selected>
+                <option selected @click="fetchTeachersProfiles(1, null)">
                     Select desired specialization
                 </option>
                 <option v-for="specialization in store.specializations" :value="specialization.field" @click="fetchTeachersProfiles(1, specialization.field)">
