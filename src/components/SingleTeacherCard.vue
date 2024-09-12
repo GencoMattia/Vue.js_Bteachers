@@ -28,6 +28,7 @@ export default {
 </script>
 
 <template>
+    <router-link  class="router-link" @click="navigateToProfile(teacher.id)" :to="{ name: 'single-teacher', params: { id: teacher.id }}">
     <div class="card project-card">
         <div class="card-body">
             <h5 class="card-title">{{ teacher.user.surname }} {{ teacher.user.name }}</h5>
@@ -44,11 +45,10 @@ export default {
             <p v-if="teacher.votes.length" class="card-text">
                 Media voti: {{ averageVote }}
             </p>
-            <!-- <router-link class="btn btn-primary" :to="{ name: 'single-teacher', params: { id: teacher.id }}">
-                Open Profile
-            </router-link> -->
+                
+            </div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <style lang="scss" scoped>
@@ -87,6 +87,26 @@ export default {
         &:hover {
         background-color: $btn-primary-hover-bg;
         border-color: $btn-primary-hover-border;
+        }
+    }
+    
+}
+.router-link {
+    text-decoration: none;
+
+    .project-card {
+        text-decoration: none;
+
+        .card-body {
+            text-decoration: none;
+        }
+
+        .card-title {
+            text-decoration: none;
+        }
+
+        .card-text {
+            text-decoration: none;
         }
     }
 }

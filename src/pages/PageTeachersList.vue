@@ -38,11 +38,6 @@ export default {
         changePage(routeName) {
             this.$router.push({ name: routeName });
         },
-
-        getSelectedId(id){
-            this.selectedTeacherId='id';
-        },
-
     },
 
     created() {
@@ -61,13 +56,7 @@ export default {
 
             <div class="container">
                 <div class="row">
-                    <div v-for="teacher in teachers" class="col">
-                        <router-link :to="{ name: navItem.name }">
-                            <SingleTeacherCard v-for="teacher in teachers" @click.prevent="getSelectedId(teacher.id)" :key="teacher.id" class="col-md-4" :teacher="teacher" />
-                            {{ navItem.label }}
-                        </router-link>
-                    </div>
-                    
+                    <SingleTeacherCard v-for="teacher in teachers" @click.prevent="selectedTeacherId(teacher.id)" :key="teacher.id" class="col-md-4" :teacher="teacher" />
                 </div>
                 <div class="d-flex justify-content-center align-items-center mt-5">
                     <a href="/" class="btn btn-main" @click.prevent="fetchTeachersProfiles(currentPage + 1)">Load More</a>
@@ -109,4 +98,5 @@ export default {
         border-color: $main-btn-primary-hover-border;
     }
 }
+
 </style>
