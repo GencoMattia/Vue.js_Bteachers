@@ -15,6 +15,13 @@ export default {
             averageVote: '',
             star: 5,
             store,
+            messageError: {
+                name: '',
+                surname: '',
+                email: '',
+                telephone_number: '',
+                message_text: '',
+            },
         };
     },
 
@@ -51,6 +58,23 @@ export default {
                 this.$router.push({name: "404-not-found"});
                 console.log(error);
             })
+        },
+
+        // message form input validation 
+        messageValidation() {
+            // errore nome 
+            if ( (document.getElementById('messager-name').value.length != 0 && document.getElementById('messager-name').value.length < 3) || document.getElementById('messager-name').value.length > 100 ) {
+                this.messageError.name = 'The length of the name must be between 3 and 100';
+            };
+
+            if (!document.getElementById('messager-email').value) {
+                this.messageError.email = 'The email is required';
+            };
+
+
+            if (!document.getElementById('message-text').value) {
+                this.messageError.message_text = 'The message is required';
+            }
         },
         // send message to teacher 
         sendMessage() {
@@ -205,7 +229,7 @@ export default {
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form @submit.prevent="messageValidation()">
                                     <!-- messages profile_id  -->
                                     <input type="text" class="form-control" id="message-profile-id" name="messageData.profile_id" :value="profile.id" hidden>
 
@@ -213,32 +237,42 @@ export default {
                                 <div class="mb-3">
                                     <label for="messager-name" class="col-form-label">Name:</label>
                                     <input type="text" class="form-control" id="messager-name" name="messageData.name">
+                                    <!-- name error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.name }}</span>
                                 </div>
                                 <!-- messager surname  -->
                                 <div class="mb-3">
                                     <label for="messager-surname" class="col-form-label">Surname:</label>
                                     <input type="text" class="form-control" id="messager-surname" name="messageData.surname">
+                                    <!-- surname error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.surname }}</span>
                                 </div>
                                 <!-- messager email  -->
                                 <div class="mb-3">
                                     <label for="messager-email" class="col-form-label">Email:</label>
                                     <input type="email" class="form-control" id="messager-email" name="messageData.email">
+                                    <!-- email error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.email }}</span>
                                 </div>
                                 <!-- messager telephone_number  -->
                                 <div class="mb-3">
                                     <label for="messager-telephone-number" class="col-form-label">Telephone number:</label>
                                     <input type="text" class="form-control" id="messager-telephone-number" name="messageData.telephone_number">
+                                    <!-- telephone number error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.telephone_number }}</span>
                                 </div>
                                 <!-- message text  -->
                                 <div class="mb-3">
                                     <label for="message-text" class="col-form-label">Message:</label>
                                     <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
+                                    <!-- message text error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.message_text }}</span>
                                 </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success" @click="sendMessage()">Send message</button>
+                                <button type="submit" class="btn btn-success" @click="sendMessage(), messageValidation()">Send message</button>
                             </div>
                             </div>
                         </div>
