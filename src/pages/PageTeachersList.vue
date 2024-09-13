@@ -14,9 +14,16 @@ export default {
             currentPage: 1,
             selectedSpecialization: null,
             store,
-            votoUtente: null,
-            orderBy: 'reviews_count',
-            orderDirection: "asc",
+            votoUtente : null,
+            orderBy: '',
+            selectedOrder: '',
+            orderDirection: "desc",
+            reviewsThreshold: [
+                5,
+                10,
+                15,
+            ],
+            selectedReviewThreshold: 0,    
         };
     },
 
@@ -42,6 +49,7 @@ export default {
                 searchQuery: store.searchBarQuery,
                 order_by: this.orderBy,
                 order_direction: this.orderDirection,
+                reviews_count: this.selectedReviewThreshold,
             };
 
             if (this.votoUtente) {
@@ -69,6 +77,15 @@ export default {
 
         onVoteChange(vote) {
             this.votoUtente = vote || null;
+        },
+
+        onReviewThresholdChange(reviews_count) {
+            if (reviews_count === "") {
+                this.selectedReviewThreshold = 0; // Imposta a 0 se non selezionato
+            } else {
+                this.selectedReviewThreshold = reviews_count; // Imposta il threshold selezionato
+            }
+            this.fetchTeachersProfiles(1, this.selectedSpecialization, true); // Aggiorna i risultati     
         },
 
         changeDisc() {
@@ -103,7 +120,7 @@ export default {
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
 
                         <select class="form-select " aria-label="default" @change="onSpecializationChange($event.target.value)" :value="selectedSpecialization">
                             <option value="" selected>
@@ -114,7 +131,8 @@ export default {
                             </option>
                         </select>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
                             <option value="" selected>
                                 Select minimum vote
@@ -124,9 +142,27 @@ export default {
                             </option>
                         </select>
                     </div>
-                    <div class="form-check form-switch mx-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" @change="changeDisc">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Order review</label>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+                        <select class="form-select" aria-label="default" @change="onReviewThresholdChange($event.target.value)">
+                            <option value="" selected>
+                                Select minimum number of reviews
+                            </option>
+                            <option v-for="threshold in reviewsThreshold" :value="threshold">
+                                {{ threshold }}+
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off" value="reviews_count" v-model="selectedOrder">
+                        <label class="btn btn-outline-success" for="orderByReviews">Order by Reviews</label>
+
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByVote" autocomplete="off" value="votes_avg_vote" v-model="selectedOrder">
+                        <label class="btn btn-outline-success" for="orderByVote">Order by Average Vote</label>
+
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByOther" autocomplete="off" value="" v-model="selectedOrder">
+                        <label class="btn btn-outline-success" for="orderByOther">Reset Order</label>
                     </div>
                 </div>
             </div>
@@ -135,6 +171,7 @@ export default {
                 <div class="row">
                     <SingleTeacherCard v-for="teacher in teachers" @click.prevent="selectedTeacherId(teacher.id)" :key="teacher.id" class="col-md-4" :teacher="teacher" />
                 </div>
+
                 <div class="d-flex justify-content-center align-items-center mt-5">
                     <a href="#" class="btn btn-main" @click.prevent="loadMore">Load More</a>
                 </div>
