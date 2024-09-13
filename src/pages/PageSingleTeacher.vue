@@ -137,7 +137,7 @@ export default {
                 this.messageError.message_text = '';
             };
             // invio in database 
-            if ((document.getElementById('message-text').value || document.getElementById('message-text').value < 3000) && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('messager-email').value))) {
+            if ((document.getElementById('message-text').value || document.getElementById('message-text').value < 3000) && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('messager-email').value)) && ( (!document.getElementById('messager-name').value || document.getElementById('messager-name').value.length >= 3) && document.getElementById('messager-name').value.length <= 100 ) && ( (!document.getElementById('messager-surname').value || document.getElementById('messager-surname').value.length >= 3) && document.getElementById('messager-surname').value.length <= 100 ) && (!document.getElementById('messager-telephone-number').value || document.getElementById('messager-telephone-number').value.length >= 6 && document.getElementById('messager-telephone-number').value.length <= 20 )) {
                 this.sendMessage();
             } else {
                 console.log("can't send message");
