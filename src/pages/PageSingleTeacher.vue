@@ -166,7 +166,7 @@ export default {
                 document.getElementById('reviewer-email').value = '',
                 document.getElementById('review-text').value = '',
                 
-            console.log('Message sent successfully:', response, playload);
+            console.log('Review sent successfully:', response, playload);
             })
             .catch((error) => {
             console.log('Error sending review:', error);
@@ -207,7 +207,7 @@ export default {
                 this.reviewError.review_text = '';
             };
             // invio in database 
-            if ((document.getElementById('review-text').value || document.getElementById('review-text').value < 3000) && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('reviewer-email').value))) {
+            if ((document.getElementById('review-text').value || document.getElementById('review-text').value < 3000) && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('reviewer-email').value)) && ( (!document.getElementById('reviewer-name').value.length || document.getElementById('reviewer-name').value.length >= 3) && document.getElementById('reviewer-name').value.length <= 100 ) && ( (!document.getElementById('reviewer-surname').value.length || document.getElementById('reviewer-surname').value.length >= 3) && document.getElementById('reviewer-surname').value.length <= 100 )) {
                 this.sendReview();
             } else {
                 console.log("can't send review");
