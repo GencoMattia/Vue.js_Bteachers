@@ -47,7 +47,7 @@ export default {
         <div class="col-8">
             <div class="rounded-5">
                 <!-- Use `index` to manage the active class for the first item -->
-                <div id="sponsored" class="card " >
+                <div id="sponsored" class="card ">
                     <CarouselCard
                         class="card"
                         :class="{ 'active': index === 0 }" 
@@ -69,6 +69,10 @@ export default {
     span{
         color:$link-color;
     }
+    .card{
+    --bs-card-bg:none;
+    --bs-card-border-color:none;
 
+}
 
 </style>
