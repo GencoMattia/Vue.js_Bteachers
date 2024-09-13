@@ -1,6 +1,5 @@
 <script>
 import axios from 'axios';
-
 import SingleTeacherCard from '../components/SingleTeacherCard.vue';
 import { store } from '@/store';
 
@@ -13,7 +12,7 @@ export default {
         return {
             teachers: [],
             currentPage: 1,
-            selectedSpecialization: null, // Aggiunta per tracciare la specializzazione selezionata
+            selectedSpecialization: null,
             store,
             votoUtente : null,
             orderBy: '',
@@ -24,40 +23,41 @@ export default {
                 10,
                 15,
             ],
-            selectedReviewThreshold: 0,
+            selectedReviewThreshold: 0,    
         };
     },
 
     watch: {
-        // Osserva i cambiamenti della query nello store
+        // Monitora il cambiamento della query di ricerca
         'store.searchBarQuery'(newQuery) {
-            this.getSearchBarValue(newQuery); // Attiva la chiamata API quando cambia la query
+            this.fetchTeachersProfiles(1, true);
         },
-
-        //Watch for a change in the selected display order
-        selectedOrder(newOrder) {
-            this.orderBy = newOrder;
-            this.fetchTeachersProfiles(1, this.selectedSpecialization, true); // Aggiorna i risultati
+        // Monitora il cambiamento della specializzazione
+        selectedSpecialization() {
+            this.fetchTeachersProfiles(1, true);
+        },
+        votoUtente() {
+            this.fetchTeachersProfiles(1, true);
         }
     },
 
     methods: {
-        fetchTeachersProfiles(page = 1, specialization = null, reset = false) {
+        fetchTeachersProfiles(page = 1, reset = false) {
             const params = {
                 page: page,
-                specialization: specialization,
-                searchQuery: store.searchBarQuery, // Aggiunge la searchQuery attuale ai parametri
+                specialization: this.selectedSpecialization,
+                searchQuery: store.searchBarQuery,
                 order_by: this.orderBy,
                 order_direction: this.orderDirection,
                 reviews_count: this.selectedReviewThreshold,
             };
+
             if (this.votoUtente) {
                 params.min_vote = this.votoUtente;
-            };
-            console.log('la chiamata è partita', this.sortOrder);
+            }
+
             axios.get("http://127.0.0.1:8000/api/profiles", { params })
                 .then((response) => {
-                    // Se reset è true, sovrascrivi gli insegnanti; altrimenti aggiungi i risultati
                     if (reset) {
                         this.teachers = response.data.results.data;
                     } else {
@@ -71,31 +71,12 @@ export default {
                 });
         },
 
-        // Effettua la chiamata API quando cambia la query
-        getSearchBarValue(query) {
-            this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+        onSpecializationChange(specialization) {
+            this.selectedSpecialization = specialization || null;
         },
 
-        // Gestione della selezione delle specializzazioni
-        onSpecializationChange(specialization) {
-            if (specialization === "") {
-                // Se la specializzazione è vuota, resetta il filtro e mostra tutti i risultati
-                this.selectedSpecialization = null;
-                this.fetchTeachersProfiles(1, null, true); // Mostra tutti gli insegnanti e resetta la paginazione
-            } else {
-                // Applica il filtro per la specializzazione selezionata
-                this.selectedSpecialization = specialization;
-                this.fetchTeachersProfiles(1, specialization, true); // Resetta la pagina e filtra
-            }
-        },
         onVoteChange(vote) {
-            if (vote === "") {
-                this.votoUtente = null;
-                this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
-            } else {
-                this.votoUtente = vote;
-                this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
-            }
+            this.votoUtente = vote || null;
         },
 
         onReviewThresholdChange(reviews_count) {
@@ -109,18 +90,23 @@ export default {
 
         changeDisc() {
             this.orderDirection = this.orderDirection === 'asc' ? 'desc' : 'asc'; 
-            this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+            this.fetchTeachersProfiles(1, true);
         },
 
-        // Caricamento di più insegnanti, mantenendo il filtro corrente
         loadMore() {
-            this.fetchTeachersProfiles(this.currentPage + 1, this.selectedSpecialization);
-        },
-
+            this.fetchTeachersProfiles(this.currentPage + 1);
+        }
     },
 
     created() {
-        this.fetchTeachersProfiles();
+        // Recupera la specializzazione dai parametri URL se presente
+        const specializationFromUrl = this.$route.query.specialization;
+        if (specializationFromUrl) {
+            this.selectedSpecialization = specializationFromUrl;
+            this.fetchTeachersProfiles(1, true); // Avvia subito la ricerca
+        } else {
+            this.fetchTeachersProfiles();
+        }
     },
 }
 </script>
@@ -133,11 +119,10 @@ export default {
                 <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di apprendimento!</p>
             </div>
             <div class="container">
-
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12">
 
-                        <select class="form-select " aria-label="default" @change="onSpecializationChange($event.target.value)">
+                        <select class="form-select " aria-label="default" @change="onSpecializationChange($event.target.value)" :value="selectedSpecialization">
                             <option value="" selected>
                                 Select desired specialization
                             </option>
