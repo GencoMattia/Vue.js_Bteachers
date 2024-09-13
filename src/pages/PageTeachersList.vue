@@ -18,6 +18,11 @@ export default {
             votoUtente : null,
             orderBy: 'reviews_count',
             orderDirection: "asc",
+            reviewsThreshold: [
+                5,
+                10,
+                15,
+            ],
         };
     },
 
@@ -84,6 +89,16 @@ export default {
             }
         },
 
+        onReviewThresholdChange(reviewNumber) {
+            if (vote === "") {
+                this.votoUtente = null;
+                this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+            } else {
+                this.votoUtente = vote;
+                this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+            }
+        },
+
         changeDisc() {
             this.orderDirection = this.orderDirection === 'asc' ? 'desc' : 'asc'; 
             this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
@@ -111,7 +126,7 @@ export default {
             <div class="container">
 
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
 
                         <select class="form-select " aria-label="default" @change="onSpecializationChange($event.target.value)">
                             <option value="" selected>
@@ -122,13 +137,23 @@ export default {
                             </option>
                         </select>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
                             <option value="" selected>
                                 Select minimum vote
                             </option>
                             <option v-for="voto in store.voteList" :value="voto.vote">
                                 {{ voto.vote }} -> {{ voto.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
+                            <option value="" selected>
+                                Select minimum number of reviews
+                            </option>
+                            <option v-for="threshold in this.reviewsThreshold" :value="threshold">
+                                {{ threshold }}+
                             </option>
                         </select>
                     </div>
