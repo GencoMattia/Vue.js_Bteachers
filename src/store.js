@@ -42,8 +42,13 @@ export const store = reactive({
         }
     ],
     searchBarQuery: '',
+    selectedSpecialization:'',
+
+    
 
     setSearchQuery(newQuery) {
         this.searchBarQuery = newQuery;
     }
+
+    
 })

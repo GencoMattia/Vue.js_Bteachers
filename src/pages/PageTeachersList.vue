@@ -25,6 +25,17 @@ export default {
         // Osserva i cambiamenti della query nello store
         'store.searchBarQuery'(newQuery) {
             this.getSearchBarValue(newQuery); // Attiva la chiamata API quando cambia la query
+        },
+        selectedSpecialization(specializations){
+            this.fetchTeachersProfiles(1,this.selectedSpecialization, true);
+            
+        },
+        
+    },
+
+    computed:{
+        selectedHomeSpecialization(){
+            return store.selectedSpecialization;
         }
     },
 
@@ -62,6 +73,9 @@ export default {
             this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
         },
 
+        selectedSpecialization(query){
+            this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+        },
         // Gestione della selezione delle specializzazioni
         onSpecializationChange(specialization) {
             if (specialization === "") {
@@ -109,7 +123,6 @@ export default {
                 <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di apprendimento!</p>
             </div>
             <div class="container">
-
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12">
 

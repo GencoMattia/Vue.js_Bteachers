@@ -1,6 +1,6 @@
 <script>
 import CarouselHome from '@/components/CarouselHome.vue';
-
+import { store } from '@/store';
 // import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
@@ -12,13 +12,24 @@ export default {
 
     data() {
         return {
-
+            store,
+            filterSpecialization:'',
         };
+
     },
 
     methods: {
+            getSpecialization(specialization) {
+            store.selectedSpecialization=specialization;
+            if(this.$route.name !== 'teachers-list'){
+            // Naviga alla rotta 'teachers-list'
+            this.$router.push({ name: 'teachers-list' });
+        }
 
-    },
+        }
+    }
+
+    
 };
 </script>
 
@@ -38,10 +49,25 @@ export default {
                             Sei un insegnante?
                         </a>
                     </div>
+                    <div class="filter mb-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-12">
+                                    <select class="form-select " aria-label="default" @change="getSpecialization($event.target.value)">
+                                        <option value="" selected>
+                                            Select desired specialization
+                                        </option>
+                                        <option v-for="specialization in store.specializations" :value="specialization.field">
+                                            {{ specialization.field }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
-
         <!-- Sezione Caratteristiche -->
         <section class="features-section">
             <div class="container">
