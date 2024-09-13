@@ -16,14 +16,14 @@ export default {
             selectedSpecialization: null, // Aggiunta per tracciare la specializzazione selezionata
             store,
             votoUtente : null,
-            orderBy: 'reviews_count',
-            orderDirection: "asc",
+            orderBy: '',
+            selectedOrder: '',
+            orderDirection: "desc",
             reviewsThreshold: [
                 5,
                 10,
                 15,
             ],
-
             selectedReviewThreshold: 0,
         };
     },
@@ -32,6 +32,12 @@ export default {
         // Osserva i cambiamenti della query nello store
         'store.searchBarQuery'(newQuery) {
             this.getSearchBarValue(newQuery); // Attiva la chiamata API quando cambia la query
+        },
+
+        //Watch for a change in the selected display order
+        selectedOrder(newOrder) {
+            this.orderBy = newOrder;
+            this.fetchTeachersProfiles(1, this.selectedSpecialization, true); // Aggiorna i risultati
         }
     },
 
@@ -140,6 +146,7 @@ export default {
                             </option>
                         </select>
                     </div>
+
                     <div class="col-lg-4 col-md-4 col-sm-12">
                         <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
                             <option value="" selected>
@@ -150,7 +157,8 @@ export default {
                             </option>
                         </select>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12">
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
                         <select class="form-select" aria-label="default" @change="onReviewThresholdChange($event.target.value)">
                             <option value="" selected>
                                 Select minimum number of reviews
@@ -160,9 +168,16 @@ export default {
                             </option>
                         </select>
                     </div>
-                    <div class="form-check form-switch mx-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" @change="changeDisc">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Order review</label>
+
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off" value="reviews_count" v-model="selectedOrder">
+                        <label class="btn btn-outline-success" for="orderByReviews">Order by Reviews</label>
+
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByVote" autocomplete="off" value="votes_avg_vote" v-model="selectedOrder">
+                        <label class="btn btn-outline-success" for="orderByVote">Order by Average Vote</label>
+
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByOther" autocomplete="off" value="" v-model="selectedOrder">
+                        <label class="btn btn-outline-success" for="orderByOther">Reset Order</label>
                     </div>
                 </div>
             </div>
@@ -171,6 +186,7 @@ export default {
                 <div class="row">
                     <SingleTeacherCard v-for="teacher in teachers" @click.prevent="selectedTeacherId(teacher.id)" :key="teacher.id" class="col-md-4" :teacher="teacher" />
                 </div>
+
                 <div class="d-flex justify-content-center align-items-center mt-5">
                     <a href="#" class="btn btn-main" @click.prevent="loadMore">Load More</a>
                 </div>
