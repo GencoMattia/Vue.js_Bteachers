@@ -65,19 +65,32 @@ export default {
             // errore nome 
             if ( (document.getElementById('messager-name').value.length != 0 && document.getElementById('messager-name').value.length < 3) || document.getElementById('messager-name').value.length > 100 ) {
                 this.messageError.name = 'The length of the name must be between 3 and 100';
+            } else {
+                this.messageError.name = '';
+
             };
+
             // error surname 
             if ( (document.getElementById('messager-surname').value.length != 0 && document.getElementById('messager-surname').value.length < 3) || document.getElementById('messager-surname').value.length > 100 ) {
                 this.messageError.surname = 'The length of the surname must be between 3 and 100';
+            } else {
+                this.messageError.surname = '';
             };
+
             //  error email 
             if (!document.getElementById('messager-email').value) {
                 this.messageError.email = 'The email is required';
+            } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('messager-email').value))) {
+                this.messageError.email = 'The email is wrong';
+            } else {
+                this.messageError.email = '';
             };
 
-
+            // message text error 
             if (!document.getElementById('message-text').value) {
                 this.messageError.message_text = 'The message is required';
+            } else {
+                this.messageError.message_text = '';
             }
         },
         // send message to teacher 
