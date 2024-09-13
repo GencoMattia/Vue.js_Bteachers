@@ -66,7 +66,11 @@ export default {
             if ( (document.getElementById('messager-name').value.length != 0 && document.getElementById('messager-name').value.length < 3) || document.getElementById('messager-name').value.length > 100 ) {
                 this.messageError.name = 'The length of the name must be between 3 and 100';
             };
-
+            // error surname 
+            if ( (document.getElementById('messager-surname').value.length != 0 && document.getElementById('messager-surname').value.length < 3) || document.getElementById('messager-surname').value.length > 100 ) {
+                this.messageError.surname = 'The length of the surname must be between 3 and 100';
+            };
+            //  error email 
             if (!document.getElementById('messager-email').value) {
                 this.messageError.email = 'The email is required';
             };
