@@ -31,6 +31,7 @@ export default {
                 this.profile = response.data.results;
                 this.photo = response.data.results.photo;
                 this.cv = response.data.results.cv;
+                console.log(this.cv)
                 this.vote = response.data.results.votes;
                 // average vote 
                 // se non è presente un voto 
@@ -68,6 +69,13 @@ export default {
 
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
+                document.getElementById('message-profile-id').value = '',
+                document.getElementById('messager-name').value = '',
+                document.getElementById('messager-surname').value = '',
+                document.getElementById('messager-email').value = '',
+                document.getElementById('messager-telephone-number').value = '',
+                document.getElementById('message-text').value = '',
+
             console.log('Message sent successfully:', response, playload);
             })
             .catch((error) => {
@@ -90,6 +98,12 @@ export default {
 
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
+                document.getElementById('review-profile-id').value = '',
+                document.getElementById('reviewer-name').value = '',
+                document.getElementById('reviewer-surname').value = '',
+                document.getElementById('reviewer-email').value = '',
+                document.getElementById('review-text').value = '',
+                
             console.log('Message sent successfully:', response, playload);
             })
             .catch((error) => {
@@ -358,6 +372,9 @@ export default {
                 </div>
             </div>
         </div>
+        <div>
+            <embed :src="getImageUrl(cv)" class="w-100 cv-viewer" height="400px">
+        </div>
     </section>
 </template>
 
@@ -365,5 +382,7 @@ export default {
     .profile{
         background-color: #f57c00;
     }
-    
+    .cv-viewer{
+        border-radius: 2rem;
+    }
 </style>
