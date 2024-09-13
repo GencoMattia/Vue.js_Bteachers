@@ -65,6 +65,22 @@ export default {
                 console.log(error);
             })
         },
+        // close modal 
+        closeModal(myModel) {
+            var modal = document.getElementById(myModel);
+
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+            modal.removeAttribute('tabindex');
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = ''; 
+
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                backdrop.parentNode.removeChild(backdrop);
+            }
+        },
 
         // send message to teacher 
         sendMessage() {
@@ -89,6 +105,7 @@ export default {
                 document.getElementById('messager-email').value = '',
                 document.getElementById('messager-telephone-number').value = '',
                 document.getElementById('message-text').value = '',
+                this.closeModal('messageModel');
 
             console.log('Message sent successfully:', response, playload);
             })
@@ -165,6 +182,7 @@ export default {
                 document.getElementById('reviewer-surname').value = '',
                 document.getElementById('reviewer-email').value = '',
                 document.getElementById('review-text').value = '',
+                this.closeModal('reviewModel');
                 
             console.log('Review sent successfully:', response, playload);
             })
@@ -226,10 +244,11 @@ export default {
             }
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
-            console.log('Message sent successfully:', response, playload);
+                this.closeModal('voteModel');
+            console.log('Vote sent successfully:', response, playload);
             })
             .catch((error) => {
-            console.log('Error sending message:', error);
+            console.log('Error sending vote:', error);
             });
         },
 
