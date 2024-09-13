@@ -96,8 +96,8 @@ export default {
             console.log('Error sending message:', error);
             });
         },
-            // message form input validation 
-            messageValidation() {
+        // message form input validation 
+        messageValidation() {
             // errore nome 
             if ( (document.getElementById('messager-name').value.length != 0 && document.getElementById('messager-name').value.length < 3) || document.getElementById('messager-name').value.length > 100 ) {
                 this.messageError.name = 'The length of the name must be between 3 and 100.';
@@ -169,10 +169,50 @@ export default {
             console.log('Message sent successfully:', response, playload);
             })
             .catch((error) => {
-            console.log('Error sending message:', error);
+            console.log('Error sending review:', error);
             });
         },
 
+        // review form input validation 
+        reviewValidation() {
+            // errore nome 
+            if ( (document.getElementById('reviewer-name').value.length != 0 && document.getElementById('reviewer-name').value.length < 3) || document.getElementById('reviewer-name').value.length > 100 ) {
+                this.reviewError.name = 'The length of the name must be between 3 and 100.';
+            } else {
+                this.reviewError.name = '';
+            };
+
+            // error surname 
+            if ( (document.getElementById('reviewer-surname').value.length != 0 && document.getElementById('reviewer-surname').value.length < 3) || document.getElementById('reviewer-surname').value.length > 100 ) {
+                this.reviewError.surname = 'The length of the surname must be between 3 and 100.';
+            } else {
+                this.reviewError.surname = '';
+            };
+
+            //  error email 
+            if (!document.getElementById('reviewer-email').value) {
+                this.reviewError.email = 'The email is required.';
+            } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('reviewer-email').value))) {
+                this.reviewError.email = 'The email is wrong.';
+            } else {
+                this.reviewError.email = '';
+            };
+
+            // review text error 
+            if (!document.getElementById('review-text').value) {
+                this.reviewError.review_text = 'The review is required.';
+            } else if(document.getElementById('review-text').value > 3000){
+                this.reviewError.review_text = 'The review is too long.';
+            } else {
+                this.reviewError.review_text = '';
+            };
+            // invio in database 
+            if ((document.getElementById('review-text').value || document.getElementById('review-text').value < 3000) && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('reviewer-email').value))) {
+                this.sendReview();
+            } else {
+                console.log("can't send review");
+            };
+        },
 
         // send vote
         sendVote() {
@@ -412,7 +452,7 @@ export default {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" @click="sendReview">Send review</button>
+                                <button type="button" class="btn btn-success" @click="reviewValidation()">Send review</button>
                             </div>
                             </div>
                         </div>
