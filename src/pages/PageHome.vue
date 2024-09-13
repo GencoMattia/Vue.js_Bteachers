@@ -13,24 +13,19 @@ export default {
     data() {
         return {
             store,
-            filterSpecialization:'',
+            filterSpecialization: '',
         };
 
     },
 
     methods: {
-            getSpecialization(specialization) {
-            store.selectedSpecialization=specialization;
-            if(this.$route.name !== 'teachers-list'){
-            // Naviga alla rotta 'teachers-list'
-            this.$router.push({ name: 'teachers-list' });
+        getSpecialization(specialization) {
+            this.$router.push({ name: 'teachers-list', query: { specialization: specialization } });
         }
 
-        }
     }
-
-    
 };
+
 </script>
 
 <template>
@@ -53,11 +48,13 @@ export default {
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-12">
-                                    <select class="form-select " aria-label="default" @change="getSpecialization($event.target.value)">
+                                    <select class="form-select " aria-label="default"
+                                        @change="getSpecialization($event.target.value)">
                                         <option value="" selected>
                                             Select desired specialization
                                         </option>
-                                        <option v-for="specialization in store.specializations" :value="specialization.field">
+                                        <option v-for="specialization in store.specializations"
+                                            :value="specialization.field">
                                             {{ specialization.field }}
                                         </option>
                                     </select>
@@ -215,7 +212,7 @@ export default {
             border-color: $secondary-border-color; // Arancione intenso
             color: $main-background-color; // Bianco
             border-radius: 8px;
-            
+
             &:hover {
                 background-color: $main-btn-primary-hover-bg; // Arancione molto scuro
                 border-color: $main-btn-primary-hover-border; // Arancione molto scuro
