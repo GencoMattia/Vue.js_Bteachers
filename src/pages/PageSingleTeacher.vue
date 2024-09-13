@@ -143,9 +143,9 @@ export default {
                     <!-- <embed :src="getImageUrl(cv)" class="w-100" alt="Profile-cv"> -->
                 </div>
                 <div>
-                    <h5 class="text-uppercase me-2"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
-                    <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success"> {{ specialization.name }} </div>
-                    <p v-if="averageVote > 0">
+                    <h5 class="text-uppercase me-2 text-break"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
+                    <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success text-break"> {{ specialization.name }} </div>
+                    <p  v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
                             <font-awesome-icon icon="fa-solid fa-star" />
                         </span>
@@ -153,34 +153,34 @@ export default {
                             <font-awesome-icon icon="fa-regular fa-star" />
                         </span>
                     </p>
-                    <p v-else>
+                    <p class="text-break" v-else>
                         The teacher has no ratings.
                     </p>
-                    <p class="text-wrap word-wrap"><font-awesome-icon icon="fa-solid fa-chalkboard-user" /> {{ profile.service }}</p>
+                    <p class="text-break"><font-awesome-icon icon="fa-solid fa-chalkboard-user" /> {{ profile.service }}</p>
                 </div>
             </div>
 
             <!-- office section  -->
             <div class="col-5 office border rounded my-2">
-                <h3>Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3>
+                <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3>
 
                 <!-- address  -->
                 
                 <div class="border border-success border-opacity-55 rounded px-2 mb-1">
-                    <h4>Address</h4>
-                    <p><font-awesome-icon icon="fa-solid fa-location-dot" /> {{ profile.address }}</p>
+                    <h4 class="text-break" >Address</h4>
+                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-location-dot" /> {{ profile.address }}</p>
                 </div>
 
                 <!-- contacts  -->
                 
                 <div class="border border-success border-opacity-55 rounded px-2 mb-1">
-                    <h4>Contacts</h4>
-                    <p><font-awesome-icon icon="fa-solid fa-phone" /> {{ profile.telephone_number }}</p>
-                    <p><font-awesome-icon icon="fa-solid fa-envelope" /> {{ profile.user.email }}</p>
+                    <h4 class="text-break" >Contacts</h4>
+                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-phone" /> {{ profile.telephone_number }}</p>
+                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-envelope" /> {{ profile.user.email }}</p>
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
-                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
+                    <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                     
                     <!-- message form modal  -->
                     <div class="modal fade" id="messageModel" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
@@ -237,13 +237,13 @@ export default {
         <div class="row justify-content-between">
             <!-- section specialization  -->
             <div class="col-12 specialization border rounded my-2">
-                <h4>Specializzations</h4>
+                <h4 class="text-break" >Specializzations</h4>
                 <div v-for="(specialization, index) in profile.specializations" class="border border-success border-opacity-75 rounded p-2 mb-2">
-                    <p>
+                    <p class="text-break">
                         <strong>
                             Field: {{ specialization.field }}
                         </strong>
-                        <div>
+                        <div class="text-break" >
                             <em>
                                 {{ specialization.name }}
                             </em>
@@ -256,7 +256,7 @@ export default {
         <!-- reviews section  -->
         <div class="row justify-content-between">
             <div class="col-12 reviews border rounded my-2">
-                <h4>Reviews</h4>
+                <h4 class="text-break" >Reviews</h4>
                 <div v-if="profile.reviews.length > 0">
                     <div v-for="(review, index) in profile.reviews" :key="review"  class="border border-warning border-opacity-75 rounded p-2 mb-2">
                         <p>
@@ -276,11 +276,11 @@ export default {
                         </p>
                     </div>
                 </div>
-                <div v-else>
-                    The teacher has no reviews.
+                <div v-else class="text-break">
+                    {{ profile.user.name }} {{ profile.user.name }} has no reviews.
                 </div>
                 <div class="d-flex justify-content-center my-4" >
-                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <!-- Review form modal  -->
                     <div class="modal fade" id="reviewModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -325,7 +325,7 @@ export default {
                     </div>
 
                     <!-- vote model form  -->
-                    <a type="button" class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success mx-3 text-break" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
