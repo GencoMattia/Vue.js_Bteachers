@@ -23,6 +23,8 @@ export default {
                 10,
                 15,
             ],
+
+            selectedReviewThreshold: 0,
         };
     },
 
@@ -41,6 +43,7 @@ export default {
                 searchQuery: store.searchBarQuery, // Aggiunge la searchQuery attuale ai parametri
                 order_by: this.orderBy,
                 order_direction: this.orderDirection,
+                reviews_count: this.selectedReviewThreshold,
             };
             if (this.votoUtente) {
                 params.min_vote = this.votoUtente;
@@ -89,14 +92,13 @@ export default {
             }
         },
 
-        onReviewThresholdChange(reviewNumber) {
-            if (vote === "") {
-                this.votoUtente = null;
-                this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+        onReviewThresholdChange(reviews_count) {
+            if (reviews_count === "") {
+                this.selectedReviewThreshold = 0; // Imposta a 0 se non selezionato
             } else {
-                this.votoUtente = vote;
-                this.fetchTeachersProfiles(1, this.selectedSpecialization, true);
+                this.selectedReviewThreshold = reviews_count; // Imposta il threshold selezionato
             }
+            this.fetchTeachersProfiles(1, this.selectedSpecialization, true); // Aggiorna i risultati     
         },
 
         changeDisc() {
@@ -110,6 +112,7 @@ export default {
         },
 
     },
+
     created() {
         this.fetchTeachersProfiles();
     },
@@ -148,11 +151,11 @@ export default {
                         </select>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
+                        <select class="form-select" aria-label="default" @change="onReviewThresholdChange($event.target.value)">
                             <option value="" selected>
                                 Select minimum number of reviews
                             </option>
-                            <option v-for="threshold in this.reviewsThreshold" :value="threshold">
+                            <option v-for="threshold in reviewsThreshold" :value="threshold">
                                 {{ threshold }}+
                             </option>
                         </select>
