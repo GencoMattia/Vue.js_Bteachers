@@ -22,6 +22,12 @@ export default {
                 telephone_number: '',
                 message_text: '',
             },
+            reviewError: {
+                name: '',
+                surname: '',
+                email: '',
+                review_text: '',
+            }
         };
     },
 
@@ -378,21 +384,29 @@ export default {
                                 <div class="mb-3">
                                     <label for="reviewer-name" class="col-form-label">Name:</label>
                                     <input type="text" class="form-control" id="reviewer-name" name="name">
+                                    <!-- name error  -->
+                                    <span v-if="reviewError.name" class="text-danger">{{ reviewError.name }}</span>
                                 </div>
                                 <!-- reviewer surname  -->
                                 <div class="mb-3">
                                     <label for="reviewer-surname" class="col-form-label">Surname:</label>
                                     <input type="text" class="form-control" id="reviewer-surname" name="surname">
+                                    <!-- surname error  -->
+                                    <span v-if="reviewError.surname" class="text-danger">{{ reviewError.surname }}</span>
                                 </div>
                                 <!-- reviewer email  -->
                                 <div class="mb-3">
                                     <label for="reviewer-email" class="col-form-label">Email:</label>
                                     <input type="email" class="form-control" id="reviewer-email" name="email">
+                                    <!-- email error  -->
+                                    <span v-if="reviewError.email" class="text-danger">{{ reviewError.email }}</span>
                                 </div>
                                 <!-- review text  -->
                                 <div class="mb-3">
                                     <label for="review-text" class="col-form-label">Review:</label>
                                     <textarea class="form-control" id="review-text" name="review_text"></textarea>
+                                <!-- text error  -->
+                                <span v-if="reviewError.review_text" class="text-danger">{{ reviewError.review_text }}</span>
                                 </div>
                                 </form>
                             </div>
