@@ -15,7 +15,6 @@ export default {
             selectedSpecialization: null,
             store,
             votoUtente : null,
-            orderBy: '',
             selectedOrder: '',
             orderDirection: "desc",
             reviewsThreshold: [
@@ -38,7 +37,10 @@ export default {
         },
         votoUtente() {
             this.fetchTeachersProfiles(1, true);
-        }
+        },
+        selectedOrder() {  // Monitora il cambiamento di selectedOrder
+            this.fetchTeachersProfiles(1, true);
+        },
     },
 
     methods: {
@@ -47,7 +49,7 @@ export default {
                 page: page,
                 specialization: this.selectedSpecialization,
                 searchQuery: store.searchBarQuery,
-                order_by: this.orderBy,
+                order_by: this.selectedOrder,
                 order_direction: this.orderDirection,
                 reviews_count: this.selectedReviewThreshold,
             };
@@ -80,12 +82,8 @@ export default {
         },
 
         onReviewThresholdChange(reviews_count) {
-            if (reviews_count === "") {
-                this.selectedReviewThreshold = 0; // Imposta a 0 se non selezionato
-            } else {
-                this.selectedReviewThreshold = reviews_count; // Imposta il threshold selezionato
-            }
-            this.fetchTeachersProfiles(1, this.selectedSpecialization, true); // Aggiorna i risultati     
+            this.selectedReviewThreshold = reviews_count ? parseInt(reviews_count) : 0;
+            this.fetchTeachersProfiles(1, true); // Aggiorna i risultati
         },
 
         changeDisc() {
