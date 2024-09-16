@@ -21,7 +21,7 @@ export default {
 
     methods: {
         getTeacher(page = 1){
-            axios.get("http://127.0.0.1:8000/api/profiles", {
+            axios.get("http://127.0.0.1:8000/api/profiles/premium", {
                 params: {
                     page: page
                 }
@@ -35,6 +35,9 @@ export default {
             })
         }
     },
+    loadMore() {
+            this.fetchTeachersProfiles(this.currentPage + 1);
+        },
 
     created() {
         this.getTeacher();
@@ -59,7 +62,9 @@ export default {
             </div>
         </div>
     </section>
-
+    <div class="d-flex justify-content-center align-items-center mt-5">
+                    <a href="#" class="btn btn-main" @click.prevent="loadMore">Load More</a>
+                </div>
 </template>
 
 <style lang="scss" scoped>
@@ -73,6 +78,20 @@ export default {
     --bs-card-bg:none;
     --bs-card-border-color:none;
 
+}
+
+.btn-main {
+    background-color: $main-btn-primary-bg;
+    border-color: $main-btn-primary-border;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+
+    &:hover {
+        background-color: $main-btn-primary-hover-bg;
+        border-color: $main-btn-primary-hover-border;
+    }
 }
 
 </style>
