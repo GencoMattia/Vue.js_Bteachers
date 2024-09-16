@@ -183,6 +183,7 @@ export default {
                 document.getElementById('reviewer-email').value = '',
                 document.getElementById('review-text').value = '',
                 this.closeModal('reviewModel');
+                this.fetchProject(this.profile.id);
                 
             console.log('Review sent successfully:', response, playload);
             })
@@ -245,6 +246,7 @@ export default {
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
                 this.closeModal('voteModel');
+                this.fetchProject(this.profile.id);
             console.log('Vote sent successfully:', response, playload);
             })
             .catch((error) => {
@@ -422,7 +424,7 @@ export default {
                     </div>
                 </div>
                 <div v-else class="text-break">
-                    {{ profile.user.name }} {{ profile.user.name }} has no reviews.
+                    {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
                 </div>
                 <div class="d-flex justify-content-center my-4" >
                     <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
