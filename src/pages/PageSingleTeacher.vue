@@ -75,6 +75,7 @@ export default {
             modal.style.display = 'none';
             document.body.classList.remove('modal-open');
             document.body.style.overflow = ''; 
+            document.body.style.padding = 0; 
 
             const backdrop = document.querySelector('.modal-backdrop');
             if (backdrop) {
