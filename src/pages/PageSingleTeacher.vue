@@ -15,6 +15,19 @@ export default {
             averageVote: '',
             star: 5,
             store,
+            messageError: {
+                name: '',
+                surname: '',
+                email: '',
+                telephone_number: '',
+                message_text: '',
+            },
+            reviewError: {
+                name: '',
+                surname: '',
+                email: '',
+                review_text: '',
+            }
         };
     },
 
@@ -31,6 +44,7 @@ export default {
                 this.profile = response.data.results;
                 this.photo = response.data.results.photo;
                 this.cv = response.data.results.cv;
+                console.log(this.cv)
                 this.vote = response.data.results.votes;
                 // average vote 
                 // se non è presente un voto 
@@ -51,6 +65,23 @@ export default {
                 console.log(error);
             })
         },
+        // close modal 
+        closeModal(myModel) {
+            var modal = document.getElementById(myModel);
+
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+            modal.removeAttribute('tabindex');
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = ''; 
+
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                backdrop.parentNode.removeChild(backdrop);
+            }
+        },
+
         // send message to teacher 
         sendMessage() {
             const playload = {
@@ -68,12 +99,68 @@ export default {
 
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
+                document.getElementById('message-profile-id').value = '',
+                document.getElementById('messager-name').value = '',
+                document.getElementById('messager-surname').value = '',
+                document.getElementById('messager-email').value = '',
+                document.getElementById('messager-telephone-number').value = '',
+                document.getElementById('message-text').value = '',
+                this.closeModal('messageModel');
+
             console.log('Message sent successfully:', response, playload);
             })
             .catch((error) => {
             console.log('Error sending message:', error);
             });
         },
+        // message form input validation 
+        messageValidation() {
+            // errore nome 
+            if ( (document.getElementById('messager-name').value.length != 0 && document.getElementById('messager-name').value.length < 3) || document.getElementById('messager-name').value.length > 100 ) {
+                this.messageError.name = 'The length of the name must be between 3 and 100.';
+            } else {
+                this.messageError.name = '';
+            };
+
+            // error surname 
+            if ( (document.getElementById('messager-surname').value.length != 0 && document.getElementById('messager-surname').value.length < 3) || document.getElementById('messager-surname').value.length > 100 ) {
+                this.messageError.surname = 'The length of the surname must be between 3 and 100.';
+            } else {
+                this.messageError.surname = '';
+            };
+
+            //  error email 
+            if (!document.getElementById('messager-email').value) {
+                this.messageError.email = 'The email is required.';
+            } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('messager-email').value))) {
+                this.messageError.email = 'The email is wrong.';
+            } else {
+                this.messageError.email = '';
+            };
+
+            // telephone_number error 
+            if (document.getElementById('messager-telephone-number').value.length != 0 && document.getElementById('messager-telephone-number').value.length < 6 || document.getElementById('messager-telephone-number').value.length > 20 ) {
+                this.messageError.telephone_number = 'The length of telephone number must be between 6 and 20.';
+            } else {
+                this.messageError.telephone_number = '';
+            };
+
+            // message text error 
+            if (!document.getElementById('message-text').value) {
+                this.messageError.message_text = 'The message is required.';
+            } else if(document.getElementById('message-text').value > 3000){
+                this.messageError.message_text = 'The message is too long.';
+            } else {
+                this.messageError.message_text = '';
+            };
+            // invio in database 
+            if ((document.getElementById('message-text').value || document.getElementById('message-text').value < 3000) && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('messager-email').value)) && ( (!document.getElementById('messager-name').value || document.getElementById('messager-name').value.length >= 3) && document.getElementById('messager-name').value.length <= 100 ) && ( (!document.getElementById('messager-surname').value || document.getElementById('messager-surname').value.length >= 3) && document.getElementById('messager-surname').value.length <= 100 ) && (!document.getElementById('messager-telephone-number').value || document.getElementById('messager-telephone-number').value.length >= 6 && document.getElementById('messager-telephone-number').value.length <= 20 )) {
+                this.sendMessage();
+            } else {
+                console.log("can't send message");
+            };
+        },
+
         // send review 
         sendReview() {
             const playload = {
@@ -90,13 +177,61 @@ export default {
 
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
-            console.log('Message sent successfully:', response, playload);
+                document.getElementById('review-profile-id').value = '',
+                document.getElementById('reviewer-name').value = '',
+                document.getElementById('reviewer-surname').value = '',
+                document.getElementById('reviewer-email').value = '',
+                document.getElementById('review-text').value = '',
+                this.closeModal('reviewModel');
+                this.fetchProject(this.profile.id);
+                
+            console.log('Review sent successfully:', response, playload);
             })
             .catch((error) => {
-            console.log('Error sending message:', error);
+            console.log('Error sending review:', error);
             });
         },
 
+        // review form input validation 
+        reviewValidation() {
+            // errore nome 
+            if ( (document.getElementById('reviewer-name').value.length != 0 && document.getElementById('reviewer-name').value.length < 3) || document.getElementById('reviewer-name').value.length > 100 ) {
+                this.reviewError.name = 'The length of the name must be between 3 and 100.';
+            } else {
+                this.reviewError.name = '';
+            };
+
+            // error surname 
+            if ( (document.getElementById('reviewer-surname').value.length != 0 && document.getElementById('reviewer-surname').value.length < 3) || document.getElementById('reviewer-surname').value.length > 100 ) {
+                this.reviewError.surname = 'The length of the surname must be between 3 and 100.';
+            } else {
+                this.reviewError.surname = '';
+            };
+
+            //  error email 
+            if (!document.getElementById('reviewer-email').value) {
+                this.reviewError.email = 'The email is required.';
+            } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('reviewer-email').value))) {
+                this.reviewError.email = 'The email is wrong.';
+            } else {
+                this.reviewError.email = '';
+            };
+
+            // review text error 
+            if (!document.getElementById('review-text').value) {
+                this.reviewError.review_text = 'The review is required.';
+            } else if(document.getElementById('review-text').value > 3000){
+                this.reviewError.review_text = 'The review is too long.';
+            } else {
+                this.reviewError.review_text = '';
+            };
+            // invio in database 
+            if ((document.getElementById('review-text').value || document.getElementById('review-text').value < 3000) && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('reviewer-email').value)) && ( (!document.getElementById('reviewer-name').value.length || document.getElementById('reviewer-name').value.length >= 3) && document.getElementById('reviewer-name').value.length <= 100 ) && ( (!document.getElementById('reviewer-surname').value.length || document.getElementById('reviewer-surname').value.length >= 3) && document.getElementById('reviewer-surname').value.length <= 100 )) {
+                this.sendReview();
+            } else {
+                console.log("can't send review");
+            };
+        },
 
         // send vote
         sendVote() {
@@ -110,10 +245,12 @@ export default {
             }
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
-            console.log('Message sent successfully:', response, playload);
+                this.closeModal('voteModel');
+                this.fetchProject(this.profile.id);
+            console.log('Vote sent successfully:', response, playload);
             })
             .catch((error) => {
-            console.log('Error sending message:', error);
+            console.log('Error sending vote:', error);
             });
         },
 
@@ -143,9 +280,9 @@ export default {
                     <!-- <embed :src="getImageUrl(cv)" class="w-100" alt="Profile-cv"> -->
                 </div>
                 <div>
-                    <h5 class="text-uppercase me-2"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
-                    <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success"> {{ specialization.name }} </div>
-                    <p v-if="averageVote > 0">
+                    <h5 class="text-uppercase me-2 text-break"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
+                    <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success text-break"> {{ specialization.name }} </div>
+                    <p  v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
                             <font-awesome-icon icon="fa-solid fa-star" />
                         </span>
@@ -153,34 +290,34 @@ export default {
                             <font-awesome-icon icon="fa-regular fa-star" />
                         </span>
                     </p>
-                    <p v-else>
+                    <p class="text-break" v-else>
                         The teacher has no ratings.
                     </p>
-                    <p class="text-wrap word-wrap"><font-awesome-icon icon="fa-solid fa-chalkboard-user" /> {{ profile.service }}</p>
+                    <p class="text-break"><font-awesome-icon icon="fa-solid fa-chalkboard-user" /> {{ profile.service }}</p>
                 </div>
             </div>
 
             <!-- office section  -->
             <div class="col-5 office border rounded my-2">
-                <h3>Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3>
+                <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3>
 
                 <!-- address  -->
                 
                 <div class="border border-success border-opacity-55 rounded px-2 mb-1">
-                    <h4>Address</h4>
-                    <p><font-awesome-icon icon="fa-solid fa-location-dot" /> {{ profile.address }}</p>
+                    <h4 class="text-break" >Address</h4>
+                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-location-dot" /> {{ profile.address }}</p>
                 </div>
 
                 <!-- contacts  -->
                 
                 <div class="border border-success border-opacity-55 rounded px-2 mb-1">
-                    <h4>Contacts</h4>
-                    <p><font-awesome-icon icon="fa-solid fa-phone" /> {{ profile.telephone_number }}</p>
-                    <p><font-awesome-icon icon="fa-solid fa-envelope" /> {{ profile.user.email }}</p>
+                    <h4 class="text-break" >Contacts</h4>
+                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-phone" /> {{ profile.telephone_number }}</p>
+                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-envelope" /> {{ profile.user.email }}</p>
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
-                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
+                    <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                     
                     <!-- message form modal  -->
                     <div class="modal fade" id="messageModel" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
@@ -191,7 +328,7 @@ export default {
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form @submit.prevent="messageValidation()">
                                     <!-- messages profile_id  -->
                                     <input type="text" class="form-control" id="message-profile-id" name="messageData.profile_id" :value="profile.id" hidden>
 
@@ -199,32 +336,42 @@ export default {
                                 <div class="mb-3">
                                     <label for="messager-name" class="col-form-label">Name:</label>
                                     <input type="text" class="form-control" id="messager-name" name="messageData.name">
+                                    <!-- name error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.name }}</span>
                                 </div>
                                 <!-- messager surname  -->
                                 <div class="mb-3">
                                     <label for="messager-surname" class="col-form-label">Surname:</label>
                                     <input type="text" class="form-control" id="messager-surname" name="messageData.surname">
+                                    <!-- surname error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.surname }}</span>
                                 </div>
                                 <!-- messager email  -->
                                 <div class="mb-3">
                                     <label for="messager-email" class="col-form-label">Email:</label>
                                     <input type="email" class="form-control" id="messager-email" name="messageData.email">
+                                    <!-- email error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.email }}</span>
                                 </div>
                                 <!-- messager telephone_number  -->
                                 <div class="mb-3">
                                     <label for="messager-telephone-number" class="col-form-label">Telephone number:</label>
                                     <input type="text" class="form-control" id="messager-telephone-number" name="messageData.telephone_number">
+                                    <!-- telephone number error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.telephone_number }}</span>
                                 </div>
                                 <!-- message text  -->
                                 <div class="mb-3">
                                     <label for="message-text" class="col-form-label">Message:</label>
                                     <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
+                                    <!-- message text error  -->
+                                    <span v-if="messageError" class="text-danger">{{ messageError.message_text }}</span>
                                 </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success" @click="sendMessage()">Send message</button>
+                                <button type="submit" class="btn btn-success" @click="messageValidation()">Send message</button>
                             </div>
                             </div>
                         </div>
@@ -237,13 +384,13 @@ export default {
         <div class="row justify-content-between">
             <!-- section specialization  -->
             <div class="col-12 specialization border rounded my-2">
-                <h4>Specializzations</h4>
+                <h4 class="text-break" >Specializzations</h4>
                 <div v-for="(specialization, index) in profile.specializations" class="border border-success border-opacity-75 rounded p-2 mb-2">
-                    <p>
+                    <p class="text-break">
                         <strong>
                             Field: {{ specialization.field }}
                         </strong>
-                        <div>
+                        <div class="text-break" >
                             <em>
                                 {{ specialization.name }}
                             </em>
@@ -256,7 +403,7 @@ export default {
         <!-- reviews section  -->
         <div class="row justify-content-between">
             <div class="col-12 reviews border rounded my-2">
-                <h4>Reviews</h4>
+                <h4 class="text-break" >Reviews</h4>
                 <div v-if="profile.reviews.length > 0">
                     <div v-for="(review, index) in profile.reviews" :key="review"  class="border border-warning border-opacity-75 rounded p-2 mb-2">
                         <p>
@@ -276,11 +423,11 @@ export default {
                         </p>
                     </div>
                 </div>
-                <div v-else>
-                    The teacher has no reviews.
+                <div v-else class="text-break">
+                    {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
                 </div>
                 <div class="d-flex justify-content-center my-4" >
-                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <!-- Review form modal  -->
                     <div class="modal fade" id="reviewModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -298,34 +445,42 @@ export default {
                                 <div class="mb-3">
                                     <label for="reviewer-name" class="col-form-label">Name:</label>
                                     <input type="text" class="form-control" id="reviewer-name" name="name">
+                                    <!-- name error  -->
+                                    <span v-if="reviewError.name" class="text-danger">{{ reviewError.name }}</span>
                                 </div>
                                 <!-- reviewer surname  -->
                                 <div class="mb-3">
                                     <label for="reviewer-surname" class="col-form-label">Surname:</label>
                                     <input type="text" class="form-control" id="reviewer-surname" name="surname">
+                                    <!-- surname error  -->
+                                    <span v-if="reviewError.surname" class="text-danger">{{ reviewError.surname }}</span>
                                 </div>
                                 <!-- reviewer email  -->
                                 <div class="mb-3">
                                     <label for="reviewer-email" class="col-form-label">Email:</label>
                                     <input type="email" class="form-control" id="reviewer-email" name="email">
+                                    <!-- email error  -->
+                                    <span v-if="reviewError.email" class="text-danger">{{ reviewError.email }}</span>
                                 </div>
                                 <!-- review text  -->
                                 <div class="mb-3">
                                     <label for="review-text" class="col-form-label">Review:</label>
                                     <textarea class="form-control" id="review-text" name="review_text"></textarea>
+                                <!-- text error  -->
+                                <span v-if="reviewError.review_text" class="text-danger">{{ reviewError.review_text }}</span>
                                 </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" @click="sendReview">Send review</button>
+                                <button type="button" class="btn btn-success" @click="reviewValidation()">Send review</button>
                             </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- vote model form  -->
-                    <a type="button" class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success mx-3 text-break" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -358,6 +513,9 @@ export default {
                 </div>
             </div>
         </div>
+        <div>
+            <embed :src="getImageUrl(cv)" class="w-100 cv-viewer" height="400px">
+        </div>
     </section>
 </template>
 
@@ -365,5 +523,7 @@ export default {
     .profile{
         background-color: #f57c00;
     }
-    
+    .cv-viewer{
+        border-radius: 2rem;
+    }
 </style>
