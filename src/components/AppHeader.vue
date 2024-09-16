@@ -38,7 +38,10 @@ export default {
 <template>
     <header class="header d-flex align-items-center sticky-top">
         <!-- Logo -->
-        <div class="logo">BTeachers</div>
+        <!-- <a class="logo">BTeachers</a> -->
+        <router-link class="logo" :to="{ name: navLinkNames[1].name }">
+            BTeachers
+                </router-link>
 
         <!-- Barra di ricerca che occupa tutto lo spazio disponibile -->
         <form class="d-flex flex-grow-1 mx-3" role="search" @submit.prevent="getSearchBarValue">
