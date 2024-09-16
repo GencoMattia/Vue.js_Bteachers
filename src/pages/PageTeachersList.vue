@@ -82,12 +82,8 @@ export default {
         },
 
         onReviewThresholdChange(reviews_count) {
-            if (reviews_count === "") {
-                this.selectedReviewThreshold = 0; // Imposta a 0 se non selezionato
-            } else {
-                this.selectedReviewThreshold = reviews_count; // Imposta il threshold selezionato
-            }
-            this.fetchTeachersProfiles(1, this.selectedSpecialization, true); // Aggiorna i risultati     
+            this.selectedReviewThreshold = reviews_count ? parseInt(reviews_count) : 0;
+            this.fetchTeachersProfiles(1, true); // Aggiorna i risultati
         },
 
         changeDisc() {
