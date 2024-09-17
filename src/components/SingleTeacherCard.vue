@@ -51,6 +51,10 @@ export default {
                     <p v-if="teacher.reviews_count" class="card-text">
                         Recensioni totali: <strong>{{ teacher.reviews_count }}</strong>
                     </p>
+
+                    <p v-if="teacher.is_premium" class="card-text">
+                        Premium
+                    </p>
                 </div>
             </div>
         </div>

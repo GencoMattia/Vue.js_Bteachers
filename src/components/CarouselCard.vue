@@ -37,10 +37,12 @@ export default {
                 </h2>
             </div>
             <div class="card-body d-flex">
+                
                 <div class="col-6 photo d-flex justify-content-center">
                     <img :src="`${img}${teacher.photo}`" class="rounded-circle border border-3 border-primary card-img" :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
                 </div>
                 <div class="col-6 specs ">
+                    Premium
                     <p v-for="specialization in teacher.specializations" :key="specialization.id" class="specialization mb-2 text-muted">
                     {{ specialization.field }}
                     </p>
