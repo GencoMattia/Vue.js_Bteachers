@@ -18,31 +18,31 @@ export default {
 
 <template>
     <section class="container ">
-        <div class="row m-4">
-            <div class="col-6">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 ">
                 <h2>About Us</h2>
                 <p class="mb-4">At BTeachers, our mission is to empower learners by connecting them with exceptional educators who inspire and facilitate their educational journeys. We envision being the leading platform for personalized learning experiences, where every student can find the right teacher to unlock their potential.</p>
                 <div class="col-12 d-flex flex-wrap justify-content-around">
-                    <div class="col-6 px-1">
+                    <div class="col-md-6 col-sm-12 ">
                         <h2>5000 teachers</h2>
                         <p>Since our inception, we have successfully connected over 100 students with qualified teachers, ensuring a tailored learning experience that meets individual needs.</p>
                     </div>
-                    <div class="col-6 px-1">
+                    <div class="col-md-6 col-xs-12">
                         <h2>20 specializations</h2>
                         <p>Our platform features a diverse range of 50 specializations, from math and science to languages and the arts, allowing learners to explore various subjects and find their perfect match.</p>
                     </div>
-                    <div class="col-6 ">
+                    <div class="col-md-6 col-sm-12 ">
                         <h2>100 countries</h2>
                         <p>BTeachers has expanded its reach to 15 countries, making quality education accessible to learners around the globe, regardless of their location.</p>
                     </div>
-                    <div class="col-6 px-1">
+                    <div class="col-md-6 col-sm-12">
                         <h2>100
                             values</h2>
                         <p>We uphold 4 core values: Diversity, Quality, Accessibility, and Community, ensuring that our platform remains a supportive environment for both learners and educators.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-6 d-flex">
+            <div class="col-md-6 col-sm-12 d-flex">
                 <img class="img-fluid  rounded" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6THKb-j7VG8Fmr3g7hxOts6UGqmH7qS3oRA&s" alt="Responsive image teacher-img">
             </div>
         </div>
