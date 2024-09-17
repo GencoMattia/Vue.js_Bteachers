@@ -42,26 +42,36 @@ export default {
         <router-link class="logo" :to="{ name: navLinkNames[1].name }">
             BTeachers
                 </router-link>
-
+<div class="container p-0">
+    <div class="row">
         <!-- Barra di ricerca che occupa tutto lo spazio disponibile -->
         <form class="d-flex flex-grow-1 mx-3" role="search" @submit.prevent="getSearchBarValue">
             <input 
-                class="form-control me-2 flex-grow-1" 
+                class="form-control me-2 flex-grow-1 border border-0 rounded-pill" 
                 type="search" 
                 placeholder="Search your Teacher" 
                 v-model="searchBarQuery"
                 aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-danger border border-0 rounded-pill" type="submit"><font-awesome-icon :icon="['fas', 'magnifying-glass']" /></button>
         </form>
+    </div>
+</div>
 
         <!-- Link di navigazione -->
         <ul class="nav-links d-flex mb-0">
-            <li v-for="navItem in navLinkNames" :key="navItem.name">
-                <router-link :to="{ name: navItem.name }">
-                    {{ navItem.label }}
+            <li>
+                <router-link :to="{name: navLinkNames[0].name}">
+                    {{ navLinkNames[0].label }}
                 </router-link>
             </li>
         </ul>
+        <div class="btn btn-primary border border-0 rounded-pill mx-2">
+            <a href="http://127.0.0.1:8000/">
+                <span>Are you a Teacher ? </span>
+                <font-awesome-icon :icon="['fas', 'user']" /> 
+                
+            </a>
+        </div>
     </header>
 </template>
 
@@ -92,14 +102,27 @@ export default {
             margin-left: 20px;
 
             a {
-                color: #fff;
+                color: $link-color;;
                 text-decoration: none;
                 font-size: 0.9rem;
                 
                 &:hover {
-                color: $primary-color;
+                color: $link-hover-color;
                 }
             }
+            }
+        }
+
+        .btn{
+            background-color: $secondary-color; // Arancione intenso
+            
+            color:$link-color; // Bianco
+            
+
+            &:hover {
+                background-color:$link-hover-color; // Arancione molto scuro
+                 // Arancione molto scuro
+                color: #fff; // Bianco
             }
         }
     }
