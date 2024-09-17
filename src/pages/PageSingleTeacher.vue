@@ -273,7 +273,7 @@ export default {
 
 <template>
     <section class=" container-fluid single-profile">
-        <div class="row justify-content-around">
+        <div class="row justify-content-around first-container">
             <!-- profile section  -->
             <div class="col-4 profile-img-container my-2">
                     <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
@@ -283,35 +283,38 @@ export default {
             <div class="col-6 profile-container my-2">
                 <!-- <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3> -->
                 <div class="profile">
-                    <h5 class="text-uppercase me-2 text-break"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
+                    <h3 class="text-uppercase me-2 text-break">
+                        <font-awesome-icon icon="fa-regular fa-id-badge" :class="profile.is_premium?'gold':''" /> 
+                        {{ profile.user.name }} {{ profile.user.surname }}</h3> 
                     <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success text-break"> {{ specialization.name }} </div>
                     <p  v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
-                            <font-awesome-icon icon="fa-solid fa-star" />
+                            <font-awesome-icon icon="fa-solid fa-star" class="icon-color"/>
                         </span>
                         <span v-for="x in star - averageVote" :key="x">
-                            <font-awesome-icon icon="fa-regular fa-star" />
+                            <font-awesome-icon icon="fa-regular fa-star" class="icon-color"  />
                         </span>
                     </p>
                     <p class="text-break" v-else>
                         The teacher has no ratings.
                     </p>
-                    <p class="text-break"><font-awesome-icon icon="fa-solid fa-chalkboard-user" /> {{ profile.service }}</p>
+                    <p class="text-break"><font-awesome-icon icon="fa-solid fa-chalkboard-user" class="icon-color" /> {{ profile.service }}</p>
                 </div>
 
                 <!-- address  -->
                 
-                <div class="border border-success border-opacity-55 rounded px-2 mb-1">
-                    <h4 class="text-break" >Address</h4>
-                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-location-dot" /> {{ profile.address }}</p>
+                <div class="mb-1">
+                    <h5 class="text-break" >Address</h5>
+                    <p class="text-break" >
+                        <font-awesome-icon icon="fa-solid fa-location-dot" class="icon-color" /> {{ profile.address }}</p>
                 </div>
 
                 <!-- contacts  -->
                 
-                <div class="border border-success border-opacity-55 rounded px-2 mb-1">
+                <div class= "mb-1">
                     <h4 class="text-break" >Contacts</h4>
-                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-phone" /> {{ profile.telephone_number }}</p>
-                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-envelope" /> {{ profile.user.email }}</p>
+                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-phone" class="icon-color" /> {{ profile.telephone_number }}</p>
+                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-envelope" class="icon-color" /> {{ profile.user.email }}</p>
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
@@ -509,7 +512,9 @@ export default {
 </template>
 
 <style scoped lang="scss">
-
+    .first-container{
+        background-image: url();
+    }
     .single-profile{
         background-color: white;
         margin-top: 1.5rem;
@@ -529,6 +534,12 @@ export default {
     }
     .profile-container{
         padding: 2rem;
+    }
+    .gold{
+        color: #ff7b00;
+    }
+    .icon-color{
+        color: #55a630;
     }
 
 </style>
