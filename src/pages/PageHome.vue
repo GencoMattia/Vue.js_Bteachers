@@ -1,5 +1,5 @@
 <script>
-import CarouselHome from '@/components/CarouselHome.vue';
+import HomeTeachersShowcase from '@/components/HomeTeachersShowcase.vue';
 import Jumbotron from '@/components/Jumbotron.vue';
 import { store } from '@/store';
 // import ProjectsList from '../components/ProjectsList.vue';
@@ -7,7 +7,7 @@ import { store } from '@/store';
 export default {
 
     components: {
-        CarouselHome,
+        HomeTeachersShowcase,
         Jumbotron,
         // ProjectsList,
     },
@@ -147,7 +147,7 @@ export default {
         <section>
             <div class="row carousel justify-content-end">
                 <div class="col-12 ">
-                    <CarouselHome />
+                    <HomeTeachersShowcase />
                 </div>
             </div>
         </section>

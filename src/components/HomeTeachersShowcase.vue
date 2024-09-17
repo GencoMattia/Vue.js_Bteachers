@@ -1,12 +1,12 @@
 <script>
 import { FontAwesomeIcon } from "../js/font-awesome";
-import CarouselCard from "./CarouselCard.vue";
+import HomeTeacherCard from "./HomeTeacherCard.vue";
 import axios from "axios";
 
 export default {
     components:{
         FontAwesomeIcon,
-        CarouselCard
+        HomeTeacherCard
     },
     data() {
         return {
@@ -51,7 +51,7 @@ export default {
             <div class="rounded-5">
                 <!-- Use `index` to manage the active class for the first item -->
                 <div id="sponsored" class="card ">
-                    <CarouselCard
+                    <HomeTeacherCard
                         class="card"
                         :class="{ 'active': index === 0 }" 
                         v-for="(teacher, index) in teachers"
