@@ -59,13 +59,13 @@ export default {
 
         <!-- Link di navigazione -->
         <ul class="nav-links d-flex mb-0">
-            <li v-for="navItem in navLinkNames" :key="navItem.name">
-                <router-link :to="{ name: navItem.name }">
-                    {{ navItem.label }}
+            <li>
+                <router-link :to="{name: navLinkNames[0].name}">
+                    {{ navLinkNames[0].label }}
                 </router-link>
             </li>
         </ul>
-        <div class="btn btn-primary rounded-pill mx-2">
+        <div class="btn btn-primary border border-0 rounded-pill mx-2">
             <a href="http://127.0.0.1:8000/">
                 <font-awesome-icon :icon="['fas', 'user']" /> 
                 
@@ -101,12 +101,12 @@ export default {
             margin-left: 20px;
 
             a {
-                color: #fff;
+                color: $link-color;
                 text-decoration: none;
                 font-size: 0.9rem;
                 
                 &:hover {
-                color: $primary-color;
+                color: $link-hover-color;
                 }
             }
             }
@@ -114,13 +114,13 @@ export default {
 
         .btn{
             background-color: $secondary-color; // Arancione intenso
-            border-color: $secondary-border-color; // Arancione intenso
+            
             color: $main-background-color; // Bianco
             
 
             &:hover {
-                background-color: $main-btn-primary-hover-bg; // Arancione molto scuro
-                border-color: $main-btn-primary-hover-border; // Arancione molto scuro
+                background-color:$link-color; // Arancione molto scuro
+                 // Arancione molto scuro
                 color: #fff; // Bianco
             }
         }
