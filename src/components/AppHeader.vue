@@ -67,6 +67,7 @@ export default {
         </ul>
         <div class="btn btn-primary border border-0 rounded-pill mx-2">
             <a href="http://127.0.0.1:8000/">
+                <span>Are you a Teacher ? </span>
                 <font-awesome-icon :icon="['fas', 'user']" /> 
                 
             </a>
@@ -101,7 +102,7 @@ export default {
             margin-left: 20px;
 
             a {
-                color: $link-color;
+                color: $link-color;;
                 text-decoration: none;
                 font-size: 0.9rem;
                 
@@ -115,11 +116,11 @@ export default {
         .btn{
             background-color: $secondary-color; // Arancione intenso
             
-            color: $main-background-color; // Bianco
+            color:$link-color; // Bianco
             
 
             &:hover {
-                background-color:$link-color; // Arancione molto scuro
+                background-color:$link-hover-color; // Arancione molto scuro
                  // Arancione molto scuro
                 color: #fff; // Bianco
             }
