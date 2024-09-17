@@ -274,11 +274,6 @@ export default {
 <template>
     <section class=" container-fluid single-profile">
         <div class="row justify-content-around first-container">
-            <!-- profile section  -->
-            <div class="col-4 profile-img-container my-2">
-                    <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
-            </div>
-
             <!-- office section  -->
             <div class="col-6 profile-container my-2">
                 <!-- <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3> -->
@@ -323,6 +318,12 @@ export default {
                     <!-- message form modal  -->
                 </div>
             </div>
+            <!-- profile section  -->
+            <div class="col-4 profile-img-container my-2">
+                    <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
+            </div>
+
+
         </div>
 
 
@@ -513,7 +514,9 @@ export default {
 
 <style scoped lang="scss">
     .first-container{
-        background-image: url();
+        background-image: url(../assets/img/assortment-teacher-s-day-elements_23-2149044959.jpg);
+        background-size: cover;
+        
     }
     .single-profile{
         background-color: white;
@@ -539,7 +542,7 @@ export default {
         color: #ff7b00;
     }
     .icon-color{
-        color: #55a630;
+        color: #78da4b;
     }
 
 </style>
