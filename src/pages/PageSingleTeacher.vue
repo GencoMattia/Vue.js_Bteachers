@@ -272,12 +272,12 @@ export default {
 </script>
 
 <template>
-    <section class=" container">
+    <section class=" container single-profile">
         <div class="row justify-content-between">
             <!-- profile section  -->
             <div class="col-5 profile border rounded my-2">
                 <div>
-                    <img :src="getImageUrl(photo)" class="w-100 my-2" alt="Profile-photo">
+                    <img :src="getImageUrl(photo)" class="w-100 h-200px my-2" alt="Profile-photo">
                     <!-- <embed :src="getImageUrl(cv)" class="w-100" alt="Profile-cv"> -->
                 </div>
                 <div>
@@ -321,62 +321,6 @@ export default {
                     <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                     
                     <!-- message form modal  -->
-                    <div class="modal fade" id="messageModel" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="messageModalLabel">New message</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form @submit.prevent="messageValidation()">
-                                    <!-- messages profile_id  -->
-                                    <input type="text" class="form-control" id="message-profile-id" name="messageData.profile_id" :value="profile.id" hidden>
-
-                                    <!-- messager name  -->
-                                <div class="mb-3">
-                                    <label for="messager-name" class="col-form-label">Name:</label>
-                                    <input type="text" class="form-control" id="messager-name" name="messageData.name">
-                                    <!-- name error  -->
-                                    <span v-if="messageError" class="text-danger">{{ messageError.name }}</span>
-                                </div>
-                                <!-- messager surname  -->
-                                <div class="mb-3">
-                                    <label for="messager-surname" class="col-form-label">Surname:</label>
-                                    <input type="text" class="form-control" id="messager-surname" name="messageData.surname">
-                                    <!-- surname error  -->
-                                    <span v-if="messageError" class="text-danger">{{ messageError.surname }}</span>
-                                </div>
-                                <!-- messager email  -->
-                                <div class="mb-3">
-                                    <label for="messager-email" class="col-form-label">Email:</label>
-                                    <input type="email" class="form-control" id="messager-email" name="messageData.email">
-                                    <!-- email error  -->
-                                    <span v-if="messageError" class="text-danger">{{ messageError.email }}</span>
-                                </div>
-                                <!-- messager telephone_number  -->
-                                <div class="mb-3">
-                                    <label for="messager-telephone-number" class="col-form-label">Telephone number:</label>
-                                    <input type="text" class="form-control" id="messager-telephone-number" name="messageData.telephone_number">
-                                    <!-- telephone number error  -->
-                                    <span v-if="messageError" class="text-danger">{{ messageError.telephone_number }}</span>
-                                </div>
-                                <!-- message text  -->
-                                <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
-                                    <!-- message text error  -->
-                                    <span v-if="messageError" class="text-danger">{{ messageError.message_text }}</span>
-                                </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success" @click="messageValidation()">Send message</button>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -514,15 +458,66 @@ export default {
                 </div>
             </div>
         </div>
-        <div>
-            <embed :src="getImageUrl(cv)" class="w-100 cv-viewer" height="400px">
+
+        <!-- contact us form  -->
+        <div class="row message-form-body">
+            <div class="col-12">
+                <h3>Contact {{ profile.user.name }} {{ profile.user.surname }}</h3>
+                <form @submit.prevent="messageValidation()">
+                    <!-- messages profile_id  -->
+                    <input type="text" class="form-control" id="message-profile-id":value="profile.id" hidden>
+    
+                    <!-- messager name  -->
+                    <div class="mb-3">
+                        <label class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="messager-name">
+                        <!-- name error  -->
+                        <span v-if="messageError" class="text-danger">{{ messageError.name }}</span>
+                    </div>
+                    <!-- messager surname  -->
+                    <div class="mb-3">
+                        <label class="col-form-label">Surname:</label>
+                        <input type="text" class="form-control" id="messager-surname">
+                        <!-- surname error  -->
+                        <span v-if="messageError" class="text-danger">{{ messageError.surname }}</span>
+                    </div>
+                    <!-- messager email  -->
+                    <div class="mb-3">
+                        <label class="col-form-label">Email:</label>
+                        <input type="email" class="form-control" id="messager-email">
+                        <!-- email error  -->
+                        <span v-if="messageError" class="text-danger">{{ messageError.email }}</span>
+                    </div>
+                    <!-- messager telephone_number  -->
+                    <div class="mb-3">
+                        <label class="col-form-label">Telephone number:</label>
+                        <input type="text" class="form-control" id="messager-telephone-number">
+                        <!-- telephone number error  -->
+                        <span v-if="messageError" class="text-danger">{{ messageError.telephone_number }}</span>
+                    </div>
+                    <!-- message text  -->
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
+                        <!-- message text error  -->
+                        <span v-if="messageError" class="text-danger">{{ messageError.message_text }}</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="message-button">
+            <button type="submit" class="btn btn-success" @click="messageValidation()">Send message</button>
         </div>
     </section>
 </template>
 
 <style scoped lang="scss">
+
+    .single-profile{
+        background-color: white;
+    }
     .profile{
-        background-color: #f57c00;
+        background-color: #e7dcdf;
     }
     .cv-viewer{
         border-radius: 2rem;
