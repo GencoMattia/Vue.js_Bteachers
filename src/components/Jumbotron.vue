@@ -44,7 +44,7 @@ export default {
     <section class="hero-section mb-4">
         <div class="container text-center ">
             <h1 class="display-3">Welcome on BTeachers!</h1>
-            <h2>Where you can find the 
+            <h2 class="lead mb-5">Where you can find the 
                 <!-- Contenitore per testo e SVG -->
                 <div class="svg-container">
                     <span class="bold-text">perfect teacher</span>
@@ -56,12 +56,12 @@ export default {
                 </div>
                 for you
             </h2>
-            <p class="lead">Trova l'insegnante perfetto per imparare ciò che desideri.</p>
 
-            <div class="mt-4">
-                <!-- <router-link :to="{ name: 'projects-list' }" class="btn btn-main btn-lg">Trova il tuo Insegnante</router-link> -->
-            </div>
-            <div class="btn btn-primary">
+            <p>
+                At BTeachers, we connect you with the best educators in every field. Whether you’re looking for help in math, science, languages, or the arts, our platform offers a diverse range of qualified professionals ready to guide you on your educational journey.
+            </p>
+
+            <!-- <div class="btn btn-primary">
                 <a href="http://127.0.0.1:8000/">
                     Sei un insegnante?
                 </a>
@@ -82,7 +82,7 @@ export default {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </template>
@@ -151,8 +151,8 @@ export default {
         stroke: #fff; /* Colore della linea disegnata */
         stroke-width: 3; /* Spessore della linea */
         fill: none;
-        stroke-dasharray: 1000; /* Lunghezza del tratto tratteggiato (valore molto grande per coprire l'intero path) */
-        stroke-dashoffset: 1000; /* Nascondiamo completamente il tratto all'inizio */
+        stroke-dasharray: 2000; /* Lunghezza del tratto tratteggiato (valore molto grande per coprire l'intero path) */
+        stroke-dashoffset: 2000; /* Nascondiamo completamente il tratto all'inizio */
         animation: draw 1.5s ease-out forwards; /* Animazione con "forwards" per mantenere lo stato finale */
     }
 
