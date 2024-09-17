@@ -11,6 +11,7 @@ export default {
         CarouselHome,
         Jumbotron,
         // ProjectsList,
+        AboutUs
     },
 
     data() {
