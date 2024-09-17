@@ -5,22 +5,59 @@ export default {
     data() {
         return {
             store,
+            mouseX: 0,
+            mouseY: 0
         };
     },
 
     methods: {
+        handleMouseMove(event) {
+            const { clientX, clientY } = event;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            // Calcola la posizione relativa del mouse
+            this.mouseX = (clientX / windowWidth) * 100; // Percentuale di movimento orizzontale
+            this.mouseY = (clientY / windowHeight) * 100; // Percentuale di movimento verticale
+
+            // Aggiorna lo stile della sezione per applicare il parallax
+            const heroSection = document.querySelector('.hero-section');
+            heroSection.style.backgroundPosition = `${50 + (this.mouseX - 50) / 20}% ${50 + (this.mouseY - 50) / 20}%`;
+        },
+
         getSpecialization(specialization) {
             this.$router.push({ name: 'teachers-list', query: { specialization: specialization } });
         }
-    }
+    },
+
+    mounted() {
+        document.addEventListener('mousemove', this.handleMouseMove);
+    },
+
+    beforeDestroy() {
+        document.removeEventListener('mousemove', this.handleMouseMove);
+    },
 };
 </script>
 
 <template>
     <section class="hero-section mb-4">
         <div class="container text-center ">
-            <h1 class="display-3">Benvenuto su BTeachers!</h1>
+            <h1 class="display-3">Welcome on BTeachers!</h1>
+            <h2>Where you can find the 
+                <!-- Contenitore per testo e SVG -->
+                <div class="svg-container">
+                    <span class="bold-text">perfect teacher</span>
+                    <!-- SVG animato -->
+                    <svg width="100%" height="30px" viewBox="0 0 500 50" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.3,30c49.3-3,150.7-7.6,199.7-7.4c121.9,0.4,189.9,0.4,282.3,7.2C380.1,32.6,181.2,32.6,70,40 
+                        c82.6-2.9,254.2-1,335.9,1.3c-56,1.4-137.2-0.3-197.1,9"></path>
+                    </svg>
+                </div>
+                for you
+            </h2>
             <p class="lead">Trova l'insegnante perfetto per imparare ciò che desideri.</p>
+
             <div class="mt-4">
                 <!-- <router-link :to="{ name: 'projects-list' }" class="btn btn-main btn-lg">Trova il tuo Insegnante</router-link> -->
             </div>
@@ -50,40 +87,80 @@ export default {
     </section>
 </template>
 
+
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
 .hero-section {
-        background-color: $primary-color;
+    background-image: url(../assets/img/jumbotron-background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 100px 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    transition: background-position 0.1s ease-out;
+
+    h1 {
+        font-weight: 700;
+    }
+
+    .bold-text {
+        font-weight: bold;
+    }
+
+    .btn-main {
+        background-color: $main-btn-primary-bg;
+        border-color: $main-btn-primary-border;
         color: #fff;
-        padding: 100px 0;
 
-        h1 {
-            font-weight: 700;
-        }
-
-        .btn-main {
-            background-color: $main-btn-primary-bg;
-            border-color: $main-btn-primary-border;
-            color: #fff;
-
-            &:hover {
-                background-color: $main-btn-primary-hover-bg;
-                border-color: $main-btn-primary-hover-border;
-            }
-        }
-
-        .btn-teacher {
-            background-color: $main-btn-primary-bg; // Arancione intenso
-            border-color: $secondary-border-color; // Arancione intenso
-            color: $main-background-color; // Bianco
-            border-radius: 8px;
-
-            &:hover {
-                background-color: $main-btn-primary-hover-bg; // Arancione molto scuro
-                border-color: $main-btn-primary-hover-border; // Arancione molto scuro
-                color: $main-background-color; // Bianco
-            }
+        &:hover {
+            background-color: $main-btn-primary-hover-bg;
+            border-color: $main-btn-primary-hover-border;
         }
     }
+
+    .btn-teacher {
+        background-color: $main-btn-primary-bg;
+        border-color: $secondary-border-color;
+        color: $main-background-color;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: $main-btn-primary-hover-bg;
+            border-color: $main-btn-primary-hover-border;
+            color: $main-background-color;
+        }
+    }
+
+    /* Posiziona l'SVG sotto il testo "perfect teacher" */
+    .svg-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .svg-container svg {
+        position: absolute;
+        top: 1em; /* Spostiamo l'SVG in basso rispetto al testo */
+        left: 0;
+    }
+
+    /* Stile per l'animazione del percorso SVG */
+    svg path {
+        stroke: #fff; /* Colore della linea disegnata */
+        stroke-width: 3; /* Spessore della linea */
+        fill: none;
+        stroke-dasharray: 1000; /* Lunghezza del tratto tratteggiato (valore molto grande per coprire l'intero path) */
+        stroke-dashoffset: 1000; /* Nascondiamo completamente il tratto all'inizio */
+        animation: draw 1.5s ease-out forwards; /* Animazione con "forwards" per mantenere lo stato finale */
+    }
+
+    @keyframes draw {
+        to {
+            stroke-dashoffset: 0; /* Riduce progressivamente lo `stroke-dashoffset` fino a 0 */
+        }
+    }
+}
 </style>
+
