@@ -42,17 +42,20 @@ export default {
         <router-link class="logo" :to="{ name: navLinkNames[1].name }">
             BTeachers
                 </router-link>
-
+<div class="container p-0">
+    <div class="row">
         <!-- Barra di ricerca che occupa tutto lo spazio disponibile -->
         <form class="d-flex flex-grow-1 mx-3" role="search" @submit.prevent="getSearchBarValue">
             <input 
-                class="form-control me-2 flex-grow-1" 
+                class="form-control me-2 flex-grow-1 border border-0 rounded-pill" 
                 type="search" 
                 placeholder="Search your Teacher" 
                 v-model="searchBarQuery"
                 aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-danger border border-0 rounded-pill" type="submit"><font-awesome-icon :icon="['fas', 'magnifying-glass']" /></button>
         </form>
+    </div>
+</div>
 
         <!-- Link di navigazione -->
         <ul class="nav-links d-flex mb-0">
@@ -62,6 +65,12 @@ export default {
                 </router-link>
             </li>
         </ul>
+        <div class="btn btn-primary rounded-pill mx-2">
+            <a href="http://127.0.0.1:8000/">
+                <font-awesome-icon :icon="['fas', 'user']" /> 
+                
+            </a>
+        </div>
     </header>
 </template>
 
@@ -100,6 +109,19 @@ export default {
                 color: $primary-color;
                 }
             }
+            }
+        }
+
+        .btn{
+            background-color: $secondary-color; // Arancione intenso
+            border-color: $secondary-border-color; // Arancione intenso
+            color: $main-background-color; // Bianco
+            
+
+            &:hover {
+                background-color: $main-btn-primary-hover-bg; // Arancione molto scuro
+                border-color: $main-btn-primary-hover-border; // Arancione molto scuro
+                color: #fff; // Bianco
             }
         }
     }
