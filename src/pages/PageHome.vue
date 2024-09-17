@@ -2,6 +2,7 @@
 import CarouselHome from '@/components/CarouselHome.vue';
 import Jumbotron from '@/components/Jumbotron.vue';
 import { store } from '@/store';
+import AboutUs from './AboutUs.vue';
 // import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
@@ -149,6 +150,11 @@ export default {
                 <div class="col-12 ">
                     <CarouselHome />
                 </div>
+            </div>
+        </section>
+        <section class="container">
+            <div class="row">
+                <AboutUs/>
             </div>
         </section>
     </main>

@@ -47,7 +47,7 @@ import { FontAwesomeIcon } from "../js/font-awesome";
                     <h4> Company</h4>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/aboutUs">
                         About Us
                     </a>
                 </li>
