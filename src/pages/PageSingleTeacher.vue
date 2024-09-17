@@ -272,15 +272,17 @@ export default {
 </script>
 
 <template>
-    <section class=" container single-profile">
-        <div class="row justify-content-between">
+    <section class=" container-fluid single-profile">
+        <div class="row justify-content-around">
             <!-- profile section  -->
-            <div class="col-5 profile border rounded my-2">
-                <div>
-                    <img :src="getImageUrl(photo)" class="w-100 h-200px my-2" alt="Profile-photo">
-                    <!-- <embed :src="getImageUrl(cv)" class="w-100" alt="Profile-cv"> -->
-                </div>
-                <div>
+            <div class="col-4 profile-img-container my-2">
+                    <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
+            </div>
+
+            <!-- office section  -->
+            <div class="col-6 profile-container my-2">
+                <!-- <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3> -->
+                <div class="profile">
                     <h5 class="text-uppercase me-2 text-break"><font-awesome-icon icon="fa-regular fa-id-badge" /> {{ profile.user.name }} {{ profile.user.surname }}</h5> 
                     <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success text-break"> {{ specialization.name }} </div>
                     <p  v-if="averageVote > 0">
@@ -296,11 +298,6 @@ export default {
                     </p>
                     <p class="text-break"><font-awesome-icon icon="fa-solid fa-chalkboard-user" /> {{ profile.service }}</p>
                 </div>
-            </div>
-
-            <!-- office section  -->
-            <div class="col-5 office border rounded my-2">
-                <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3>
 
                 <!-- address  -->
                 
@@ -461,7 +458,7 @@ export default {
 
         <!-- contact us form  -->
         <div class="row message-form-body">
-            <div class="col-12">
+            <div class="col-6">
                 <h3>Contact {{ profile.user.name }} {{ profile.user.surname }}</h3>
                 <form @submit.prevent="messageValidation()">
                     <!-- messages profile_id  -->
@@ -515,11 +512,23 @@ export default {
 
     .single-profile{
         background-color: white;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
     }
-    .profile{
-        background-color: #e7dcdf;
+    .profile-img-container{
+        align-self: center;
+        .profile-img{
+            width: 100%;
+            border: 0px solid transparent;
+            border-radius: 1.5rem;
+            align-items: center;
+            object-fit: cover;
+            object-position: top;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+        }
     }
-    .cv-viewer{
-        border-radius: 2rem;
+    .profile-container{
+        padding: 2rem;
     }
+
 </style>
