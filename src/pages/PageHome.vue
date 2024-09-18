@@ -4,6 +4,7 @@ import Jumbotron from '@/components/Jumbotron.vue';
 import ExploreSpecializations from '@/components/ExploreSpecializations.vue';
 import { store } from '@/store';
 import AboutUs from './AboutUs.vue';
+import QuestSection from './QuestSection.vue';
 // import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
@@ -13,7 +14,8 @@ export default {
         Jumbotron,
         ExploreSpecializations,
         // ProjectsList,
-        AboutUs
+        AboutUs,
+        QuestSection
     },
 
     data() {
@@ -147,10 +149,13 @@ export default {
                 </div>
             </div> -->
         </section>
+
         <HomeTeachersShowcase />
         <ExploreSpecializations />
         <AboutUs />
-    </main>
+        <QuestSection/>
+        
+</main>
 </template>
 
 <style lang="scss" scoped>

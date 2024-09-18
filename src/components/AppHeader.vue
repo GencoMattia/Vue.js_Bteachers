@@ -52,7 +52,7 @@ export default {
                 placeholder="Search your Teacher" 
                 v-model="searchBarQuery"
                 aria-label="Search">
-            <button class="btn btn-outline-danger border border-0 rounded-pill" type="submit"><font-awesome-icon :icon="['fas', 'magnifying-glass']" /></button>
+                <button class="btn btn-outline-danger border border-0 rounded-pill" type="submit"><font-awesome-icon :icon="['fas', 'magnifying-glass']" /></button>
         </form>
     </div>
 </div>
@@ -123,6 +123,7 @@ export default {
                 background-color:$link-hover-color; // Arancione molto scuro
                  // Arancione molto scuro
                 color: #fff; // Bianco
+                transition: all .3s ease-in-out;
             }
         }
     }
