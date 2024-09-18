@@ -1,5 +1,5 @@
 <script>
-import CarouselHome from '@/components/CarouselHome.vue';
+import HomeTeachersShowcase from '@/components/HomeTeachersShowcase.vue';
 import Jumbotron from '@/components/Jumbotron.vue';
 import { store } from '@/store';
 import AboutUs from './AboutUs.vue';
@@ -8,7 +8,7 @@ import AboutUs from './AboutUs.vue';
 export default {
 
     components: {
-        CarouselHome,
+        HomeTeachersShowcase,
         Jumbotron,
         // ProjectsList,
         AboutUs
@@ -34,10 +34,9 @@ export default {
 
 <template>
     <main>
-        <div class="home-page">
-            <!-- Sezione Hero -->
-            <Jumbotron/>
-        </div>
+        <!-- Sezione Hero -->
+        <Jumbotron />
+
         <!-- Sezione Caratteristiche -->
         <section class="features-section">
             <div class="container">
@@ -146,21 +145,9 @@ export default {
                 </div>
             </div> -->
         </section>
-        <section>
-            <div class="row carousel justify-content-end">
-                <div class="col-12 ">
-                    <CarouselHome />
-                </div>
-            </div>
-        </section>
-        <section class="container">
-            <div class="row">
-                <div class="col-12">
-                    <AboutUs/>
-                </div>
-            </div>
-        </section>
-    </main>
+  <HomeTeachersShowcase />
+  <AboutUs/>
+</main>
 </template>
 
 <style lang="scss" scoped>
