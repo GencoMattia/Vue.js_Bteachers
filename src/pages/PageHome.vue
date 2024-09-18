@@ -155,7 +155,9 @@ export default {
         </section>
         <section class="container">
             <div class="row">
-                <AboutUs/>
+                <div class="col-12">
+                    <AboutUs/>
+                </div>
             </div>
         </section>
     </main>
