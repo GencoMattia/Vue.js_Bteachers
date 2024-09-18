@@ -32,10 +32,9 @@ export default {
 
 <template>
     <main>
-        <div class="home-page">
-            <!-- Sezione Hero -->
-            <Jumbotron/>
-        </div>
+        <!-- Sezione Hero -->
+        <Jumbotron />
+
         <!-- Sezione Caratteristiche -->
         <section class="features-section">
             <div class="container">
@@ -144,13 +143,8 @@ export default {
                 </div>
             </div> -->
         </section>
-        <section>
-            <div class="row carousel justify-content-end">
-                <div class="col-12 ">
-                    <HomeTeachersShowcase />
-                </div>
-            </div>
-        </section>
+
+        <HomeTeachersShowcase />
     </main>
 </template>
 

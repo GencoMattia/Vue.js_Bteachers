@@ -46,7 +46,7 @@ export default {
                         Specialized in {{ specialization.field }}
                     </span>
                 </div>
-                <div class="bottom-bottom d-flex align-items-center">
+                <div class="bottom-bottom">
                     <div class="social-links-container">
                         <p v-if="this.teacher.votes_avg_vote > 0">
                             <span v-for="n in Math.floor(this.teacher.votes_avg_vote)" :key="n">
@@ -62,7 +62,6 @@ export default {
                         <p class="text-break" v-else>
                             The teacher has no ratings.
                         </p>
-                        <!-- <p class="text-break"><font-awesome-icon icon="fa-solid fa-chalkboard-user" /> {{ teacher.service }}</p> -->
                     </div>
                     <button class="button">Contact Me</button>
                 </div>
@@ -71,73 +70,12 @@ export default {
     </router-link>
 </template>
 
+
 <style lang="scss" scoped>
-.teacher-card {
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
-}
-
-.card-header {
-    background-color: orangered;
-    /* Colore principale */
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    margin: 0;
-}
-
-.card-body {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-}
-
-.photo img {
-    width: 130px;
-    height: 130px;
-    object-fit: cover;
-}
-
-.specs {
-    flex: 1;
-    padding-left: 1rem;
-}
-
-.specialization {
-    font-size: 0.9rem;
-    color: #6c757d;
-    /* Testo mutato */
-}
-
-.router-link {
-    text-decoration: none;
-    display: block;
-}
-
-.badge {
-    font-size: 0.85rem;
-}
-
-.shadow-sm {
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-.card {
-    --bs-card-bg: white;
-    --bs-card-border-color: none;
-
-}
-
-
-
 /* From Uiverse.io by Centered101 */
 .card {
-    width: 280px;
-    height: 280px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
     background: white;
     border-radius: 32px;
     padding: 3px;
@@ -198,6 +136,9 @@ export default {
 }
 
 .card .bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Assicura che gli elementi all'interno siano separati verticalmente */
     position: absolute;
     bottom: 3px;
     left: 3px;
@@ -212,35 +153,32 @@ export default {
 }
 
 .card .bottom .content {
-    position: absolute;
-    bottom: 0;
-    left: 1.5rem;
-    right: 1.5rem;
-    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 1rem; /* Aggiungi padding per evitare che gli elementi tocchino i bordi */
 }
 
 .card .bottom .content .name {
     display: block;
-    font-size: 1.2rem;
+    font-size: 2rem;
     color: white;
     font-weight: bold;
 }
 
 .card .bottom .content .about-me {
     display: block;
-    font-size: 0.9rem;
-    color: white;
-    margin-top: 1rem;
-}
+    font-size: 1rem;
+    color: white;}
 
 .card .bottom .bottom-bottom {
-    position: absolute;
-    bottom: 1rem;
-    left: 1.5rem;
-    right: 1.5rem;
+    margin-top: auto; /* Sposta la sezione in basso */
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 1rem; /* Aggiungi padding */
 }
 
 .card .bottom .bottom-bottom .social-links-container {
@@ -264,7 +202,7 @@ export default {
     color: #fbb9b6;
     border: none;
     border-radius: 20px;
-    font-size: 0.6rem;
+    font-size: 1.2rem;
     padding: 0.4rem 0.6rem;
     box-shadow: rgba(165, 132, 130, 0.1333333333) 0px 5px 5px 0px;
 }
