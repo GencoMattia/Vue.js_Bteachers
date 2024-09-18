@@ -293,7 +293,7 @@ export default {
             <div class="col-4 profile-container my-4">
                 <!-- <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3> -->
                 <div class="profile">
-                    <h3 class="text-uppercase me-2 text-break">
+                    <h3 class="text-uppercase text-center me-2 text-break">
                         <font-awesome-icon icon="fa-regular fa-id-badge" :class="profile.is_premium?'gold':''" /> 
                         {{ profile.user.name }} {{ profile.user.surname }}
                     </h3> 
@@ -333,7 +333,7 @@ export default {
                 </div>
                 <!-- review and vote buttons  -->
                 <div class="d-flex justify-content-center my-4" >
-                    <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <!-- Review form modal  -->
                     <div class="modal fade" id="reviewModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -352,28 +352,28 @@ export default {
                                     <label for="reviewer-name" class="col-form-label">Name</label>
                                     <input type="text" class="form-control transparent" id="reviewer-name" name="name">
                                     <!-- name error  -->
-                                    <span v-if="reviewError.name" class="text-danger">{{ reviewError.name }}</span>
+                                    <span v-if="reviewError.name" class="text-danger fw-bold">{{ reviewError.name }}</span>
                                 </div>
                                 <!-- reviewer surname  -->
                                 <div class="mb-3">
                                     <label for="reviewer-surname" class="col-form-label">Surname</label>
                                     <input type="text" class="form-control transparent" id="reviewer-surname" name="surname">
                                     <!-- surname error  -->
-                                    <span v-if="reviewError.surname" class="text-danger">{{ reviewError.surname }}</span>
+                                    <span v-if="reviewError.surname" class="text-danger fw-bold">{{ reviewError.surname }}</span>
                                 </div>
                                 <!-- reviewer email  -->
                                 <div class="mb-3">
                                     <label for="reviewer-email" class="col-form-label">Email</label>
                                     <input type="email" class="form-control transparent" id="reviewer-email" name="email">
                                     <!-- email error  -->
-                                    <span v-if="reviewError.email" class="text-danger">{{ reviewError.email }}</span>
+                                    <span v-if="reviewError.email" class="text-danger fw-bold">{{ reviewError.email }}</span>
                                 </div>
                                 <!-- review text  -->
                                 <div class="mb-3">
                                     <label for="review-text" class="col-form-label">Review</label>
                                     <textarea class="form-control transparent" id="review-text" name="review_text"></textarea>
                                 <!-- text error  -->
-                                <span v-if="reviewError.review_text" class="text-danger">{{ reviewError.review_text }}</span>
+                                <span v-if="reviewError.review_text" class="text-danger fw-bold">{{ reviewError.review_text }}</span>
                                 </div>
                                 </form>
                             </div>
@@ -386,7 +386,7 @@ export default {
                     </div>
 
                     <!-- vote model form  -->
-                    <a type="button" class="btn btn-success mx-3 text-break" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success mx-3 text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -400,7 +400,7 @@ export default {
                                     <!-- vote profile_id  -->
                                     <input type="text" class="form-control" id="vote-profile-id" name="profile_id" :value="profile.id" hidden>
                                     <!-- vote  -->
-                                    <select class="form-select vote-select" aria-label="Default select example">
+                                    <select class="form-select vote-select" id="vote-id" aria-label="Default select example">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -447,9 +447,7 @@ export default {
                 <div v-else class="text-break">
                     {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
                 </div>
-
             </div>
-            
         </div>
 
 
@@ -476,11 +474,44 @@ export default {
 
         <!-- reviews section  -->
         <div class="row justify-content-center">
-
+            <div class="col-8 reviews-small-screen my-4 border border-success border-opacity-75 rounded p-3">
+                <h4 class="text-break text-center my-3">
+                    <strong>Reviews</strong>
+                </h4>
+                <div v-if="profile.reviews.length > 0">
+                    <div v-for="(review, index) in profile.reviews" :key="review"  class="mb-2">
+                        <p class="border border-success border-opacity-75 rounded p-2">
+                            <strong v-if="review.name">
+                                <font-awesome-icon icon="fa-solid fa-user" class="icon-color"/> {{ review.name }} {{ review.surname }}
+                            </strong>
+                            <strong v-else>
+                                <font-awesome-icon icon="fa-solid fa-user" class="icon-color"/> Anonymous
+                            </strong>
+                            <div>
+                                <em>
+                                    <font-awesome-icon icon="fa-solid fa-envelope"  class="icon-color"/> {{ review.email }}
+                                </em>
+                            </div>
+                            <div>
+                                <p>
+                                    {{ review.review_text }}
+                                </p>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <div v-else class="text-break">
+                    {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
+                </div>
+                <div class="text-center">
+                    <a type="button" class="btn btn-success text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success mx-3 text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                </div>
+            </div>
         </div>
 
         <!-- contact us form  -->
-        <div class="row justify-content-center p-4 message-form-body">
+        <div class="row justify-content-center p-4" id="message-form-body">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
                 <h4 class="text-center text-uppercase" :class="profile.is_premium?'gold':''" >
                     <strong>Contact {{ profile.user.name }} {{ profile.user.surname }}</strong>
@@ -495,14 +526,14 @@ export default {
                             <label class="col-form-label">Name</label>
                             <input type="text" class="form-control" id="messager-name">
                             <!-- name error  -->
-                            <span v-if="messageError" class="text-danger">{{ messageError.name }}</span>
+                            <span v-if="messageError" class="text-danger fw-bold">{{ messageError.name }}</span>
                         </div>
                         <!-- messager surname  -->
                         <div class="message-inputs">
                             <label class="col-form-label">Surname</label>
                             <input type="text" class="form-control" id="messager-surname">
                             <!-- surname error  -->
-                            <span v-if="messageError" class="text-danger">{{ messageError.surname }}</span>
+                            <span v-if="messageError" class="text-danger fw-bold">{{ messageError.surname }}</span>
                         </div>
                     </section>
 
@@ -512,14 +543,14 @@ export default {
                             <label class="col-form-label">Email</label>
                             <input type="email" class="form-control" id="messager-email">
                             <!-- email error  -->
-                            <span v-if="messageError" class="text-danger">{{ messageError.email }}</span>
+                            <span v-if="messageError" class="text-danger fw-bold">{{ messageError.email }}</span>
                         </div>
                         <!-- messager telephone_number  -->
                         <div class="message-inputs">
                             <label class="col-form-label">Telephone number</label>
                             <input type="text" class="form-control" id="messager-telephone-number">
                             <!-- telephone number error  -->
-                            <span v-if="messageError" class="text-danger">{{ messageError.telephone_number }}</span>
+                            <span v-if="messageError" class="text-danger fw-bold">{{ messageError.telephone_number }}</span>
                         </div>
                     </section>
                     <!-- message text  -->
@@ -527,7 +558,7 @@ export default {
                         <label for="message-text" class="col-form-label">Message</label>
                         <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
                         <!-- message text error  -->
-                        <span v-if="messageError" class="text-danger">{{ messageError.message_text }}</span>
+                        <span v-if="messageError" class="text-danger fw-bold">{{ messageError.message_text }}</span>
                     </div>
                 </form>
             </div>
@@ -606,6 +637,9 @@ export default {
         overflow: scroll;
         max-height: 30rem;
     }
+    .reviews-small-screen{
+        display: none;
+    }
     #reviewModel{
         color: black;
     }
@@ -629,7 +663,7 @@ export default {
     .vote-select{
         background-color: transparent;
     }
-    .message-form-body{
+    #message-form-body{
         background-image: url('https://images.pexels.com/photos/122429/leaf-nature-green-spring-122429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
         background-size: cover;
         background-position: center;
@@ -640,6 +674,23 @@ export default {
         background-color: #78da4b;
     }
 
+    @media all and (max-width: 992px) {
+        .reviews{
+            display: none;
+        }
+        .reviews-small-screen{
+            display: block;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        
+        .big-screen-review-button{
+            display: none;
+        }
+    }
+
+    @media all and (max-width: 778px) {
+
+    }
 
     @media all and (min-width: 576px) {
         .display-flex{
