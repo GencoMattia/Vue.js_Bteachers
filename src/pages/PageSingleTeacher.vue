@@ -481,7 +481,7 @@ export default {
 
         <!-- contact us form  -->
         <div class="row justify-content-center p-4 message-form-body">
-            <div class="col-5">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
                 <h4 class="text-center text-uppercase" :class="profile.is_premium?'gold':''" >
                     <strong>Contact {{ profile.user.name }} {{ profile.user.surname }}</strong>
                 </h4>
@@ -489,16 +489,16 @@ export default {
                     <!-- messages profile_id  -->
                     <input type="text" class="form-control" id="message-profile-id":value="profile.id" hidden>
                     
-                    <section class="d-flex justify-content-between">
+                    <section class="display-flex">
                         <!-- messager name  -->
-                        <div class="mb-3 d-inline-block">
+                        <div class="message-inputs">
                             <label class="col-form-label">Name</label>
                             <input type="text" class="form-control" id="messager-name">
                             <!-- name error  -->
                             <span v-if="messageError" class="text-danger">{{ messageError.name }}</span>
                         </div>
                         <!-- messager surname  -->
-                        <div class="mb-3 d-inline-block">
+                        <div class="message-inputs">
                             <label class="col-form-label">Surname</label>
                             <input type="text" class="form-control" id="messager-surname">
                             <!-- surname error  -->
@@ -506,16 +506,16 @@ export default {
                         </div>
                     </section>
 
-                    <section class="d-flex justify-content-between">
+                    <section class="display-flex">
                         <!-- messager email  -->
-                        <div class="mb-3 d-inline-block">
+                        <div class="message-inputs">
                             <label class="col-form-label">Email</label>
                             <input type="email" class="form-control" id="messager-email">
                             <!-- email error  -->
                             <span v-if="messageError" class="text-danger">{{ messageError.email }}</span>
                         </div>
                         <!-- messager telephone_number  -->
-                        <div class="mb-3 d-inline-block">
+                        <div class="message-inputs">
                             <label class="col-form-label">Telephone number</label>
                             <input type="text" class="form-control" id="messager-telephone-number">
                             <!-- telephone number error  -->
@@ -640,4 +640,11 @@ export default {
         background-color: #78da4b;
     }
 
+
+    @media all and (min-width: 576px) {
+        .display-flex{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
 </style>
