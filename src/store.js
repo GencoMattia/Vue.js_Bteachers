@@ -67,7 +67,8 @@ export const store = reactive({
             field: "Environmental Science",
             description: "Examine the complex interactions within Earth's ecosystems, studying sustainability, climate change, and conservation efforts."
         }
-
+    ],
+    
     options: [
         { field: "Art History", emoji: "🖼️" },
         { field: "Biology", emoji: "🧬" },
