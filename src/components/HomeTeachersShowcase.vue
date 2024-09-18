@@ -46,7 +46,7 @@ export default {
 </script>
 
 <template>
-    <section class="container">
+    <section class="container mb-5">
         <!-- Griglia di carte -->
         <div id="sponsored" class="row justify-items-center">
             <!-- Ogni carta ha le classi della griglia Bootstrap -->
@@ -54,10 +54,10 @@ export default {
                 v-for="(teacher, index) in teachers" :key="teacher.id" 
                 :teacher="teacher" />
         </div>
+        <div class="d-flex justify-content-center align-items-center mt-5">
+            <a href="#" type="button" class="btn btn-primary btn-lg" @click.prevent="loadMore">Load More</a>
+        </div>
     </section>
-    <div class="d-flex justify-content-center align-items-center mt-5">
-        <a href="#" class="btn btn-main" @click.prevent="loadMore">Load More</a>
-    </div>
 </template>
 
 
