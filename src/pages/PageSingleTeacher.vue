@@ -274,7 +274,7 @@ export default {
 <template>
     <section class=" container-fluid single-profile">
         <div class="row justify-content-center">
-            <div class="col-8 text-center my-4 d-flex justify-content-around align-items-center">
+            <div class="col-12 col-md-10 col-lg-8 text-center my-4 d-flex justify-content-around align-items-center">
                 <div class="line d-inline-block" :class="profile.is_premium?'gold-line':''"></div>
                 <h1 class="d-inline-block">
                     <strong>Welcome to 
@@ -315,7 +315,7 @@ export default {
                 
                 <div class="mb-1">
                     <h5 class="text-break" >Address</h5>
-                    <a href="#" class="text-break" >
+                    <a href="#" class="text-break d-block" >
                         <font-awesome-icon icon="fa-solid fa-location-dot" class="icon-color" /> {{ profile.address }}
                     </a>
                 </div>
@@ -324,8 +324,8 @@ export default {
                 
                 <div class= "mb-1">
                     <h4 class="text-break" >Contacts</h4>
-                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-phone" class="icon-color" /> {{ profile.telephone_number }}</p>
-                    <p class="text-break" ><font-awesome-icon icon="fa-solid fa-envelope" class="icon-color" /> {{ profile.user.email }}</p>
+                    <a href="#" class="text-break d-block" ><font-awesome-icon icon="fa-solid fa-phone" class="icon-color" /> {{ profile.telephone_number }}</a>
+                    <a href="#" class="text-break d-block" ><font-awesome-icon icon="fa-solid fa-envelope" class="icon-color" /> {{ profile.user.email }}</a>
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
@@ -480,53 +480,60 @@ export default {
         </div>
 
         <!-- contact us form  -->
-        <div class="row" id="message-form-body">
-            <div class="col-6">
-                <h3>Contact {{ profile.user.name }} {{ profile.user.surname }}</h3>
+        <div class="row justify-content-center p-4 message-form-body">
+            <div class="col-5">
+                <h4 class="text-center text-uppercase" :class="profile.is_premium?'gold':''" >
+                    <strong>Contact {{ profile.user.name }} {{ profile.user.surname }}</strong>
+                </h4>
                 <form @submit.prevent="messageValidation()">
                     <!-- messages profile_id  -->
                     <input type="text" class="form-control" id="message-profile-id":value="profile.id" hidden>
-    
-                    <!-- messager name  -->
-                    <div class="mb-3">
-                        <label class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="messager-name">
-                        <!-- name error  -->
-                        <span v-if="messageError" class="text-danger">{{ messageError.name }}</span>
-                    </div>
-                    <!-- messager surname  -->
-                    <div class="mb-3">
-                        <label class="col-form-label">Surname:</label>
-                        <input type="text" class="form-control" id="messager-surname">
-                        <!-- surname error  -->
-                        <span v-if="messageError" class="text-danger">{{ messageError.surname }}</span>
-                    </div>
-                    <!-- messager email  -->
-                    <div class="mb-3">
-                        <label class="col-form-label">Email:</label>
-                        <input type="email" class="form-control" id="messager-email">
-                        <!-- email error  -->
-                        <span v-if="messageError" class="text-danger">{{ messageError.email }}</span>
-                    </div>
-                    <!-- messager telephone_number  -->
-                    <div class="mb-3">
-                        <label class="col-form-label">Telephone number:</label>
-                        <input type="text" class="form-control" id="messager-telephone-number">
-                        <!-- telephone number error  -->
-                        <span v-if="messageError" class="text-danger">{{ messageError.telephone_number }}</span>
-                    </div>
+                    
+                    <section class="d-flex justify-content-between">
+                        <!-- messager name  -->
+                        <div class="mb-3 d-inline-block">
+                            <label class="col-form-label">Name</label>
+                            <input type="text" class="form-control" id="messager-name">
+                            <!-- name error  -->
+                            <span v-if="messageError" class="text-danger">{{ messageError.name }}</span>
+                        </div>
+                        <!-- messager surname  -->
+                        <div class="mb-3 d-inline-block">
+                            <label class="col-form-label">Surname</label>
+                            <input type="text" class="form-control" id="messager-surname">
+                            <!-- surname error  -->
+                            <span v-if="messageError" class="text-danger">{{ messageError.surname }}</span>
+                        </div>
+                    </section>
+
+                    <section class="d-flex justify-content-between">
+                        <!-- messager email  -->
+                        <div class="mb-3 d-inline-block">
+                            <label class="col-form-label">Email</label>
+                            <input type="email" class="form-control" id="messager-email">
+                            <!-- email error  -->
+                            <span v-if="messageError" class="text-danger">{{ messageError.email }}</span>
+                        </div>
+                        <!-- messager telephone_number  -->
+                        <div class="mb-3 d-inline-block">
+                            <label class="col-form-label">Telephone number</label>
+                            <input type="text" class="form-control" id="messager-telephone-number">
+                            <!-- telephone number error  -->
+                            <span v-if="messageError" class="text-danger">{{ messageError.telephone_number }}</span>
+                        </div>
+                    </section>
                     <!-- message text  -->
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Message:</label>
+                        <label for="message-text" class="col-form-label">Message</label>
                         <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
                         <!-- message text error  -->
                         <span v-if="messageError" class="text-danger">{{ messageError.message_text }}</span>
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="message-button">
-            <button type="submit" class="btn btn-success" @click="messageValidation()">Send message</button>
+            <div class=" col-12 my-2 text-center">
+                <button type="submit" class="btn btn-success message-button" @click="messageValidation()">Send message</button>
+            </div>
         </div>
     </section>
 </template>
@@ -544,6 +551,7 @@ export default {
         background-image: url(../assets/img/assortment-teacher-s-day-elements_23-2149044959.jpg);
         background-size: cover;
         max-height: 650px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     }
     .single-profile{
         background-color: white;
@@ -620,6 +628,16 @@ export default {
     }
     .vote-select{
         background-color: transparent;
+    }
+    .message-form-body{
+        background-image: url('https://images.pexels.com/photos/122429/leaf-nature-green-spring-122429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    }
+    .message-button{
+        background-color: #78da4b;
     }
 
 </style>
