@@ -2,6 +2,7 @@
 import HomeTeachersShowcase from '@/components/HomeTeachersShowcase.vue';
 import Jumbotron from '@/components/Jumbotron.vue';
 import { store } from '@/store';
+import AboutUs from './AboutUs.vue';
 // import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
@@ -10,6 +11,7 @@ export default {
         HomeTeachersShowcase,
         Jumbotron,
         // ProjectsList,
+        AboutUs
     },
 
     data() {
@@ -143,9 +145,9 @@ export default {
                 </div>
             </div> -->
         </section>
-
-        <HomeTeachersShowcase />
-    </main>
+  <HomeTeachersShowcase />
+  <AboutUs/>
+</main>
 </template>
 
 <style lang="scss" scoped>
