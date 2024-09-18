@@ -273,30 +273,41 @@ export default {
 
 <template>
     <section class=" container-fluid single-profile">
+        <div class="row justify-content-center">
+            <div class="col-8 text-center my-4 d-flex justify-content-around align-items-center">
+                <div class="line d-inline-block" :class="profile.is_premium?'gold-line':''"></div>
+                <h1 class="d-inline-block">
+                    <strong>Welcome to 
+                        <em :class="profile.is_premium?'gold':''">{{ profile.user.name }} {{ profile.user.surname }}'s</em> 
+                        profile</strong>
+                </h1>
+                <div class="line d-inline-block" :class="profile.is_premium?'gold-line':''"></div>
+            </div>
+        </div>
         <div class="row justify-content-around first-container">
             <!-- profile section  -->
-            <div class="col-6 col-md-5 col-lg-4 col-xl-3 profile-img-container my-2">
+            <div class="col-3 profile-img-container my-2">
                     <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
             </div>
             <!-- office section  -->
-            <div class="col-4 profile-container my-2">
+            <div class="col-4 profile-container my-4">
                 <!-- <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3> -->
                 <div class="profile">
                     <h3 class="text-uppercase me-2 text-break">
                         <font-awesome-icon icon="fa-regular fa-id-badge" :class="profile.is_premium?'gold':''" /> 
-                        {{ profile.user.name }} {{ profile.user.surname }}</h3> 
-                    <div v-for="(specialization, index) in profile.specializations" class="badge rounded-pill text-bg-success text-break"> {{ specialization.name }} </div>
-                    <p  v-if="averageVote > 0">
+                        {{ profile.user.name }} {{ profile.user.surname }}
+                    </h3> 
+                    <div class="my-2" v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
                             <font-awesome-icon icon="fa-solid fa-star" class="icon-color"/>
                         </span>
                         <span v-for="x in star - averageVote" :key="x">
                             <font-awesome-icon icon="fa-regular fa-star" class="icon-color"  />
                         </span>
-                    </p>
-                    <p class="text-break" v-else>
+                    </div>
+                    <div class="text-break" v-else>
                         The teacher has no ratings.
-                    </p>
+                    </div>
                     <p class="text-break"><font-awesome-icon icon="fa-solid fa-chalkboard-user" class="icon-color" /> {{ profile.service }}</p>
                 </div>
 
@@ -304,8 +315,9 @@ export default {
                 
                 <div class="mb-1">
                     <h5 class="text-break" >Address</h5>
-                    <p class="text-break" >
-                        <font-awesome-icon icon="fa-solid fa-location-dot" class="icon-color" /> {{ profile.address }}</p>
+                    <a href="#" class="text-break" >
+                        <font-awesome-icon icon="fa-solid fa-location-dot" class="icon-color" /> {{ profile.address }}
+                    </a>
                 </div>
 
                 <!-- contacts  -->
@@ -318,66 +330,15 @@ export default {
 
                 <div class="d-flex justify-content-center my-4" >
                     <a href="#message-form-body" type="button" class="btn text-break contact-button">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
-                    
-                    <!-- message form modal  -->
                 </div>
-            </div>
-            
-        </div>
-
-
-        <div class="row justify-content-between">
-            <!-- section specialization  -->
-            <div class="col-12 specialization border rounded my-2">
-                <h4 class="text-break" >Specializzations</h4>
-                <div v-for="(specialization, index) in profile.specializations" class="border border-success border-opacity-75 rounded p-2 mb-2">
-                    <p class="text-break">
-                        <strong>
-                            Field: {{ specialization.field }}
-                        </strong>
-                        <div class="text-break" >
-                            <em>
-                                {{ specialization.name }}
-                            </em>
-                        </div>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- reviews section  -->
-        <div class="row justify-content-between">
-            <div class="col-12 reviews border rounded my-2">
-                <h4 class="text-break" >Reviews</h4>
-                <div v-if="profile.reviews.length > 0">
-                    <div v-for="(review, index) in profile.reviews" :key="review"  class="border border-warning border-opacity-75 rounded p-2 mb-2">
-                        <p>
-                            <strong>
-                                <font-awesome-icon icon="fa-solid fa-user" /> {{ review.name }} {{ review.surname }}
-                            </strong>
-                            <div>
-                                <em>
-                                    <font-awesome-icon icon="fa-solid fa-envelope" /> {{ review.email }}
-                                </em>
-                            </div>
-                            <div>
-                                <p>
-                                    {{ review.review_text }}
-                                </p>
-                            </div>
-                        </p>
-                    </div>
-                </div>
-                <div v-else class="text-break">
-                    {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
-                </div>
+                <!-- review and vote buttons  -->
                 <div class="d-flex justify-content-center my-4" >
                     <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <!-- Review form modal  -->
                     <div class="modal fade" id="reviewModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="modal-content">
+                            <div class="modal-content" id="review-model-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="reviewModalLabel">New review</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -385,32 +346,32 @@ export default {
                             <div class="modal-body">
                                 <form>
                                     <!-- reviews profile_id  -->
-                                    <input type="text" class="form-control" id="review-profile-id" name="profile_id" :value="profile.id" hidden>
+                                    <input type="text" class="form-control transparent" id="review-profile-id" name="profile_id" :value="profile.id" hidden>
                                     <!-- reviewer name  -->
                                 <div class="mb-3">
-                                    <label for="reviewer-name" class="col-form-label">Name:</label>
-                                    <input type="text" class="form-control" id="reviewer-name" name="name">
+                                    <label for="reviewer-name" class="col-form-label">Name</label>
+                                    <input type="text" class="form-control transparent" id="reviewer-name" name="name">
                                     <!-- name error  -->
                                     <span v-if="reviewError.name" class="text-danger">{{ reviewError.name }}</span>
                                 </div>
                                 <!-- reviewer surname  -->
                                 <div class="mb-3">
-                                    <label for="reviewer-surname" class="col-form-label">Surname:</label>
-                                    <input type="text" class="form-control" id="reviewer-surname" name="surname">
+                                    <label for="reviewer-surname" class="col-form-label">Surname</label>
+                                    <input type="text" class="form-control transparent" id="reviewer-surname" name="surname">
                                     <!-- surname error  -->
                                     <span v-if="reviewError.surname" class="text-danger">{{ reviewError.surname }}</span>
                                 </div>
                                 <!-- reviewer email  -->
                                 <div class="mb-3">
-                                    <label for="reviewer-email" class="col-form-label">Email:</label>
-                                    <input type="email" class="form-control" id="reviewer-email" name="email">
+                                    <label for="reviewer-email" class="col-form-label">Email</label>
+                                    <input type="email" class="form-control transparent" id="reviewer-email" name="email">
                                     <!-- email error  -->
                                     <span v-if="reviewError.email" class="text-danger">{{ reviewError.email }}</span>
                                 </div>
                                 <!-- review text  -->
                                 <div class="mb-3">
-                                    <label for="review-text" class="col-form-label">Review:</label>
-                                    <textarea class="form-control" id="review-text" name="review_text"></textarea>
+                                    <label for="review-text" class="col-form-label">Review</label>
+                                    <textarea class="form-control transparent" id="review-text" name="review_text"></textarea>
                                 <!-- text error  -->
                                 <span v-if="reviewError.review_text" class="text-danger">{{ reviewError.review_text }}</span>
                                 </div>
@@ -429,7 +390,7 @@ export default {
 
                     <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="modal-content">
+                            <div class="modal-content" id="vote-model-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="voteModalLabel">New vote</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -439,7 +400,7 @@ export default {
                                     <!-- vote profile_id  -->
                                     <input type="text" class="form-control" id="vote-profile-id" name="profile_id" :value="profile.id" hidden>
                                     <!-- vote  -->
-                                    <select class="form-select" id="vote-id" name="vote-id" aria-label="Default select example">
+                                    <select class="form-select vote-select" aria-label="Default select example">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -457,6 +418,65 @@ export default {
                     </div>
                 </div>
             </div>
+            <div class="col-4 reviews my-4">
+                <h4 class="text-break text-center my-3">
+                    <strong>Reviews</strong>
+                </h4>
+                <div v-if="profile.reviews.length > 0">
+                    <div v-for="(review, index) in profile.reviews" :key="review"  class="p-2 mb-2">
+                        <p>
+                            <strong v-if="review.name">
+                                <font-awesome-icon icon="fa-solid fa-user" class="icon-color"/> {{ review.name }} {{ review.surname }}
+                            </strong>
+                            <strong v-else>
+                                <font-awesome-icon icon="fa-solid fa-user" class="icon-color"/> Anonymous
+                            </strong>
+                            <div>
+                                <em>
+                                    <font-awesome-icon icon="fa-solid fa-envelope"  class="icon-color"/> {{ review.email }}
+                                </em>
+                            </div>
+                            <div>
+                                <p>
+                                    {{ review.review_text }}
+                                </p>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <div v-else class="text-break">
+                    {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
+                </div>
+
+            </div>
+            
+        </div>
+
+
+        <div class="row justify-content-center">
+            <!-- section specialization  -->
+            <div class="col-8 specialization my-4 text-center">
+                <h4 class="text-break  text-uppercase" >
+                    <strong>Specializzations</strong>
+                </h4>
+                <div v-for="(specialization, index) in profile.specializations" class="border border-success border-opacity-75 rounded p-2 mb-2">
+                    <p class="text-break">
+                        <strong>
+                            Field: {{ specialization.field }}
+                        </strong>
+                        <p class="text-break" >
+                            <em>
+                                {{ specialization.name }}
+                            </em>
+                        </p>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- reviews section  -->
+        <div class="row justify-content-center">
+
         </div>
 
         <!-- contact us form  -->
@@ -512,10 +532,18 @@ export default {
 </template>
 
 <style scoped lang="scss">
+    .line{
+        width: 8rem;
+        height: .3rem;
+        background-color: black;
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+        border-radius: 1rem;
+    }
     .first-container{
         background-image: url(../assets/img/assortment-teacher-s-day-elements_23-2149044959.jpg);
         background-size: cover;
-        
+        max-height: 650px;
     }
     .single-profile{
         background-color: white;
@@ -537,9 +565,19 @@ export default {
     .profile-container{
         padding: 2rem;
         color: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        overflow: hidden;
+        max-height: 30rem;
+        border-radius: 5px;
     }
     .gold{
         color: #ff7b00;
+        filter: drop-shadow(0px 0px 5px #ff7b00);
+    }
+    .gold-line{
+        background-color: #ff7b00;
+        color: #ff7b00;
+        filter: drop-shadow(0px 0px 5px #ff7b00);
     }
     .icon-color{
         color: #78da4b;
@@ -548,4 +586,40 @@ export default {
         background-color: #78da4b;
         color: white;
     }
+    .specialization{
+        div{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+    }
+    .reviews{
+        color: white;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        overflow: scroll;
+        max-height: 30rem;
+    }
+    #reviewModel{
+        color: black;
+    }
+    #voteModel{
+        color: black;
+    }
+    #review-model-content{
+        background-image: url('https://img.freepik.com/premium-photo/concept-banner-setting-five-star-goal_1346034-1857.jpg?w=740');
+        background-size: cover;
+        color: gold;
+    }
+    .transparent{
+        background-color: transparent;
+        // color: white;
+        // border: 1px solid goldenrod;
+    }
+    #vote-model-content{
+        background-image: url('https://img.freepik.com/free-photo/hd-five-stars-customer-rating-feedback-concept-yellow-background_1409-4935.jpg');
+        background-size: cover;
+    }
+    .vote-select{
+        background-color: transparent;
+    }
+
 </style>
