@@ -50,7 +50,7 @@ export default {
         <!-- Griglia di carte -->
         <div id="sponsored" class="row justify-items-center">
             <!-- Ogni carta ha le classi della griglia Bootstrap -->
-            <HomeTeacherCard class="col-12 col-lg-6 col-xl-4 mb-4"
+            <HomeTeacherCard class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-4"
                 v-for="(teacher, index) in teachers" :key="teacher.id" 
                 :teacher="teacher" />
         </div>
