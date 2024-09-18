@@ -15,7 +15,6 @@ import { FontAwesomeIcon } from "../js/font-awesome";
 
 <template>
     <footer class=" footer position-static bottom-0 end-0">
-
         <section class="footer-link d-flex justify-content-around text-start">
             <ul>
                 <li>
@@ -166,6 +165,9 @@ import { FontAwesomeIcon } from "../js/font-awesome";
             max-width: 1200px;
             margin: 0 auto;
 
+        }
+        h4{
+            font-weight: 600;
         }
     }
 </style>

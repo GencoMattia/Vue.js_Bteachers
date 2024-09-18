@@ -60,6 +60,8 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
+
+
 .teacher-card {
     margin-bottom: $card-margin-bottom;
     box-shadow: $card-box-shadow;
