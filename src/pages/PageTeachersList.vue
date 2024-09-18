@@ -21,12 +21,7 @@ export default {
             votoUtente: null,
             selectedOrder: '',
             orderDirection: "desc",
-            /* reviewsThreshold: [
-                5,
-                10,
-                15,
-            ], */
-            selectedReviewThreshold: 0,
+            selectedReviewThreshold: null,
 
         };
     },
@@ -46,6 +41,9 @@ export default {
         selectedOrder() {  // Monitora il cambiamento di selectedOrder
             this.fetchTeachersProfiles(1, true);
         },
+        selectedReviewThreshold(){
+            this.fetchTeachersProfiles(1 , true);
+        }
     },
 
     methods: {
@@ -88,8 +86,7 @@ export default {
 
         onReviewThresholdChange(reviews_count) {
             console.log(reviews_count);
-            this.selectedReviewThreshold = reviews_count ? parseInt(reviews_count) : 0;
-            this.fetchTeachersProfiles(1, true); // Aggiorna i risultati
+            this.selectedReviewThreshold = reviews_count || null;
         },
 
         changeDisc() {
@@ -136,22 +133,10 @@ export default {
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
 
-                        <!-- <select class="form-select " aria-label="default"
-                            @change="onSpecializationChange($event.target.value)" :value="selectedSpecialization">
-                            <option value="" selected>
-                                Select desired specialization
-                            </option>
-                            <option v-for="specialization in store.specializations" :value="specialization.field">
+                        
 
-                                <span class="animationCustomEm">{{ specialization.emoji }}</span> <span> {{
-                                    specialization.field }}</span>
+                        <!-- select for specializations -->
 
-                            </option>
-                        </select> -->
-
-                        <!-- test select -->
-
-                        <label class="typo__label"></label>
                         <multiselect v-model="selectedSpecialization" :options="store.options"
                             :custom-label="nameWithemoji" placeholder="Select desired specialization" label="field"
                             track-by="field" @change="onSpecializationChange(selectedSpecialization)">
@@ -159,42 +144,18 @@ export default {
 
 
                     </div>
-
+                    <!-- select for votes -->
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <!-- <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
-                            <option value="" selected>
-                                Select minimum vote
-                            </option>
-                            <option v-for="voto in store.voteList" :value="voto.vote">
-                                {{ voto.vote }} -> {{ voto.name }}
-                            </option>
-                        </select> -->
-
-                        <div>
-                            <label class="typo__label">Select minimum vote</label>
-                            <multiselect v-model="votoUtente" :options="store.voteList" :custom-label="nameWithVote"
+                         <multiselect v-model="votoUtente" :options="store.voteList" :custom-label="nameWithVote"
                                 placeholder="Select minimum vote" label="vote" track-by="vote"
                                 @change="onVoteChange(votoUtente)">
-                            </multiselect>
-                        </div>
+                        </multiselect>
                     </div>
-
+                    <!-- select for reviews -->
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-                        <!-- <select class="form-select" aria-label="default"
-                            @change="onReviewThresholdChange($event.target.value)">
-                            <option value="" selected>
-                                Select minimum number of reviews
-                            </option>
-                            <option v-for="threshold in reviewsThreshold" :value="threshold">
-                                {{ threshold }}+
-                            </option>
-                        </select> -->
-
-                       
-
-                        <label class="typo__label">Select minimum number of reviews</label>
+                
                             <multiselect v-model="selectedReviewThreshold" :options="store.reviewsThreshold" :custom-label="nameWithReview"
-                                placeholder="Select minimum vote" label="vote" track-by="vote"
+                                placeholder="Select minimum reviews" label="nReview" track-by="nReview"
                                 @change="onReviewThresholdChange(selectedReviewThreshold)">
                             </multiselect>
                     </div>
