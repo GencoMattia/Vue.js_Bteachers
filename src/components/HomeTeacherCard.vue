@@ -48,20 +48,26 @@ export default {
                 </div>
                 <div class="bottom-bottom">
                     <div class="social-links-container">
-                        <p v-if="this.teacher.votes_avg_vote > 0">
-                            <span v-for="n in Math.floor(this.teacher.votes_avg_vote)" :key="n">
+                        <p v-if="teacher.votes_avg_vote > 0">
+                            <!-- Stelle piene -->
+                            <span v-for="n in Math.floor(teacher.votes_avg_vote)" :key="'full-' + n">
                                 <font-awesome-icon icon="fa-solid fa-star" />
                             </span>
-                            <span v-if="this.teacher.votes_avg_vote % 1 >= 0.5">
-                                <font-awesome-icon icon="fa-solid fa-star-half" />
+
+                            <!-- Mezza stella -->
+                            <span v-if="teacher.votes_avg_vote % 1 >= 0.5">
+                                <font-awesome-icon icon="star-half-stroke" />
                             </span>
-                            <span v-for="x in star - Math.ceil(this.teacher.votes_avg_vote)" :key="x">
+
+                            <!-- Stelle vuote -->
+                            <span v-for="x in star - Math.round(teacher.votes_avg_vote)" :key="'empty-' + x">
                                 <font-awesome-icon icon="fa-regular fa-star" />
                             </span>
                         </p>
-                        <p class="text-break" v-else>
+                        <p v-else>
                             The teacher has no ratings.
                         </p>
+
                     </div>
                     <button class="button">Contact Me</button>
                 </div>
@@ -138,7 +144,8 @@ export default {
 .card .bottom {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Assicura che gli elementi all'interno siano separati verticalmente */
+    justify-content: space-between;
+    /* Assicura che gli elementi all'interno siano separati verticalmente */
     position: absolute;
     bottom: 3px;
     left: 3px;
@@ -158,7 +165,8 @@ export default {
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    padding: 1rem; /* Aggiungi padding per evitare che gli elementi tocchino i bordi */
+    padding: 1rem;
+    /* Aggiungi padding per evitare che gli elementi tocchino i bordi */
 }
 
 .card .bottom .content .name {
@@ -166,19 +174,23 @@ export default {
     font-size: 2rem;
     color: white;
     font-weight: bold;
+    margin-bottom: 2rem;
 }
 
 .card .bottom .content .about-me {
     display: block;
     font-size: 1rem;
-    color: white;}
+    color: white;
+}
 
 .card .bottom .bottom-bottom {
-    margin-top: auto; /* Sposta la sezione in basso */
+    margin-top: auto;
+    /* Sposta la sezione in basso */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem; /* Aggiungi padding */
+    padding: 1rem;
+    /* Aggiungi padding */
 }
 
 .card .bottom .bottom-bottom .social-links-container {
