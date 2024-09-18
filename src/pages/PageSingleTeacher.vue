@@ -274,8 +274,12 @@ export default {
 <template>
     <section class=" container-fluid single-profile">
         <div class="row justify-content-around first-container">
+            <!-- profile section  -->
+            <div class="col-6 col-md-5 col-lg-4 col-xl-3 profile-img-container my-2">
+                    <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
+            </div>
             <!-- office section  -->
-            <div class="col-6 profile-container my-2">
+            <div class="col-4 profile-container my-2">
                 <!-- <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3> -->
                 <div class="profile">
                     <h3 class="text-uppercase me-2 text-break">
@@ -313,17 +317,12 @@ export default {
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
-                    <a type="button" class="btn btn-success text-break" data-bs-toggle="modal" data-bs-target="#messageModel" data-bs-whatever="@mdo">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
+                    <a href="#message-form-body" type="button" class="btn text-break contact-button">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                     
                     <!-- message form modal  -->
                 </div>
             </div>
-            <!-- profile section  -->
-            <div class="col-4 profile-img-container my-2">
-                    <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
-            </div>
-
-
+            
         </div>
 
 
@@ -461,7 +460,7 @@ export default {
         </div>
 
         <!-- contact us form  -->
-        <div class="row message-form-body">
+        <div class="row" id="message-form-body">
             <div class="col-6">
                 <h3>Contact {{ profile.user.name }} {{ profile.user.surname }}</h3>
                 <form @submit.prevent="messageValidation()">
@@ -537,6 +536,7 @@ export default {
     }
     .profile-container{
         padding: 2rem;
+        color: white;
     }
     .gold{
         color: #ff7b00;
@@ -544,5 +544,8 @@ export default {
     .icon-color{
         color: #78da4b;
     }
-
+    .contact-button{
+        background-color: #78da4b;
+        color: white;
+    }
 </style>
