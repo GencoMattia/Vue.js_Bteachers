@@ -2,11 +2,15 @@
 import axios from 'axios';
 import SingleTeacherCard from '../components/SingleTeacherCard.vue';
 import { store } from '@/store';
+import Multiselect from 'vue-multiselect';
+import 'vue-multiselect/dist/vue-multiselect.min.css';
+
 
 export default {
     components: {
+        Multiselect,
         SingleTeacherCard,
-    }, 
+    },
 
     data() {
         return {
@@ -14,15 +18,16 @@ export default {
             currentPage: 1,
             selectedSpecialization: null,
             store,
-            votoUtente : null,
+            votoUtente: null,
             selectedOrder: '',
             orderDirection: "desc",
-            reviewsThreshold: [
+            /* reviewsThreshold: [
                 5,
                 10,
                 15,
-            ],
-            selectedReviewThreshold: 0,    
+            ], */
+            selectedReviewThreshold: 0,
+
         };
     },
 
@@ -82,17 +87,27 @@ export default {
         },
 
         onReviewThresholdChange(reviews_count) {
+            console.log(reviews_count);
             this.selectedReviewThreshold = reviews_count ? parseInt(reviews_count) : 0;
             this.fetchTeachersProfiles(1, true); // Aggiorna i risultati
         },
 
         changeDisc() {
-            this.orderDirection = this.orderDirection === 'asc' ? 'desc' : 'asc'; 
+            this.orderDirection = this.orderDirection === 'asc' ? 'desc' : 'asc';
             this.fetchTeachersProfiles(1, true);
         },
 
         loadMore() {
             this.fetchTeachersProfiles(this.currentPage + 1);
+        },
+        nameWithemoji({ emoji, field }) {
+            return `${emoji} ${field}`;
+        },
+        nameWithVote({ vote, name }) {
+            return `${vote} -> ${name}`;
+        },
+        nameWithReview({ nReview, name }) {
+            return `${name}`;
         }
     },
 
@@ -114,52 +129,87 @@ export default {
         <section class="teacher-list-section">
             <div class="container mt-4 text-center">
                 <h1 class="display-4">Trova il Tuo Insegnante Ideale</h1>
-                <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di apprendimento!</p>
+                <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di
+                    apprendimento!</p>
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
 
-                        <select class="form-select " aria-label="default" @change="onSpecializationChange($event.target.value)" :value="selectedSpecialization">
+                        <!-- <select class="form-select " aria-label="default"
+                            @change="onSpecializationChange($event.target.value)" :value="selectedSpecialization">
                             <option value="" selected>
                                 Select desired specialization
                             </option>
                             <option v-for="specialization in store.specializations" :value="specialization.field">
-                                {{ specialization.field }}
+
+                                <span class="animationCustomEm">{{ specialization.emoji }}</span> <span> {{
+                                    specialization.field }}</span>
+
                             </option>
-                        </select>
+                        </select> -->
+
+                        <!-- test select -->
+
+                        <label class="typo__label"></label>
+                        <multiselect v-model="selectedSpecialization" :options="store.options"
+                            :custom-label="nameWithemoji" placeholder="Select desired specialization" label="field"
+                            track-by="field" @change="onSpecializationChange(selectedSpecialization)">
+                        </multiselect>
+
+
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
+                        <!-- <select class="form-select" aria-label="default" @change="onVoteChange($event.target.value)">
                             <option value="" selected>
                                 Select minimum vote
                             </option>
                             <option v-for="voto in store.voteList" :value="voto.vote">
                                 {{ voto.vote }} -> {{ voto.name }}
                             </option>
-                        </select>
+                        </select> -->
+
+                        <div>
+                            <label class="typo__label">Select minimum vote</label>
+                            <multiselect v-model="votoUtente" :options="store.voteList" :custom-label="nameWithVote"
+                                placeholder="Select minimum vote" label="vote" track-by="vote"
+                                @change="onVoteChange(votoUtente)">
+                            </multiselect>
+                        </div>
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-                        <select class="form-select" aria-label="default" @change="onReviewThresholdChange($event.target.value)">
+                        <!-- <select class="form-select" aria-label="default"
+                            @change="onReviewThresholdChange($event.target.value)">
                             <option value="" selected>
                                 Select minimum number of reviews
                             </option>
                             <option v-for="threshold in reviewsThreshold" :value="threshold">
                                 {{ threshold }}+
                             </option>
-                        </select>
+                        </select> -->
+
+                       
+
+                        <label class="typo__label">Select minimum number of reviews</label>
+                            <multiselect v-model="selectedReviewThreshold" :options="store.reviewsThreshold" :custom-label="nameWithReview"
+                                placeholder="Select minimum vote" label="vote" track-by="vote"
+                                @change="onReviewThresholdChange(selectedReviewThreshold)">
+                            </multiselect>
                     </div>
 
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off" value="reviews_count" v-model="selectedOrder">
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off"
+                            value="reviews_count" v-model="selectedOrder">
                         <label class="btn btn-outline-success" for="orderByReviews">Order by Reviews</label>
 
-                        <input type="radio" class="btn-check" name="orderOptions" id="orderByVote" autocomplete="off" value="votes_avg_vote" v-model="selectedOrder">
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByVote" autocomplete="off"
+                            value="votes_avg_vote" v-model="selectedOrder">
                         <label class="btn btn-outline-success" for="orderByVote">Order by Average Vote</label>
 
-                        <input type="radio" class="btn-check" name="orderOptions" id="orderByOther" autocomplete="off" value="" v-model="selectedOrder">
+                        <input type="radio" class="btn-check" name="orderOptions" id="orderByOther" autocomplete="off"
+                            value="" v-model="selectedOrder">
                         <label class="btn btn-outline-success" for="orderByOther">Reset Order</label>
                     </div>
                 </div>
@@ -167,7 +217,8 @@ export default {
 
             <div class="container">
                 <div class="row">
-                    <SingleTeacherCard v-for="teacher in teachers" @click.prevent="selectedTeacherId(teacher.id)" :key="teacher.id" class="col-md-4" :teacher="teacher" />
+                    <SingleTeacherCard v-for="teacher in teachers" @click.prevent="selectedTeacherId(teacher.id)"
+                        :key="teacher.id" class="col-md-4" :teacher="teacher" />
                 </div>
 
                 <div class="d-flex justify-content-center align-items-center mt-5">
@@ -180,6 +231,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
+
 
 // Stile generale della sezione
 .teacher-list-section {
