@@ -51,7 +51,7 @@ export default {
                 </div>
             </div>
             <div class="col-md-6 col-sm-12 d-flex">
-                <img class="img-fluid  rounded" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6THKb-j7VG8Fmr3g7hxOts6UGqmH7qS3oRA&s" alt="Responsive image teacher-img">
+                <img class="img-fluid  rounded" src="../assets/img/faq-section-image.webp" alt="Responsive image teacher-img">
             </div>
         </div>
     </section>
