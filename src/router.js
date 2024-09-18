@@ -5,6 +5,7 @@ import Error404 from "./pages/errors/Error404.vue";
 import PageSingleTeacher from "./pages/PageSingleTeacher.vue";
 import PageTeachersList from "./pages/PageTeachersList.vue";
 import AboutUs from "./pages/AboutUs.vue";
+import QuestSection from "./pages/QuestSection.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -33,6 +34,11 @@ const router = createRouter({
             path: "/AboutUs",
             name: "About-us",
             component: AboutUs
+        },
+        {
+            path: "/blog",
+            name: "Blog",
+            component: QuestSection
         },
     ]
 });

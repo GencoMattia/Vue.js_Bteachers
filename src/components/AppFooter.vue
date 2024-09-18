@@ -9,6 +9,7 @@ export default {
         };
     }
 };
+
 import { FontAwesomeIcon } from "../js/font-awesome";
 </script>
 
@@ -52,7 +53,7 @@ import { FontAwesomeIcon } from "../js/font-awesome";
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/blog">
                         Blog
                     </a>
                 </li>
