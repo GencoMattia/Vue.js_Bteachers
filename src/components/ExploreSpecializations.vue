@@ -36,7 +36,7 @@ export default {
 @use "../assets/styles/partials/variables" as *;
 
 .specializations-background {
-    background-color: black;
+    background-color: rgb(102, 99, 99);
     color: white;
 }
 
