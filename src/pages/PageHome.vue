@@ -3,6 +3,7 @@ import HomeTeachersShowcase from '@/components/HomeTeachersShowcase.vue';
 import Jumbotron from '@/components/Jumbotron.vue';
 import { store } from '@/store';
 import AboutUs from './AboutUs.vue';
+import QuestSection from './QuestSection.vue';
 // import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
@@ -11,7 +12,8 @@ export default {
         HomeTeachersShowcase,
         Jumbotron,
         // ProjectsList,
-        AboutUs
+        AboutUs,
+        QuestSection
     },
 
     data() {
@@ -147,6 +149,7 @@ export default {
         </section>
   <HomeTeachersShowcase />
   <AboutUs/>
+  <QuestSection/>
 </main>
 </template>
 
