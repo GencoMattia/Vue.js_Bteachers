@@ -131,7 +131,7 @@ export default {
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-1">
 
                         
 
@@ -139,28 +139,50 @@ export default {
 
                         <multiselect v-model="selectedSpecialization" :options="store.options"
                             :custom-label="nameWithemoji" placeholder="Select desired specialization" label="field"
-                            track-by="field" @change="onSpecializationChange(selectedSpecialization)">
+                            track-by="field" @change="onSpecializationChange(selectedSpecialization)"
+                            class="centered-placeholder">
                         </multiselect>
 
 
                     </div>
                     <!-- select for votes -->
-                    <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-1">
                          <multiselect v-model="votoUtente" :options="store.voteList" :custom-label="nameWithVote"
                                 placeholder="Select minimum vote" label="vote" track-by="vote"
-                                @change="onVoteChange(votoUtente)">
+                                @change="onVoteChange(votoUtente)"
+                                class="centered-placeholder">
                         </multiselect>
                     </div>
                     <!-- select for reviews -->
-                    <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-1">
                 
                             <multiselect v-model="selectedReviewThreshold" :options="store.reviewsThreshold" :custom-label="nameWithReview"
                                 placeholder="Select minimum reviews" label="nReview" track-by="nReview"
-                                @change="onReviewThresholdChange(selectedReviewThreshold)">
+                                @change="onReviewThresholdChange(selectedReviewThreshold)"
+                                class="centered-placeholder">
                             </multiselect>
                     </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off"
+                            value="reviews_count" v-model="selectedOrder">
+                        <label class="btn btn-outline-success w-100" for="orderByReviews">Order by Reviews</label>
+                    </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <input type="radio" class="btn-check" name="orderOptions" id="orderByVote" autocomplete="off"
+                            value="votes_avg_vote" v-model="selectedOrder">
+                        <label class="btn btn-outline-success w-100" for="orderByVote">Order by Average Vote</label>
+                    </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <input type="radio" class="btn-check" name="orderOptions" id="orderByOther" autocomplete="off"
+                            value="" v-model="selectedOrder">
+                        <label class="btn btn-outline-success w-100" for="orderByOther">Reset Order</label>
+                    </div>
+                        </div>
 
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    </div>
+                   <!--  <div class="btn-group mt-3" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off"
                             value="reviews_count" v-model="selectedOrder">
                         <label class="btn btn-outline-success" for="orderByReviews">Order by Reviews</label>
@@ -172,7 +194,7 @@ export default {
                         <input type="radio" class="btn-check" name="orderOptions" id="orderByOther" autocomplete="off"
                             value="" v-model="selectedOrder">
                         <label class="btn btn-outline-success" for="orderByOther">Reset Order</label>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
