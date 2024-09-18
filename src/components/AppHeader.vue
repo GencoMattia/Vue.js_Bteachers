@@ -123,6 +123,7 @@ export default {
                 background-color:$link-hover-color; // Arancione molto scuro
                  // Arancione molto scuro
                 color: #fff; // Bianco
+                transition: all .3s ease-in-out;
             }
         }
     }
