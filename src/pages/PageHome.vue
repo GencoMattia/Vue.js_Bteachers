@@ -1,6 +1,7 @@
 <script>
 import HomeTeachersShowcase from '@/components/HomeTeachersShowcase.vue';
 import Jumbotron from '@/components/Jumbotron.vue';
+import ExploreSpecializations from '@/components/ExploreSpecializations.vue';
 import { store } from '@/store';
 import AboutUs from './AboutUs.vue';
 import QuestSection from './QuestSection.vue';
@@ -11,6 +12,7 @@ export default {
     components: {
         HomeTeachersShowcase,
         Jumbotron,
+        ExploreSpecializations,
         // ProjectsList,
         AboutUs,
         QuestSection
@@ -147,9 +149,12 @@ export default {
                 </div>
             </div> -->
         </section>
-  <HomeTeachersShowcase />
-  <AboutUs/>
-  <QuestSection/>
+
+        <HomeTeachersShowcase />
+        <ExploreSpecializations />
+        <AboutUs />
+        <QuestSection/>
+        
 </main>
 </template>
 
