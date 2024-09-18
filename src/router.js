@@ -4,6 +4,7 @@ import PageHome from "./pages/PageHome.vue";
 import Error404 from "./pages/errors/Error404.vue";
 import PageSingleTeacher from "./pages/PageSingleTeacher.vue";
 import PageTeachersList from "./pages/PageTeachersList.vue";
+import AboutUs from "./pages/AboutUs.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -27,6 +28,11 @@ const router = createRouter({
             path: "/404",
             name: "404-not-found",
             component: Error404
+        },
+        {
+            path: "/AboutUs",
+            name: "About-us",
+            component: AboutUs
         },
     ]
 });

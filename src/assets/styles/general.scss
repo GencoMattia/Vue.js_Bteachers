@@ -33,6 +33,7 @@ a {
     color:inherit;
 }
 
+
 .centered-placeholder .multiselect__single,
 .centered-placeholder .multiselect__placeholder {
    font-size: 1rem;
@@ -41,4 +42,7 @@ a {
 
 .centered-placeholder .multiselect__select::before{
     top: 77%;
+
+p {
+    margin: 0;
 }
