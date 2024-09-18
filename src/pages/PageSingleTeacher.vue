@@ -286,7 +286,7 @@ export default {
         </div>
         <div class="row justify-content-around first-container">
             <!-- profile section  -->
-            <div class="col-3 profile-img-container my-2">
+            <div class=" col-4 col-lg-3 profile-img-container my-2">
                     <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
             </div>
             <!-- office section  -->
