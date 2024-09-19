@@ -78,7 +78,7 @@ export default {
                 <h5 class="card-title">{{ teacher.user.surname }} {{ teacher.user.name }}</h5>
             </div>
             <!-- Lista delle specializzazioni -->
-            <div class="specializations-container">
+            <div class="specializations-container text-center px-3">
                 <p>
                     <span v-for="(specialization, index) in visibleSpecializations" :key="specialization.id">
                         {{ specialization.field }}<span v-if="index < visibleSpecializations.length - 1">, </span>
