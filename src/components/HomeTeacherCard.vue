@@ -79,6 +79,8 @@ export default {
 
 <style lang="scss" scoped>
 /* From Uiverse.io by Centered101 */
+@use "../assets/styles/partials/variables" as *;
+
 .card {
     aspect-ratio: 1 / 1;
     width: 100%;
@@ -99,12 +101,12 @@ export default {
 }
 
 .card .mail svg {
-    stroke: #fbb9b6;
+    stroke: $secondary-color;
     stroke-width: 3px;
 }
 
 .card .mail svg:hover {
-    stroke: #f55d56;
+    stroke:  $secondary-color;
 }
 
 .card .profile-pic {
@@ -115,7 +117,7 @@ export default {
     left: 3px;
     border-radius: 29px;
     z-index: 1;
-    border: 0px solid #fbb9b6;
+    border: 0px solid $secondary-color;
     overflow: hidden;
     transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
 }
@@ -150,7 +152,7 @@ export default {
     bottom: 3px;
     left: 3px;
     right: 3px;
-    background: #fbb9b6;
+    background:$secondary-color;
     top: 80%;
     border-radius: 29px;
     z-index: 2;
@@ -172,7 +174,7 @@ export default {
 .card .bottom .content .name {
     display: block;
     font-size: 2rem;
-    color: white;
+    color:$text-color;
     font-weight: bold;
     margin-bottom: 2rem;
 }
@@ -180,7 +182,7 @@ export default {
 .card .bottom .content .about-me {
     display: block;
     font-size: 1rem;
-    color: white;
+    color:$text-color;
 }
 
 .card .bottom .bottom-bottom {
@@ -210,8 +212,8 @@ export default {
 }
 
 .card .bottom .bottom-bottom .button {
-    background: white;
-    color: #fbb9b6;
+    background:$btn-primary-bg;
+    color:$link-color;
     border: none;
     border-radius: 20px;
     font-size: 1.2rem;
@@ -220,8 +222,8 @@ export default {
 }
 
 .card .bottom .bottom-bottom .button:hover {
-    background: #f55d56;
-    color: white;
+    background:$btn-primary-hover-color;
+    color:$text-color;
 }
 
 .card:hover {
@@ -242,7 +244,7 @@ export default {
     left: 10px;
     border-radius: 50%;
     z-index: 3;
-    border: 7px solid #fbb9b6;
+    border: 7px solid $secondary-color;
     box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
     transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
 }

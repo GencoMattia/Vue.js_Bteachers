@@ -41,8 +41,8 @@ export default {
         selectedOrder() {  // Monitora il cambiamento di selectedOrder
             this.fetchTeachersProfiles(1, true);
         },
-        selectedReviewThreshold(){
-            this.fetchTeachersProfiles(1 , true);
+        selectedReviewThreshold() {
+            this.fetchTeachersProfiles(1, true);
         }
     },
 
@@ -125,15 +125,12 @@ export default {
     <main>
         <section class="teacher-list-section">
             <div class="container mt-4 text-center">
-                <h1 class="display-4">Trova il Tuo Insegnante Ideale</h1>
-                <p class="lead mb-5">Scopri i profili degli insegnanti e trova quello perfetto per le tue esigenze di
-                    apprendimento!</p>
+                <h1 class="display-4">Find your perfect teacher</h1>
+                <p class="lead mb-5">Discover teacher profiles and find the one that’s perfect for your learning needs!</p>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-1">
-
-                        
 
                         <!-- select for specializations -->
 
@@ -143,46 +140,46 @@ export default {
                             class="centered-placeholder">
                         </multiselect>
 
-
                     </div>
                     <!-- select for votes -->
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-1">
-                         <multiselect v-model="votoUtente" :options="store.voteList" :custom-label="nameWithVote"
-                                placeholder="Select minimum vote" label="vote" track-by="vote"
-                                @change="onVoteChange(votoUtente)"
-                                class="centered-placeholder">
+                        <multiselect v-model="votoUtente" :options="store.voteList" :custom-label="nameWithVote"
+                            placeholder="Select minimum vote" label="vote" track-by="vote"
+                            @change="onVoteChange(votoUtente)" class="centered-placeholder">
                         </multiselect>
                     </div>
                     <!-- select for reviews -->
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-1">
-                
-                            <multiselect v-model="selectedReviewThreshold" :options="store.reviewsThreshold" :custom-label="nameWithReview"
-                                placeholder="Select minimum reviews" label="nReview" track-by="nReview"
-                                @change="onReviewThresholdChange(selectedReviewThreshold)"
-                                class="centered-placeholder">
-                            </multiselect>
+
+                        <multiselect v-model="selectedReviewThreshold" :options="store.reviewsThreshold"
+                            :custom-label="nameWithReview" placeholder="Select minimum reviews" label="nReview"
+                            track-by="nReview" @change="onReviewThresholdChange(selectedReviewThreshold)"
+                            class="centered-placeholder">
+                        </multiselect>
                     </div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12">
-                                <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off"
-                            value="reviews_count" v-model="selectedOrder">
-                        <label class="btn btn-outline-success w-100" for="orderByReviews">Order by Reviews</label>
-                    </div>
+                                <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews"
+                                    autocomplete="off" value="reviews_count" v-model="selectedOrder">
+                                <label class="btn btn-outline-success w-100" for="orderByReviews">Order by
+                                    Reviews</label>
+                            </div>
                             <div class="col-lg-4 col-md-4 col-sm-12">
-                                <input type="radio" class="btn-check" name="orderOptions" id="orderByVote" autocomplete="off"
-                            value="votes_avg_vote" v-model="selectedOrder">
-                        <label class="btn btn-outline-success w-100" for="orderByVote">Order by Average Vote</label>
-                    </div>
+                                <input type="radio" class="btn-check" name="orderOptions" id="orderByVote"
+                                    autocomplete="off" value="votes_avg_vote" v-model="selectedOrder">
+                                <label class="btn btn-outline-success w-100" for="orderByVote">Order by Average
+                                    Vote</label>
+                            </div>
                             <div class="col-lg-4 col-md-4 col-sm-12">
-                                <input type="radio" class="btn-check" name="orderOptions" id="orderByOther" autocomplete="off"
-                            value="" v-model="selectedOrder">
-                        <label class="btn btn-outline-success w-100" for="orderByOther">Reset Order</label>
-                    </div>
+                                <input type="radio" class="btn-check" name="orderOptions" id="orderByOther"
+                                    autocomplete="off" value="" v-model="selectedOrder">
+                                <label class="btn btn-outline-success w-100" for="orderByOther">Reset Order</label>
+                            </div>
                         </div>
 
                     </div>
-                   <!--  <div class="btn-group mt-3" role="group" aria-label="Basic radio toggle button group">
+                    <!--  <div class="btn-group mt-3" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off"
                             value="reviews_count" v-model="selectedOrder">
                         <label class="btn btn-outline-success" for="orderByReviews">Order by Reviews</label>
@@ -199,9 +196,9 @@ export default {
             </div>
 
             <div class="container">
-                <div class="row">
+                <div class="row align-items-stretch">
                     <SingleTeacherCard v-for="teacher in teachers" @click.prevent="selectedTeacherId(teacher.id)"
-                        :key="teacher.id" class="col-md-4" :teacher="teacher" />
+                        :key="teacher.id" class="col-md-6 col-lg-4 mb-4" :teacher="teacher" />
                 </div>
 
                 <div class="d-flex justify-content-center align-items-center mt-5">
@@ -234,15 +231,15 @@ export default {
 
 // Pulsante "Carica Altri"
 .btn-main {
-    background-color: $main-btn-primary-bg;
-    border-color: $main-btn-primary-border;
+    background-color: $btn-primary-bg;
+    border-color:$btn-primary-bg;
     color: #fff;
     padding: 10px 20px;
     font-size: 1.1rem;
 
     &:hover {
-        background-color: $main-btn-primary-hover-bg;
-        border-color: $main-btn-primary-hover-border;
+        background-color: $btn-primary-hover-color;
+        border-color: $btn-primary-hover-color;
     }
 }
 

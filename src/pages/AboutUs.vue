@@ -68,7 +68,7 @@ export default {
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    background-color: $main-background-color;
+    background-color: $background-color;
 
     &:hover {
         transform: $card-hover-transform;
