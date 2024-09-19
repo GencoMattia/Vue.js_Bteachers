@@ -147,7 +147,7 @@ export default {
                     </div>
                     <!-- select for votes -->
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-1">
-                         <multiselect v-model="votoUtente" :options="store.voteList" :custom-label="nameWithVote"
+                        <multiselect v-model="votoUtente" :options="store.voteList" :custom-label="nameWithVote"
                                 placeholder="Select minimum vote" label="vote" track-by="vote"
                                 @change="onVoteChange(votoUtente)"
                                 class="centered-placeholder">
@@ -182,7 +182,7 @@ export default {
                         </div>
 
                     </div>
-                   <!--  <div class="btn-group mt-3" role="group" aria-label="Basic radio toggle button group">
+                    <!--  <div class="btn-group mt-3" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" class="btn-check" name="orderOptions" id="orderByReviews" autocomplete="off"
                             value="reviews_count" v-model="selectedOrder">
                         <label class="btn btn-outline-success" for="orderByReviews">Order by Reviews</label>
@@ -234,15 +234,15 @@ export default {
 
 // Pulsante "Carica Altri"
 .btn-main {
-    background-color: $main-btn-primary-bg;
-    border-color: $main-btn-primary-border;
+    background-color: $btn-primary-bg;
+    border-color:$btn-primary-bg;
     color: #fff;
     padding: 10px 20px;
     font-size: 1.1rem;
 
     &:hover {
-        background-color: $main-btn-primary-hover-bg;
-        border-color: $main-btn-primary-hover-border;
+        background-color: $btn-primary-hover-color;
+        border-color: $btn-primary-hover-color;
     }
 }
 

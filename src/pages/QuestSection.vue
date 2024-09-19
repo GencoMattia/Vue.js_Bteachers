@@ -100,6 +100,12 @@ html,
         background-color:$btn-primary-hover-color;
         color: $text-color;
     }
+    &:active{
+        background-color:$btn-primary-hover-color;
+        color: $text-color;
+    }
+
+    
     summary,p {
         position:relative;
         display:flex;
