@@ -4,6 +4,7 @@ export default {
         return {
             img: 'http://127.0.0.1:8000/storage/',
             star: 5,
+            showAllSpecializations: false,
         };
     },
 
@@ -16,6 +17,10 @@ export default {
             }, 0);
 
             return (totalVotes / this.teacher.votes.length).toFixed(2);
+        },
+        
+        visibleSpecializations() {
+            return this.showAllSpecializations ? this.teacher.specializations : this.teacher.specializations.slice(0, 3);
         }
     },
 
@@ -24,59 +29,62 @@ export default {
             type: Object,
             required: true,
         }
+    },
+
+    methods: {
+        toggleSpecializations() {
+            this.showAllSpecializations = !this.showAllSpecializations;
+        }
     }
 };
 </script>
 
+
 <template>
     <router-link class="router-link" @click="navigateToProfile(teacher.id)"
         :to="{ name: 'single-teacher', params: { id: teacher.id } }">
-        <div :class="teacher.is_premium ? 'premium-profile' : ''" class="card teacher-card h-100">
+        <div :class="{ 'premium-profile': teacher.is_premium }" class="card teacher-card h-100">
+            <div class="premium-tag" v-if="teacher.is_premium">Premium</div>
             <div class="card-img-container">
-                <!-- teacher's profile picture -->
+                <!-- Immagine a larghezza piena -->
                 <img :src="`${img}${teacher.photo}`" class="card-img-top mb-3"
                     :alt="`Picture of ${teacher.user.name} ${teacher.user.surname}`">
             </div>
             <div class="star-vote p-2">
                 <p v-if="teacher.votes_avg_vote > 0">
-                    <!-- Stelle piene -->
                     <span v-for="n in Math.floor(teacher.votes_avg_vote)" :key="'full-' + n">
                         <font-awesome-icon icon="fa-solid fa-star" />
                     </span>
-
-                    <!-- Mezza stella -->
                     <span v-if="teacher.votes_avg_vote % 1 >= 0.5">
                         <font-awesome-icon icon="star-half-stroke" />
                     </span>
-
-                    <!-- Stelle vuote -->
-                    <span v-for="x in star - Math.round(teacher.votes_avg_vote)" :key="'empty-' + x">
-                        <font-awesome-icon icon="fa-regular fa-star" />
-                    </span>
                 </p>
-                <p v-else>
-                    The teacher has no ratings.
-                </p>
+                <p v-else>The teacher has no ratings.</p>
                 <p v-if="teacher.reviews_count" class="card-text">
                     Reviews: <strong>{{ teacher.reviews_count }}</strong>
                 </p>
             </div>
             <div class="card-body">
-                <!-- teacher's name -->
                 <h5 class="card-title">{{ teacher.user.surname }} {{ teacher.user.name }}</h5>
             </div>
-            <!-- specializations fields -->
+            <!-- Lista delle specializzazioni -->
             <div class="specializations-container">
-                <ul class="list-group list-group-flush">
-                    <li v-for="specialization in teacher.specializations" :key="specialization.id"
-                        class="list-group-item specialization">
-                        {{ specialization.field }}
-                    </li>
-                </ul>
+                <p>
+                    <span v-for="(specialization, index) in visibleSpecializations" :key="specialization.id">
+                        {{ specialization.field }}<span v-if="index < visibleSpecializations.length - 1">, </span>
+                    </span>
+                </p>
+                <p v-if="teacher.specializations.length > 3" class="expand-toggle">
+                    <a href="#" @click.prevent="toggleSpecializations">
+                        {{ showAllSpecializations ? 'Mostra meno' : 'Mostra altro' }}
+                    </a>
+                </p>
             </div>
         </div>
     </router-link>
 </template>
+
+
 
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
@@ -89,23 +97,19 @@ export default {
     overflow: hidden;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     background-color: $main-background-color;
+    height: 450px; // Altezza fissa per layout uniforme
 
     .card-img-container {
         display: flex;
         justify-content: center;
-        height: 400px;
+        height: 200px;
         border-bottom: 2px solid $secondary-color;
         
         .card-img-top {
-            width: auto;
+            width: 100%;  // Immagine a tutta larghezza
             height: 100%;
-            object-fit: cover;
+            object-fit: cover;  // Adatta proporzioni mantenendo il ritaglio
         }
-    }
-
-    .specializations-container {
-        height: 150px;
-        overflow-y: scroll;
     }
 
     .star-vote {
@@ -114,23 +118,25 @@ export default {
         right: 0;
     }
 
-    &.premium-profile{
+    /* Targhetta Premium */
+    .premium-tag {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: gold;
+        color: black;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        border-bottom-right-radius: 8px;
+        z-index: 1;
+    }
+
+    &.premium-profile {
         border: 2px solid gold;
 
-        &:before {
-            content: "Premium";
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: gold;
-            color: black;
-            padding: 5px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            border-bottom-right-radius: 8px;
-        }
-
         &:hover {
+            /* Ombra dorata per i profili Premium */
             box-shadow: 0 8px 16px rgba(255, 223, 0, 0.5);
         }
     }
@@ -141,7 +147,7 @@ export default {
     }
 
     .card-body {
-        padding: 20px;
+        padding: 15px;
         text-align: center;
 
         .card-title {
@@ -151,32 +157,24 @@ export default {
             margin-bottom: 10px;
         }
 
-        .specialization {
+        .specializations-container {
             font-size: $card-text-font-size;
             color: $text-color;
+            height: auto;
         }
 
-        .teacher-info {
-            font-size: 0.9rem;
-            color: $card-text-color;
-            margin-top: 10px;
-
-            p {
-                margin: 0;
-            }
-
-            strong {
+        .expand-toggle {
+            text-align: center;
+            margin-top: 10px;  // Separazione visiva dal contenuto
+            a {
                 color: $primary-color;
+                text-decoration: underline;
+                cursor: pointer;
+                font-weight: bold;
             }
         }
     }
 }
 
-.router-link {
-    text-decoration: none;
 
-    &:hover {
-        text-decoration: none;
-    }
-}
 </style>
