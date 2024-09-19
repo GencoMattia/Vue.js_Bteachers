@@ -47,6 +47,14 @@ export default {
 
 <template>
     <section class="container mb-5">
+        <div class="text-center mb-5">
+            <h1>
+                Meet Our Expert Teachers
+            </h1>
+            <p class="lead">
+                Explore our diverse range of educators, each with unique specializations and teaching styles. Click on any teacher to learn more about their qualifications and how they can help you achieve your educational goals.
+            </p>
+        </div>
         <!-- Griglia di carte -->
         <div id="sponsored" class="row justify-items-center">
             <!-- Ogni carta ha le classi della griglia Bootstrap -->
