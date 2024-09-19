@@ -286,13 +286,13 @@ export default {
         </div>
         <div class="row justify-content-around first-container">
             <!-- profile section  -->
-            <div class=" col-4 col-lg-3 profile-img-container my-2">
-                    <img :src="getImageUrl(photo)" class="profile-img col-6" alt="Profile-photo">
+            <div class="col-5 col-md-4 col-lg-3 profile-img-container my-2">
+                    <img :src="getImageUrl(photo)" class="profile-img col-6" :class="profile.is_premium?'gold':''" alt="Profile-photo">
             </div>
             <!-- office section  -->
-            <div class="col-4 profile-container my-4">
+            <div class="col-11 col-sm-6 col-md-5 col-lg-4 profile-container my-4">
                 <!-- <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3> -->
-                <div class="profile">
+                <div class="col-5 col-sm-12 profile">
                     <h3 class="text-uppercase text-center me-2 text-break">
                         <font-awesome-icon icon="fa-regular fa-id-badge" :class="profile.is_premium?'gold':''" /> 
                         {{ profile.user.name }} {{ profile.user.surname }}
@@ -313,7 +313,7 @@ export default {
 
                 <!-- address  -->
                 
-                <div class="mb-1">
+                <div class="col-5 col-sm-12 mb-1">
                     <h5 class="text-break" >Address</h5>
                     <a href="#" class="text-break d-block hover-filter" >
                         <font-awesome-icon icon="fa-solid fa-location-dot" class="icon-color" /> {{ profile.address }}
@@ -322,17 +322,17 @@ export default {
 
                 <!-- contacts  -->
                 
-                <div class= "mb-1">
+                <div class= "col-5 col-sm-12 mb-1">
                     <h4 class="text-break" >Contacts</h4>
                     <a href="#" class="text-break d-block hover-filter" ><font-awesome-icon icon="fa-solid fa-phone" class="icon-color" /> {{ profile.telephone_number }}</a>
                     <a href="#" class="text-break d-block hover-filter" ><font-awesome-icon icon="fa-solid fa-envelope" class="icon-color" /> {{ profile.user.email }}</a>
                 </div>
-
-                <div class="d-flex justify-content-center my-4" >
+                
+                <div class="col-5 col-sm-12 d-flex justify-content-center my-4" >
                     <a href="#message-form-body" type="button" class="btn text-break contact-button">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                 </div>
                 <!-- review and vote buttons  -->
-                <div class="d-flex justify-content-center my-4" >
+                <div class="d-flex justify-content-center my-4">
                     <a type="button" class="btn btn-success text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <!-- Review form modal  -->
@@ -346,32 +346,32 @@ export default {
                             <div class="modal-body">
                                 <form>
                                     <!-- reviews profile_id  -->
-                                    <input type="text" class="form-control transparent" id="review-profile-id" name="profile_id" :value="profile.id" hidden>
+                                    <input type="text" class="form-control transparent review-inputs" id="review-profile-id" name="profile_id" :value="profile.id" hidden>
                                     <!-- reviewer name  -->
                                 <div class="mb-3">
                                     <label for="reviewer-name" class="col-form-label">Name</label>
-                                    <input type="text" class="form-control transparent" id="reviewer-name" name="name">
+                                    <input type="text" class="form-control transparent review-inputs" id="reviewer-name" name="name">
                                     <!-- name error  -->
                                     <span v-if="reviewError.name" class="text-danger fw-bold">{{ reviewError.name }}</span>
                                 </div>
                                 <!-- reviewer surname  -->
                                 <div class="mb-3">
                                     <label for="reviewer-surname" class="col-form-label">Surname</label>
-                                    <input type="text" class="form-control transparent" id="reviewer-surname" name="surname">
+                                    <input type="text" class="form-control transparent review-inputs" id="reviewer-surname" name="surname">
                                     <!-- surname error  -->
                                     <span v-if="reviewError.surname" class="text-danger fw-bold">{{ reviewError.surname }}</span>
                                 </div>
                                 <!-- reviewer email  -->
                                 <div class="mb-3">
                                     <label for="reviewer-email" class="col-form-label">Email</label>
-                                    <input type="email" class="form-control transparent" id="reviewer-email" name="email">
+                                    <input type="email" class="form-control transparent review-inputs" id="reviewer-email" name="email">
                                     <!-- email error  -->
                                     <span v-if="reviewError.email" class="text-danger fw-bold">{{ reviewError.email }}</span>
                                 </div>
                                 <!-- review text  -->
                                 <div class="mb-3">
                                     <label for="review-text" class="col-form-label">Review</label>
-                                    <textarea class="form-control transparent" id="review-text" name="review_text"></textarea>
+                                    <textarea class="form-control transparent review-inputs" id="review-text" name="review_text"></textarea>
                                 <!-- text error  -->
                                 <span v-if="reviewError.review_text" class="text-danger fw-bold">{{ reviewError.review_text }}</span>
                                 </div>
@@ -432,7 +432,7 @@ export default {
                                 <font-awesome-icon icon="fa-solid fa-user" class="icon-color"/> Anonymous
                             </strong>
                             <div>
-                                <em>
+                                <em class="text-break">
                                     <font-awesome-icon icon="fa-solid fa-envelope"  class="icon-color"/> {{ review.email }}
                                 </em>
                             </div>
@@ -444,7 +444,7 @@ export default {
                         </p>
                     </div>
                 </div>
-                <div v-else class="text-break">
+                <div v-else class="text-break text-center my-2">
                     {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
                 </div>
             </div>
@@ -453,7 +453,7 @@ export default {
 
         <div class="row justify-content-center">
             <!-- section specialization  -->
-            <div class="col-8 specialization my-4 text-center">
+            <div class="col-11 col-sm-8 specialization my-4 text-center">
                 <h4 class="text-break  text-uppercase" >
                     <strong>Specializzations</strong>
                 </h4>
@@ -474,7 +474,7 @@ export default {
 
         <!-- reviews section  -->
         <div class="row justify-content-center">
-            <div class="col-8 reviews-small-screen my-4 border border-success border-opacity-75 rounded p-3">
+            <div class="col-11 col-sm-8 reviews-small-screen my-4 border border-success border-opacity-75 rounded p-3">
                 <h4 class="text-break text-center my-3">
                     <strong>Reviews</strong>
                 </h4>
@@ -488,7 +488,7 @@ export default {
                                 <font-awesome-icon icon="fa-solid fa-user" class="icon-color"/> Anonymous
                             </strong>
                             <div>
-                                <em>
+                                <em class="text-break">
                                     <font-awesome-icon icon="fa-solid fa-envelope"  class="icon-color"/> {{ review.email }}
                                 </em>
                             </div>
@@ -500,7 +500,7 @@ export default {
                         </p>
                     </div>
                 </div>
-                <div v-else class="text-break">
+                <div v-else class="text-break text-center my-2">
                     {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
                 </div>
                 <div class="text-center">
@@ -649,12 +649,15 @@ export default {
     #review-model-content{
         background-image: url('https://img.freepik.com/premium-photo/concept-banner-setting-five-star-goal_1346034-1857.jpg?w=740');
         background-size: cover;
-        color: gold;
+        color: white;
     }
     .transparent{
         background-color: transparent;
         // color: white;
         // border: 1px solid goldenrod;
+    }
+    .review-inputs{
+        color: white;
     }
     #vote-model-content{
         background-image: url('https://img.freepik.com/free-photo/hd-five-stars-customer-rating-feedback-concept-yellow-background_1409-4935.jpg');
@@ -701,14 +704,31 @@ export default {
         }
     }
 
-    @media all and (max-width: 778px) {
-
+    @media all and (max-width: 576px) {
+        .first-container{
+            max-height: 700px;
+        }
+        .profile-container{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background-color: #6a905d;
+        }
     }
 
     @media all and (min-width: 576px) {
         .display-flex{
             display: flex;
             justify-content: space-between;
+        }
+        .small-screen-review-button{
+            margin-bottom: 10px;
+        }
+    }  
+
+    @media all and (max-width: 365px) {
+        .small-screen-review-button{
+            margin-bottom: .5rem;
         }
     }
 </style>
