@@ -341,7 +341,7 @@ export default {
                 </div>
                 <!-- review and vote buttons  -->
                 <div class="d-flex justify-content-center my-4">
-                    <a type="button" class="btn btn-success text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo" :class="reviewError.success?'disabled':''">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <!-- Review form modal  -->
                     <div class="modal fade" id="reviewModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -394,7 +394,7 @@ export default {
                     </div>
 
                     <!-- vote model form  -->
-                    <a type="button" class="btn btn-success mx-3 text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success mx-3 text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo" :class="voteError.success?'disabled':''">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -516,11 +516,11 @@ export default {
                 </div>
                 <section class="text-center">
                     <div class="my-2">
-                        <a type="button" class="btn btn-success text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                        <a type="button" class="btn btn-success text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo" :class="reviewError.success?'disabled':''">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
                         <div v-if="reviewError" class="fw-bold text-center w-75 success margin-auto p-2" :class="reviewError.success?'':'display-none'">{{ reviewError.success }}</div>
                     </div>
                     <div class="my-2">
-                        <a type="button" class="btn btn-success mx-3 text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                        <a type="button" class="btn btn-success mx-3 text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo" :class="voteError.success?'disabled':''">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
                         <div v-if="voteError" class="fw-bold text-center success margin-auto p-2 w-75" :class="voteError.success?'':'display-none'">{{ voteError.success }}</div>
                     </div>
                 </section>
