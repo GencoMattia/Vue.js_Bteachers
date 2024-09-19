@@ -199,9 +199,9 @@ export default {
             </div>
 
             <div class="container">
-                <div class="row">
+                <div class="row align-items-stretch">
                     <SingleTeacherCard v-for="teacher in teachers" @click.prevent="selectedTeacherId(teacher.id)"
-                        :key="teacher.id" class="col-md-4" :teacher="teacher" />
+                        :key="teacher.id" class="col-md-6 col-lg-4 mb-4" :teacher="teacher" />
                 </div>
 
                 <div class="d-flex justify-content-center align-items-center mt-5">
