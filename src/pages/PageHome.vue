@@ -41,7 +41,7 @@ export default {
         <!-- Sezione Hero -->
         <Jumbotron />
 
-        <!-- Sezione Caratteristiche -->
+        <!-- Sezione Caratteristiche
         <section class="features-section">
             <div class="container">
                 <div class="row d-flex justify-content-between mb-3">
@@ -128,7 +128,7 @@ export default {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="container">
                 <div class="row">
                     <div class="col-md-4 text-center">
@@ -148,7 +148,7 @@ export default {
                     </div>
                 </div>
             </div> -->
-        </section>
+        <!-- </section> -->
 
         <HomeTeachersShowcase />
         <ExploreSpecializations />
