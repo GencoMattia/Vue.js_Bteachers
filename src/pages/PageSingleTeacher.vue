@@ -21,12 +21,17 @@ export default {
                 email: '',
                 telephone_number: '',
                 message_text: '',
+                success: '',
             },
             reviewError: {
                 name: '',
                 surname: '',
                 email: '',
                 review_text: '',
+                success: '',
+            },
+            voteError: {
+                success: '',
             }
         };
     },
@@ -106,6 +111,7 @@ export default {
                 document.getElementById('messager-email').value = '',
                 document.getElementById('messager-telephone-number').value = '',
                 document.getElementById('message-text').value = '',
+                this.messageError.success = 'Message sent successfully!',
                 this.closeModal('messageModel');
 
             console.log('Message sent successfully:', response, playload);
@@ -183,10 +189,11 @@ export default {
                 document.getElementById('reviewer-surname').value = '',
                 document.getElementById('reviewer-email').value = '',
                 document.getElementById('review-text').value = '',
+                this.reviewError.success = 'Review sent successfully!',
                 this.closeModal('reviewModel');
                 this.fetchProject(this.profile.id);
                 
-            console.log('Review sent successfully:', response, playload);
+            console.log('Review sent successfully!', response, playload);
             })
             .catch((error) => {
             console.log('Error sending review:', error);
@@ -246,6 +253,7 @@ export default {
             }
             axios.post(`http://127.0.0.1:8000/api/profiles/${this.profile.id}`, playload)
             .then((response) => {
+                this.voteError.success = 'Vote sent successfully!'
                 this.closeModal('voteModel');
                 this.fetchProject(this.profile.id);
             console.log('Vote sent successfully:', response, playload);
@@ -449,7 +457,10 @@ export default {
                 </div>
             </div>
         </div>
-
+        <section class="d-flex justify-content-center my-4">
+            <div v-if="reviewError" class="fw-bold text-center me-3 big-screen-review-button success p-2" :class="reviewError.success?'':'display-none'">{{ reviewError.success }}</div>
+            <div v-if="voteError" class="fw-bold text-center big-screen-review-button success p-2" :class="voteError.success?'':'display-none'">{{ voteError.success }}</div>
+        </section>
 
         <div class="row justify-content-center">
             <!-- section specialization  -->
@@ -503,10 +514,18 @@ export default {
                 <div v-else class="text-break text-center my-2">
                     {{ profile.user.name }} {{ profile.user.surname }} has no reviews.
                 </div>
-                <div class="text-center">
-                    <a type="button" class="btn btn-success text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
-                    <a type="button" class="btn btn-success mx-3 text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
-                </div>
+                <section class="text-center">
+                    <div class="my-2">
+                        <a type="button" class="btn btn-success text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                        <div v-if="reviewError" class="fw-bold text-center w-75 success margin-auto p-2" :class="reviewError.success?'':'display-none'">{{ reviewError.success }}</div>
+                    </div>
+                    <div class="my-2">
+                        <a type="button" class="btn btn-success mx-3 text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                        <div v-if="voteError" class="fw-bold text-center success margin-auto p-2 w-75" :class="voteError.success?'':'display-none'">{{ voteError.success }}</div>
+                    </div>
+                </section>
+                <!-- <section class="d-flex justify-content-center my-3">
+                </section> -->
             </div>
         </div>
 
@@ -561,6 +580,9 @@ export default {
                         <span v-if="messageError" class="text-danger fw-bold">{{ messageError.message_text }}</span>
                     </div>
                 </form>
+                <div class="d-flex justify-content-center">
+                    <span v-if="messageError" class="fw-bold text-center success p-2" :class="messageError.success?'':'display-none'">{{ messageError.success }}</span>
+                </div>
             </div>
             <div class=" col-12 my-2 text-center">
                 <button type="submit" class="btn btn-success message-button" @click="messageValidation()">Send message</button>
@@ -689,6 +711,19 @@ export default {
     .specialization-container:hover{
         transform: scale(1.1);
     }
+    .success{
+        background-color: #78da4bc1;
+        // padding: .4rem;
+        border: none;
+        border-radius: .2rem;
+        text-align: center;
+    }
+    .display-none{
+        display: none;
+    }
+    .margin-auto{
+        margin: auto;
+    }
 
     @media all and (max-width: 992px) {
         .reviews{
@@ -702,6 +737,9 @@ export default {
         .big-screen-review-button{
             display: none;
         }
+    }
+    @media all and (min-width: 992px){
+
     }
 
     @media all and (max-width: 576px) {
