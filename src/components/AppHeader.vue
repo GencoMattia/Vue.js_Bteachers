@@ -37,17 +37,17 @@ export default {
 
 <template>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg">
     <div class="container-fluid d-flex flex-row">
         <a class="navbar-brand navbar-expand-lg" href="#">
             <router-link class="logo" :to="{ name: navLinkNames[1].name }">
-                BTeachers
+                BTeacher
             </router-link>
         </a>
 
-        <form class="d-flex flex-grow-1 mx-3" role="search" @submit.prevent="getSearchBarValue">
+        <form class="d-flex flex-grow-1 mx-3 bt_custom_search" role="search" @submit.prevent="getSearchBarValue">
             <input 
-                class="form-control me-2 flex-grow-1 border border-0 rounded-pill" 
+                class="form-control me-2 flex-grow-1 border border-0 rounded-pill search_custom" 
                 type="search" 
                 placeholder="Search your Teacher" 
                 v-model="searchBarQuery"
@@ -64,13 +64,13 @@ export default {
 
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav d-flex flex-row d-flex flex-column text-end">
-                <li class="nav-item mb-1">
+            <ul class="navbar-nav bt_custom ">
+                <li class="itm_custom nav-item mb-1">
                     <router-link :to="{name: navLinkNames[0].name}">
                         {{ navLinkNames[0].label }}
                     </router-link>
                 </li>
-                <li class="nav-item mb-1">
+                <li class="itm_custom nav-item mb-1">
                     <a href="http://127.0.0.1:8000/">
                         <span>Are you a Teacher?</span>
                         <font-awesome-icon :icon="['fas', 'user']" />
@@ -87,24 +87,70 @@ export default {
 
 <style lang="scss" scoped>
     @use "../assets/styles/partials/variables" as *;
+
+    .bt_custom{
+        display: flex;
+        flex-direction: row;
+        text-align: end;
+        margin: 0 .5rem;
+    }
+    .itm_custom{
+        margin: 0 1rem;
+    }
+    .itm_custom:hover{
+        margin: 0 1rem;
+        color: $btn-primary-hover-bg;
+        border-radius: 50%;
+    }
+    @media screen and (max-width: 991px) {
+        .bt_custom{
+        display: flex;
+        flex-direction: column;
+        text-align: end;
+        margin: 0 .5rem;
+
+    }
+    
+    .itm_custom:nth-child(1){
+        margin: 1rem 0;
+
+    }
+    .itm_custom:nth-child(2){
+        margin: 1rem 0;
+
+    }
+    
+    }
+
+    @media screen and (max-width: 466px) {
+        .search_custom{
+            display: none;
+        }
+        .bt_custom_search{
+            align-items: center;
+            justify-content: end;
+        }
+    }
+   
+
+
+    
+
     .navbar-collapse{
         flex-grow: 0;
     }
 
-    .search_bar{
-        margin-right: auto;
-        margin-left: auto;
-        width: 100%;
-    }
+    
     // Header
     .header {
-        background-color: $secondary-color;
         padding: 10px 20px;
         display: flex;
         align-items: center;
-        // justify-content: space-between;
         color: #fff;
+        nav{
+        
 
+        }
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
