@@ -60,12 +60,8 @@ export default {
             <p>
                 At BTeachers, we connect you with the best educators in every field. Whether you’re looking for help in math, science, languages, or the arts, our platform offers a diverse range of qualified professionals ready to guide you on your educational journey.
             </p>
-
-            <!-- <div class="btn btn-primary">
-                <a href="http://127.0.0.1:8000/">
-                    Sei un insegnante?
-                </a>
-            </div>
+            
+             
             <div class="filter mb-3">
                 <div class="container">
                     <div class="row">
@@ -81,8 +77,8 @@ export default {
                             </select>
                         </div>
                     </div>
-                </div>
-            </div> -->
+                </div> 
+            </div> 
         </div>
     </section>
 </template>
