@@ -45,17 +45,6 @@ export default {
             </router-link>
         </a>
 
-        <!-- <form class="d-flex flex-grow-1 mx-3 bt_custom_search" role="search" @submit.prevent="getSearchBarValue">
-            <input 
-                class="form-control me-2 flex-grow-1 border border-0 rounded-pill search_custom" 
-                type="search" 
-                placeholder="Search your Teacher" 
-                v-model="searchBarQuery"
-                aria-label="Search">
-            <button class="btn btn-outline-danger border border-0 rounded-pill search_custom" type="submit">
-                <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
-            </button>
-        </form> -->
 
         <!-- Hamburger button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +54,7 @@ export default {
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav bt_custom ">
-                <li class="navbar-nav pt-2 search_lg">
+                <li class="navbar-nav search_lg">
                     <form class="d-flex flex-grow-1 mx-3 bt_custom_search" role="search" @submit.prevent="getSearchBarValue">
             <input 
                 class="form-control me-2 flex-grow-1 border border-0 rounded-pill " 

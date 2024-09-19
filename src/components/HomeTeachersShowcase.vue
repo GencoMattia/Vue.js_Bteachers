@@ -26,7 +26,7 @@ export default {
                     page: page
                 }
             }).then((response) => {
-                console.log(response.data.results);
+                /* console.log(response.data.results); */
 
                 this.teachers.push(...response.data.results.data);
                 this.currentPage = response.data.results.currentPage;
