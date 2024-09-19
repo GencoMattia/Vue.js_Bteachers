@@ -13,11 +13,12 @@ export default {
         }
     }
 };
+
 </script>
 
 <template>
     <div class="card">
-        <div class="card-image"></div>
+        <img :src="specialization.img" :alt="specialization.field">
         <p class="card-title">{{ specialization.field }}</p>
         <p class="card-body">
             {{ specialization.description }}
