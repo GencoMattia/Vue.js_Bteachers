@@ -292,12 +292,12 @@ export default {
             <!-- office section  -->
             <div class="col-11 col-sm-6 col-md-5 col-lg-4 profile-container my-4">
                 <!-- <h3 class="text-break" >Office <font-awesome-icon icon="fa-solid fa-house-laptop" /></h3> -->
-                <div class="col-5 col-sm-12 profile">
+                <div class="col-12 profile">
                     <h3 class="text-uppercase text-center me-2 text-break">
                         <font-awesome-icon icon="fa-regular fa-id-badge" :class="profile.is_premium?'gold':''" /> 
                         {{ profile.user.name }} {{ profile.user.surname }}
                     </h3> 
-                    <div class="my-2" v-if="averageVote > 0">
+                    <div class="my-2 text-center" v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
                             <font-awesome-icon icon="fa-solid fa-star" class="icon-color"/>
                         </span>
@@ -308,7 +308,7 @@ export default {
                     <div class="text-break" v-else>
                         The teacher has no ratings.
                     </div>
-                    <p class="text-break"><font-awesome-icon icon="fa-solid fa-chalkboard-user" class="icon-color" /> {{ profile.service }}</p>
+                    <p class="text-break text-center"><font-awesome-icon icon="fa-solid fa-chalkboard-user" class="icon-color" /> {{ profile.service }}</p>
                 </div>
 
                 <!-- address  -->
@@ -328,7 +328,7 @@ export default {
                     <a href="#" class="text-break d-block hover-filter" ><font-awesome-icon icon="fa-solid fa-envelope" class="icon-color" /> {{ profile.user.email }}</a>
                 </div>
                 
-                <div class="col-5 col-sm-12 d-flex justify-content-center my-4" >
+                <div class="col-1 col-sm-12 d-flex justify-content-center my-4" >
                     <a href="#message-form-body" type="button" class="btn text-break contact-button">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                 </div>
                 <!-- review and vote buttons  -->
@@ -522,14 +522,14 @@ export default {
                     
                     <section class="display-flex">
                         <!-- messager name  -->
-                        <div class="message-inputs">
+                        <div class="col-sm-5 message-inputs">
                             <label class="col-form-label">Name</label>
                             <input type="text" class="form-control" id="messager-name">
                             <!-- name error  -->
                             <span v-if="messageError" class="text-danger fw-bold">{{ messageError.name }}</span>
                         </div>
                         <!-- messager surname  -->
-                        <div class="message-inputs">
+                        <div class="col-sm-5 message-inputs">
                             <label class="col-form-label">Surname</label>
                             <input type="text" class="form-control" id="messager-surname">
                             <!-- surname error  -->
@@ -539,14 +539,14 @@ export default {
 
                     <section class="display-flex">
                         <!-- messager email  -->
-                        <div class="message-inputs">
+                        <div class="col-sm-5 message-inputs">
                             <label class="col-form-label">Email</label>
                             <input type="email" class="form-control" id="messager-email">
                             <!-- email error  -->
                             <span v-if="messageError" class="text-danger fw-bold">{{ messageError.email }}</span>
                         </div>
                         <!-- messager telephone_number  -->
-                        <div class="message-inputs">
+                        <div class="col-sm-5 message-inputs">
                             <label class="col-form-label">Telephone number</label>
                             <input type="text" class="form-control" id="messager-telephone-number">
                             <!-- telephone number error  -->
@@ -713,6 +713,9 @@ export default {
             justify-content: space-between;
             flex-wrap: wrap;
             background-color: #6a905d;
+        }
+        .contact-button{
+            display: none;
         }
     }
 
