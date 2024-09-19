@@ -112,7 +112,6 @@ export default {
                 document.getElementById('messager-telephone-number').value = '',
                 document.getElementById('message-text').value = '',
                 this.messageError.success = 'Message sent successfully!',
-                this.closeModal('messageModel');
 
             console.log('Message sent successfully:', response, playload);
             })
@@ -337,11 +336,11 @@ export default {
                 </div>
                 
                 <div class="col-1 col-sm-12 d-flex justify-content-center my-4" >
-                    <a href="#message-form-body" type="button" class="btn text-break contact-button">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
+                    <a href="#message-form-body" type="button" class="btn text-break contact-button hover-button">Contact {{ profile.user.name }} {{ profile.user.surname }} </a>
                 </div>
                 <!-- review and vote buttons  -->
                 <div class="d-flex justify-content-center my-4">
-                    <a type="button" class="btn btn-success text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo" :class="reviewError.success?'disabled':''">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success text-break big-screen-review-button hover-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo" :class="reviewError.success?'disabled':''">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <!-- Review form modal  -->
                     <div class="modal fade" id="reviewModel" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -394,7 +393,7 @@ export default {
                     </div>
 
                     <!-- vote model form  -->
-                    <a type="button" class="btn btn-success mx-3 text-break big-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo" :class="voteError.success?'disabled':''">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                    <a type="button" class="btn btn-success mx-3 text-break big-screen-review-button hover-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo" :class="voteError.success?'disabled':''">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
 
                     <div class="modal fade" id="voteModel" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -516,11 +515,11 @@ export default {
                 </div>
                 <section class="text-center">
                     <div class="my-2">
-                        <a type="button" class="btn btn-success text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo" :class="reviewError.success?'disabled':''">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
+                        <a type="button" class="btn btn-success text-break small-screen-review-button hover-button" data-bs-toggle="modal" data-bs-target="#reviewModel" data-bs-whatever="@mdo" :class="reviewError.success?'disabled':''">Review {{ profile.user.name }} {{ profile.user.surname }}</a>
                         <div v-if="reviewError" class="fw-bold text-center w-75 success margin-auto p-2" :class="reviewError.success?'':'display-none'">{{ reviewError.success }}</div>
                     </div>
                     <div class="my-2">
-                        <a type="button" class="btn btn-success mx-3 text-break small-screen-review-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo" :class="voteError.success?'disabled':''">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
+                        <a type="button" class="btn btn-success mx-3 text-break small-screen-review-button hover-button" data-bs-toggle="modal" data-bs-target="#voteModel" data-bs-whatever="@mdo" :class="voteError.success?'disabled':''">Vote {{ profile.user.name }} {{ profile.user.surname }}</a>
                         <div v-if="voteError" class="fw-bold text-center success margin-auto p-2 w-75" :class="voteError.success?'':'display-none'">{{ voteError.success }}</div>
                     </div>
                 </section>
@@ -581,11 +580,11 @@ export default {
                     </div>
                 </form>
                 <div class="d-flex justify-content-center">
-                    <span v-if="messageError" class="fw-bold text-center success p-2" :class="messageError.success?'':'display-none'">{{ messageError.success }}</span>
+                    <span v-if="messageError" class="fw-bold  text-dark text-center success p-2" :class="messageError.success?'':'display-none'">{{ messageError.success }}</span>
                 </div>
             </div>
             <div class=" col-12 my-2 text-center">
-                <button type="submit" class="btn btn-success message-button" @click="messageValidation()">Send message</button>
+                <button type="submit" class="btn btn-success message-button hover-button" @click="messageValidation()">Send message</button>
             </div>
         </div>
     </section>
@@ -601,7 +600,7 @@ export default {
         border-radius: 1rem;
     }
     .first-container{
-        background-image: url(../assets/img/assortment-teacher-s-day-elements_23-2149044959.jpg);
+        background-image: url(../assets/img/A_minimalist_green_chalkboard_.jpeg);
         background-size: cover;
         max-height: 650px;
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -669,7 +668,7 @@ export default {
         color: black;
     }
     #review-model-content{
-        background-image: url('https://img.freepik.com/premium-photo/concept-banner-setting-five-star-goal_1346034-1857.jpg?w=740');
+        background-image: linear-gradient(rgba(75, 209, 158, 0.474), rgba(51, 121, 11, 0.421)),url(../assets/img/concept-banner-setting-five-star-goal_1346034-1857.avif);
         background-size: cover;
         color: white;
     }
@@ -682,14 +681,15 @@ export default {
         color: white;
     }
     #vote-model-content{
-        background-image: url('https://img.freepik.com/free-photo/hd-five-stars-customer-rating-feedback-concept-yellow-background_1409-4935.jpg');
+        background-image:  linear-gradient(rgba(75, 209, 158, 0.474), rgba(94, 210, 28, 0.312)),url(../assets/img/hd-five-stars-customer-rating-feedback-concept-yellow-background_1409-4935.avif);
         background-size: cover;
+        
     }
     .vote-select{
         background-color: transparent;
     }
     #message-form-body{
-        background-image: url('https://images.pexels.com/photos/122429/leaf-nature-green-spring-122429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+        background-image: linear-gradient(rgba(19, 59, 44, 0.474), rgba(94, 210, 28, 0.312)),url(../assets/img/yugioh_card_art_for_A_watercol.jpeg);
         background-size: cover;
         background-position: center;
         color: white;
@@ -723,6 +723,9 @@ export default {
     }
     .margin-auto{
         margin: auto;
+    }
+    .hover-button:hover{
+        filter: drop-shadow(0px 0px 5px #78da4b);
     }
 
     @media all and (max-width: 992px) {
