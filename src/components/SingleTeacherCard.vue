@@ -18,7 +18,7 @@ export default {
 
             return (totalVotes / this.teacher.votes.length).toFixed(2);
         },
-        
+
         visibleSpecializations() {
             return this.showAllSpecializations ? this.teacher.specializations : this.teacher.specializations.slice(0, 3);
         }
@@ -52,14 +52,24 @@ export default {
             </div>
             <div class="star-vote p-2">
                 <p v-if="teacher.votes_avg_vote > 0">
+                    <!-- Stelle piene -->
                     <span v-for="n in Math.floor(teacher.votes_avg_vote)" :key="'full-' + n">
                         <font-awesome-icon icon="fa-solid fa-star" />
                     </span>
+
+                    <!-- Mezza stella -->
                     <span v-if="teacher.votes_avg_vote % 1 >= 0.5">
                         <font-awesome-icon icon="star-half-stroke" />
                     </span>
+
+                    <!-- Stelle vuote -->
+                    <span v-for="x in star - Math.round(teacher.votes_avg_vote)" :key="'empty-' + x">
+                        <font-awesome-icon icon="fa-regular fa-star" />
+                    </span>
                 </p>
-                <p v-else>The teacher has no ratings.</p>
+                <p v-else>
+                    The teacher has no ratings.
+                </p>
                 <p v-if="teacher.reviews_count" class="card-text">
                     Reviews: <strong>{{ teacher.reviews_count }}</strong>
                 </p>
@@ -104,11 +114,11 @@ export default {
         justify-content: center;
         height: 200px;
         border-bottom: 2px solid $secondary-color;
-        
+
         .card-img-top {
-            width: 100%;  // Immagine a tutta larghezza
+            width: 100%; // Immagine a tutta larghezza
             height: 100%;
-            object-fit: cover;  // Adatta proporzioni mantenendo il ritaglio
+            object-fit: cover; // Adatta proporzioni mantenendo il ritaglio
         }
     }
 
@@ -154,7 +164,7 @@ export default {
             font-size: $card-title-font-size;
             font-weight: $card-title-font-weight;
             color: $primary-color;
-            margin-bottom: 10px;
+            margin-bottom: 0 !important;
         }
 
         .specializations-container {
@@ -165,7 +175,8 @@ export default {
 
         .expand-toggle {
             text-align: center;
-            margin-top: 10px;  // Separazione visiva dal contenuto
+            margin-top: 10px; // Separazione visiva dal contenuto
+
             a {
                 color: $primary-color;
                 text-decoration: underline;
@@ -175,6 +186,4 @@ export default {
         }
     }
 }
-
-
 </style>
