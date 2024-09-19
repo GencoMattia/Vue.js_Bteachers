@@ -70,7 +70,7 @@ export default {
                 <p v-else>
                     The teacher has no ratings.
                 </p>
-                <p v-if="teacher.reviews_count" class="card-text">
+                <p v-if="teacher.reviews_count" class="card-text text-black">
                     Reviews: <strong>{{ teacher.reviews_count }}</strong>
                 </p>
             </div>
@@ -85,7 +85,8 @@ export default {
                     </span>
                 </p>
                 <p v-if="teacher.specializations.length > 3" class="expand-toggle">
-                    <a href="#" @click.prevent="toggleSpecializations">
+                    <a type="button" class="btn btn-primary"
+                    style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .2rem; --bs-btn-font-size: .75rem;"href="#" @click.prevent="toggleSpecializations">
                         {{ showAllSpecializations ? 'Mostra meno' : 'Mostra altro' }}
                     </a>
                 </p>
@@ -126,6 +127,7 @@ export default {
         position: absolute;
         top: 0;
         right: 0;
+        color: orange;
     }
 
     /* Targhetta Premium */
