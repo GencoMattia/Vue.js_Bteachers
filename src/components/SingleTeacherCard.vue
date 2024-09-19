@@ -87,7 +87,7 @@ export default {
                 <p v-if="teacher.specializations.length > 3" class="expand-toggle">
                     <a type="button" class="btn btn-primary"
                     style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .2rem; --bs-btn-font-size: .75rem;"href="#" @click.prevent="toggleSpecializations">
-                        {{ showAllSpecializations ? 'Mostra meno' : 'Mostra altro' }}
+                        {{ showAllSpecializations ? 'Show Less' : 'Show More' }}
                     </a>
                 </p>
             </div>
