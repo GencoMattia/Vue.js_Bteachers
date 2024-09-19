@@ -117,7 +117,7 @@ export default {
     }
     .itm_custom:hover{
         margin: 0 1rem;
-        color: $btn-primary-hover-bg;
+        color:$btn-primary-hover-color;
         border-radius: 50%;
     }
     @media screen and (max-width: 991px) {
