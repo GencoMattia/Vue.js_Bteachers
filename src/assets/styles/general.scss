@@ -6,6 +6,14 @@ body {
     color: $text-color;
     margin: 0;
     padding: 0;
+    position: relative;
+}
+
+header{
+    background-color: $secondary-color !important;
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }
 
 .container {
@@ -37,6 +45,10 @@ a {
 .centered-placeholder .multiselect__single,
 .centered-placeholder .multiselect__placeholder {
    font-size: 1rem;
+   /* white-space: nowrap;       
+   overflow: hidden;          
+   text-overflow: ellipsis;   
+   max-width: 160px; */
 }
 
 
@@ -45,5 +57,27 @@ a {
 
 p {
     margin: 0;
+}
+}
+
+@media screen and (max-width: 991px) {
+    .centered-placeholder .multiselect__single,
+.centered-placeholder .multiselect__placeholder {
+   
+   white-space: nowrap;       
+   overflow: hidden;          
+   text-overflow: ellipsis;   
+   max-width: 160px;
+}
+}
+
+@media screen and (max-width: 766px) {
+    .centered-placeholder .multiselect__single,
+.centered-placeholder .multiselect__placeholder {
+   
+   white-space: nowrap;       
+   overflow: hidden;          
+   text-overflow: ellipsis;   
+   max-width: 100%;
 }
 }
