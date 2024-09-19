@@ -234,15 +234,15 @@ export default {
 
 // Pulsante "Carica Altri"
 .btn-main {
-    background-color: $main-btn-primary-bg;
-    border-color: $main-btn-primary-border;
+    background-color: $btn-primary-bg;
+    border-color:$btn-primary-bg;
     color: #fff;
     padding: 10px 20px;
     font-size: 1.1rem;
 
     &:hover {
-        background-color: $main-btn-primary-hover-bg;
-        border-color: $main-btn-primary-hover-border;
+        background-color: $btn-primary-hover-color;
+        border-color: $btn-primary-hover-color;
     }
 }
 

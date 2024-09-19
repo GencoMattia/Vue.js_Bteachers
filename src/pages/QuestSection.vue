@@ -88,16 +88,24 @@ html,
     display: flex;
     border-radius: 5px;
     overflow: hidden;
-    background: rgba(196, 238, 12, 0.226);
-    border-left: 15px solid $primary-color;
+    background:$btn-primary-bg;
+    color:$link-color;
+    border-left: 15px solid $secondary-color;
     padding:15px;
     & {
         margin-top: 15px;
     }
 
     &:hover{
-        background-color: rgba(196, 238, 12, 0.432);
+        background-color:$btn-primary-hover-color;
+        color: $text-color;
     }
+    &:active{
+        background-color:$btn-primary-hover-color;
+        color: $text-color;
+    }
+
+    
     summary,p {
         position:relative;
         display:flex;

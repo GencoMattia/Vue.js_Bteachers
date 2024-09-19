@@ -197,13 +197,13 @@ export default {
         }
 
         .btn{
-            background-color: $secondary-color; // Arancione intenso
+            background-color: $btn-primary-bg; // Arancione intenso
             
             color:$link-color; // Bianco
             
 
             &:hover {
-                background-color:$link-hover-color; // Arancione molto scuro
+                background-color:$btn-primary-hover-color; // Arancione molto scuro
                  // Arancione molto scuro
                 color: #fff; // Bianco
                 transition: all .3s ease-in-out;
