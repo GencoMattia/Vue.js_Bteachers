@@ -111,26 +111,26 @@ export default {
     }
 
     .btn-main {
-        background-color: $main-btn-primary-bg;
-        border-color: $main-btn-primary-border;
+        background-color:$btn-primary-bg;
+        border-color:$btn-primary-bg;
         color: #fff;
 
         &:hover {
-            background-color: $main-btn-primary-hover-bg;
-            border-color: $main-btn-primary-hover-border;
+            background-color:$btn-primary-hover-color;
+            border-color: $btn-primary-hover-color;
         }
     }
 
     .btn-teacher {
-        background-color: $main-btn-primary-bg;
-        border-color: $secondary-border-color;
-        color: $main-background-color;
+        background-color:$btn-primary-bg;
+        border-color: $btn-primary-bg;
+        color: $background-color;
         border-radius: 8px;
 
         &:hover {
-            background-color: $main-btn-primary-hover-bg;
-            border-color: $main-btn-primary-hover-border;
-            color: $main-background-color;
+            background-color:$btn-primary-hover-color;
+            border-color: $btn-primary-hover-color;
+            color: $background-color;
         }
     }
 

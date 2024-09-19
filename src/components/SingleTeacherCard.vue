@@ -102,7 +102,7 @@ export default {
 
         .teacher-info {
             font-size: 0.9rem;
-            color: $card-text-color;
+            color: $text-color;
             margin-top: 10px;
 
             p {

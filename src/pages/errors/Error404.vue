@@ -33,7 +33,7 @@ export default {
     .container {
         max-width: 600px;
         padding: 40px;
-        background-color: $main-background-color;
+        background-color: $background-color;
         box-shadow: $card-box-shadow;
         border-radius: 8px;
 

@@ -62,8 +62,8 @@ export default {
                 v-for="(teacher, index) in teachers" :key="teacher.id" 
                 :teacher="teacher" />
         </div>
-        <div class="d-flex justify-content-center align-items-center mt-5">
-            <a href="#" type="button" class="btn btn-primary btn-lg" @click.prevent="loadMore">Load More</a>
+        <div class="d-flex justify-content-center align-items-center mt-5 mb-3">
+            <a href="#" type="button" class="btn btn- btn-lg" @click.prevent="loadMore">Load More</a>
         </div>
     </section>
 </template>
@@ -72,4 +72,13 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
+
+.btn{
+    background-color:$btn-primary-bg;
+    color: $link-color;
+    &:hover{
+        background-color: $btn-primary-hover-color;
+        color: $text-color;
+    }
+}
 </style>
