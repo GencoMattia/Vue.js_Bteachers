@@ -132,8 +132,6 @@ export default {
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-1">
 
-
-
                         <!-- select for specializations -->
 
                         <multiselect v-model="selectedSpecialization" :options="store.options"
@@ -141,7 +139,6 @@ export default {
                             track-by="field" @change="onSpecializationChange(selectedSpecialization)"
                             class="centered-placeholder">
                         </multiselect>
-
 
                     </div>
                     <!-- select for votes -->
