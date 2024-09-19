@@ -315,7 +315,7 @@ export default {
                 
                 <div class="mb-1">
                     <h5 class="text-break" >Address</h5>
-                    <a href="#" class="text-break d-block" >
+                    <a href="#" class="text-break d-block hover-filter" >
                         <font-awesome-icon icon="fa-solid fa-location-dot" class="icon-color" /> {{ profile.address }}
                     </a>
                 </div>
@@ -324,8 +324,8 @@ export default {
                 
                 <div class= "mb-1">
                     <h4 class="text-break" >Contacts</h4>
-                    <a href="#" class="text-break d-block" ><font-awesome-icon icon="fa-solid fa-phone" class="icon-color" /> {{ profile.telephone_number }}</a>
-                    <a href="#" class="text-break d-block" ><font-awesome-icon icon="fa-solid fa-envelope" class="icon-color" /> {{ profile.user.email }}</a>
+                    <a href="#" class="text-break d-block hover-filter" ><font-awesome-icon icon="fa-solid fa-phone" class="icon-color" /> {{ profile.telephone_number }}</a>
+                    <a href="#" class="text-break d-block hover-filter" ><font-awesome-icon icon="fa-solid fa-envelope" class="icon-color" /> {{ profile.user.email }}</a>
                 </div>
 
                 <div class="d-flex justify-content-center my-4" >
@@ -457,7 +457,7 @@ export default {
                 <h4 class="text-break  text-uppercase" >
                     <strong>Specializzations</strong>
                 </h4>
-                <div v-for="(specialization, index) in profile.specializations" class="border border-success border-opacity-75 rounded p-2 mb-2">
+                <div v-for="(specialization, index) in profile.specializations" class="border border-success border-opacity-75 rounded p-2 mb-2 specialization-container">
                     <p class="text-break">
                         <strong>
                             Field: {{ specialization.field }}
@@ -672,6 +672,19 @@ export default {
     }
     .message-button{
         background-color: #78da4b;
+    }
+
+    // hover 
+    .hover-filter:hover{
+        color: #78da4b;
+        filter: drop-shadow(0px 0px 5px #78da4b);
+    }
+    .specialization-container{
+        transition-duration: 1s;
+        cursor: pointer;
+    }
+    .specialization-container:hover{
+        transform: scale(1.1);
     }
 
     @media all and (max-width: 992px) {
