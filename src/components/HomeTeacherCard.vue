@@ -243,6 +243,7 @@ export default {
     top: 10px;
     left: 10px;
     border-radius: 50%;
+    
     z-index: 3;
     border: 7px solid $secondary-color;
     box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
@@ -256,9 +257,11 @@ export default {
 
 .card:hover .profile-pic img {
     transform: scale(2);
-    -o-object-position: center;
-    object-position: center;
+    -o-object-position: top;
+    object-position: top;
     transition: all 0.5s ease-in-out 0.5s;
+    
+
 }
 
 .card:hover .profile-pic svg {
