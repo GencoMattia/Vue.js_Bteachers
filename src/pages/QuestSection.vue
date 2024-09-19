@@ -39,7 +39,7 @@ export default {
                         <summary>Can I contact a teacher before booking?</summary>
                         <p>Yes, you can view teacher profiles and reach out to them for any inquiries before making a booking.</p> 
                     </details>
-                    <details class="primary">
+                    <details class="primary ">
                         <summary>What is the booking process?</summary>
                         <p>Simply select your desired teacher, choose a time slot, and complete the payment to secure your session.</p> 
                     </details>

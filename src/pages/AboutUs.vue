@@ -61,6 +61,9 @@ export default {
 @use "../assets/styles/partials/variables" as *;
 
 
+section.container{
+    color: black;
+}
 
 .teacher-card {
     margin-bottom: $card-margin-bottom;

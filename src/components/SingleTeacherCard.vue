@@ -119,6 +119,8 @@ export default {
         .card-img-top {
             width: 100%; // Immagine a tutta larghezza
             height: 100%;
+            object-position: top;
+
             object-fit: cover; // Adatta proporzioni mantenendo il ritaglio
         }
     }
