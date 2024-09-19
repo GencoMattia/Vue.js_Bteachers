@@ -44,7 +44,7 @@ export default {
     <section class="hero-section mb-4">
         <div class="container text-center ">
             <h1 class="display-3">Welcome on BTeachers!</h1>
-            <h2 class="lead mb-5">Where you can find the 
+            <h2 class="lead mb-5">Where you can find the
                 <!-- Contenitore per testo e SVG -->
                 <div class="svg-container">
                     <span class="bold-text">perfect teacher</span>
@@ -58,10 +58,12 @@ export default {
             </h2>
 
             <p>
-                At BTeachers, we connect you with the best educators in every field. Whether you’re looking for help in math, science, languages, or the arts, our platform offers a diverse range of qualified professionals ready to guide you on your educational journey.
+                At BTeachers, we connect you with the best educators in every field. Whether you’re looking for help in
+                math, science, languages, or the arts, our platform offers a diverse range of qualified professionals
+                ready to guide you on your educational journey.
             </p>
-            
-             
+
+
             <div class="filter mb-3">
                 <div class="container">
                     <div class="row">
@@ -77,8 +79,8 @@ export default {
                             </select>
                         </div>
                     </div>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -107,24 +109,24 @@ export default {
     }
 
     .btn-main {
-        background-color:$btn-primary-bg;
-        border-color:$btn-primary-bg;
+        background-color: $btn-primary-bg;
+        border-color: $btn-primary-bg;
         color: #fff;
 
         &:hover {
-            background-color:$btn-primary-hover-color;
+            background-color: $btn-primary-hover-color;
             border-color: $btn-primary-hover-color;
         }
     }
 
     .btn-teacher {
-        background-color:$btn-primary-bg;
+        background-color: $btn-primary-bg;
         border-color: $btn-primary-bg;
         color: $background-color;
         border-radius: 8px;
 
         &:hover {
-            background-color:$btn-primary-hover-color;
+            background-color: $btn-primary-hover-color;
             border-color: $btn-primary-hover-color;
             color: $background-color;
         }
@@ -138,25 +140,31 @@ export default {
 
     .svg-container svg {
         position: absolute;
-        top: 1em; /* Spostiamo l'SVG in basso rispetto al testo */
+        top: 1em;
+        /* Spostiamo l'SVG in basso rispetto al testo */
         left: 0;
     }
 
     /* Stile per l'animazione del percorso SVG */
     svg path {
-        stroke: #fff; /* Colore della linea disegnata */
-        stroke-width: 3; /* Spessore della linea */
+        stroke: #fff;
+        /* Colore della linea disegnata */
+        stroke-width: 3;
+        /* Spessore della linea */
         fill: none;
-        stroke-dasharray: 2000; /* Lunghezza del tratto tratteggiato (valore molto grande per coprire l'intero path) */
-        stroke-dashoffset: 2000; /* Nascondiamo completamente il tratto all'inizio */
-        animation: draw 1.5s ease-out forwards; /* Animazione con "forwards" per mantenere lo stato finale */
+        stroke-dasharray: 2000;
+        /* Lunghezza del tratto tratteggiato (valore molto grande per coprire l'intero path) */
+        stroke-dashoffset: 2000;
+        /* Nascondiamo completamente il tratto all'inizio */
+        animation: draw 1.5s ease-out forwards;
+        /* Animazione con "forwards" per mantenere lo stato finale */
     }
 
     @keyframes draw {
         to {
-            stroke-dashoffset: 0; /* Riduce progressivamente lo `stroke-dashoffset` fino a 0 */
+            stroke-dashoffset: 0;
+            /* Riduce progressivamente lo `stroke-dashoffset` fino a 0 */
         }
     }
 }
 </style>
-
