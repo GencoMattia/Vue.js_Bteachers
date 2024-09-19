@@ -45,17 +45,17 @@ export default {
             </router-link>
         </a>
 
-        <form class="d-flex flex-grow-1 mx-3 bt_custom_search" role="search" @submit.prevent="getSearchBarValue">
+        <!-- <form class="d-flex flex-grow-1 mx-3 bt_custom_search" role="search" @submit.prevent="getSearchBarValue">
             <input 
                 class="form-control me-2 flex-grow-1 border border-0 rounded-pill search_custom" 
                 type="search" 
                 placeholder="Search your Teacher" 
                 v-model="searchBarQuery"
                 aria-label="Search">
-            <button class="btn btn-outline-danger border border-0 rounded-pill" type="submit">
+            <button class="btn btn-outline-danger border border-0 rounded-pill search_custom" type="submit">
                 <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
             </button>
-        </form>
+        </form> -->
 
         <!-- Hamburger button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,6 +65,19 @@ export default {
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav bt_custom ">
+                <li class="navbar-nav pt-2 search_lg">
+                    <form class="d-flex flex-grow-1 mx-3 bt_custom_search" role="search" @submit.prevent="getSearchBarValue">
+            <input 
+                class="form-control me-2 flex-grow-1 border border-0 rounded-pill " 
+                type="search" 
+                placeholder="Search your Teacher" 
+                v-model="searchBarQuery"
+                aria-label="Search">
+            <button class="btn btn-outline-danger border border-0 rounded-pill " type="submit">
+                <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+            </button>
+        </form>
+                </li>
                 <li class="itm_custom nav-item mb-1">
                     <router-link :to="{name: navLinkNames[0].name}">
                         {{ navLinkNames[0].label }}
@@ -87,12 +100,17 @@ export default {
 
 <style lang="scss" scoped>
     @use "../assets/styles/partials/variables" as *;
-
+    .search_lg{
+        width: 58vw;
+        
+    }
     .bt_custom{
         display: flex;
         flex-direction: row;
         text-align: end;
         margin: 0 .5rem;
+        justify-content: center;
+        align-items: center;
     }
     .itm_custom{
         margin: 0 1rem;
@@ -108,7 +126,7 @@ export default {
         flex-direction: column;
         text-align: end;
         margin: 0 .5rem;
-
+        justify-content: end;
     }
     
     .itm_custom:nth-child(1){
@@ -117,9 +135,10 @@ export default {
     }
     .itm_custom:nth-child(2){
         margin: 1rem 0;
-
     }
-    
+    .search_lg{
+        width: 80vw;
+    }
     }
 
     @media screen and (max-width: 466px) {
