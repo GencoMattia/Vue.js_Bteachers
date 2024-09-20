@@ -279,13 +279,13 @@ export default {
 </script>
 
 <template>
-    <section class=" container-fluid single-profile">
+    <section class=" container-fluid single-profile text-dark">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8 text-center my-4 d-flex justify-content-around align-items-center">
+            <div class="col-12 col-md-10 col-lg-8 text-center mt-3 d-flex justify-content-around align-items-center">
                 <div class="line d-inline-block" :class="profile.is_premium?'gold-line':''"></div>
                 <h1 class="d-inline-block">
                     <strong>Welcome to 
-                        <em :class="profile.is_premium?'gold':''">{{ profile.user.name }} {{ profile.user.surname }}'s</em> 
+                        <em :class="profile.is_premium?'gold-text':''">{{ profile.user.name }} {{ profile.user.surname }}'s</em> 
                         profile</strong>
                 </h1>
                 <div class="line d-inline-block" :class="profile.is_premium?'gold-line':''"></div>
@@ -306,10 +306,10 @@ export default {
                     </h3> 
                     <div class="my-2 text-center" v-if="averageVote > 0">
                         <span v-for="n in averageVote" :key="n">
-                            <font-awesome-icon icon="fa-solid fa-star" class="icon-color"/>
+                            <font-awesome-icon icon="fa-solid fa-star" class="icon-star"/>
                         </span>
                         <span v-for="x in star - averageVote" :key="x">
-                            <font-awesome-icon icon="fa-regular fa-star" class="icon-color"  />
+                            <font-awesome-icon icon="fa-regular fa-star" class="icon-star"  />
                         </span>
                     </div>
                     <div class="text-break" v-else>
@@ -386,7 +386,7 @@ export default {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" @click="reviewValidation()">Send review</button>
+                                <button type="button" class="btn hover-button" @click="reviewValidation()">Send review</button>
                             </div>
                             </div>
                         </div>
@@ -418,7 +418,7 @@ export default {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" @click="sendVote">Send vote</button>
+                                <button type="button" class="btn hover-button" @click="sendVote">Send vote</button>
                             </div>
                             </div>
                         </div>
@@ -457,12 +457,12 @@ export default {
             </div>
         </div>
         <section class="d-flex justify-content-center my-4">
-            <div v-if="reviewError" class="fw-bold text-center me-3 big-screen-review-button success p-2" :class="reviewError.success?'':'display-none'">{{ reviewError.success }}</div>
-            <div v-if="voteError" class="fw-bold text-center big-screen-review-button success p-2" :class="voteError.success?'':'display-none'">{{ voteError.success }}</div>
+            <div v-if="reviewError" class="fw-bold text-center me-3 big-screen-success success p-2" :class="reviewError.success?'':'display-none'">{{ reviewError.success }}</div>
+            <div v-if="voteError" class="fw-bold text-center big-screen-success success p-2" :class="voteError.success?'':'display-none'">{{ voteError.success }}</div>
         </section>
 
+        <!-- section specialization  -->
         <div class="row justify-content-center">
-            <!-- section specialization  -->
             <div class="col-11 col-sm-8 specialization my-4 text-center">
                 <h4 class="text-break  text-uppercase" >
                     <strong>Specializzations</strong>
@@ -606,9 +606,7 @@ export default {
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     }
     .single-profile{
-        background-color: white;
         margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
     }
     .profile-img-container{
         align-self: center;
@@ -631,19 +629,34 @@ export default {
         border-radius: 5px;
     }
     .gold{
-        color: #ff7b00;
-        filter: drop-shadow(0px 0px 5px #ff7b00);
+        // color: #ff7b00;
+        // filter: drop-shadow(0px 0px 5px #ff7b00);
+        color: #AEEAF5;
+        filter: drop-shadow(0px 0px 5px #AEEAF5);
     }
     .gold-line{
-        background-color: #ff7b00;
-        color: #ff7b00;
-        filter: drop-shadow(0px 0px 5px #ff7b00);
+        // background-color: #ff7b00;
+        // color: #ff7b00;
+        // filter: drop-shadow(0px 0px 5px #ff7b00);
+        background-color: #0D6675;
+        color: #0D6675;
+        filter: drop-shadow(0px 0px 5px #0D6675);
+    }
+    .gold-text{
+        color: #0D6675;
+        filter: drop-shadow(0px 0px 5px #0D6675);
     }
     .icon-color{
-        color: #78da4b;
+        // color: #78da4b;
+        // color: #C27538;
+        color: #0F8EA3;
+    }
+    .icon-star{
+        color: #AEEAF5;
+        filter: drop-shadow(0px 0px 5px #AEEAF5);
     }
     .contact-button{
-        background-color: #78da4b;
+        background-color: #C27538;
         color: white;
     }
     .specialization{
@@ -668,25 +681,28 @@ export default {
         color: black;
     }
     #review-model-content{
-        background-image: linear-gradient(rgba(75, 209, 158, 0.474), rgba(51, 121, 11, 0.421)),url(../assets/img/concept-banner-setting-five-star-goal_1346034-1857.avif);
+        background-image: linear-gradient(rgba(169, 237, 113, 0.378), rgba(21, 170, 170, 0.421)),url(../assets/img/concept-banner-setting-five-star-goal_1346034-1857.avif);
         background-size: cover;
         color: white;
     }
     .transparent{
-        background-color: transparent;
+        // background-color: transparent;
         // color: white;
         // border: 1px solid goldenrod;
+        background-color: rgba(255, 255, 255, 0.493);
     }
     .review-inputs{
-        color: white;
+        // color: white;
     }
     #vote-model-content{
-        background-image:  linear-gradient(rgba(75, 209, 158, 0.474), rgba(94, 210, 28, 0.312)),url(../assets/img/hd-five-stars-customer-rating-feedback-concept-yellow-background_1409-4935.avif);
+        background-image:  linear-gradient(rgba(199, 226, 78, 0.39), rgba(70, 230, 193, 0.312)),url(../assets/img/hd-five-stars-customer-rating-feedback-concept-yellow-background_1409-4935.avif);
         background-size: cover;
         
     }
     .vote-select{
-        background-color: transparent;
+        // background-color: transparent;
+        background-color: rgba(255, 255, 255, 0.493);
+
     }
     #message-form-body{
         background-image: linear-gradient(rgba(19, 59, 44, 0.474), rgba(94, 210, 28, 0.312)),url(../assets/img/yugioh_card_art_for_A_watercol.jpeg);
@@ -696,13 +712,16 @@ export default {
         box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
     }
     .message-button{
-        background-color: #78da4b;
+        background-color: #C27538;
+        border: none;
     }
 
     // hover 
     .hover-filter:hover{
-        color: #78da4b;
-        filter: drop-shadow(0px 0px 5px #78da4b);
+        // color: #78da4b;
+        // filter: drop-shadow(0px 0px 5px #78da4b);
+        color: #AEEAF5;
+        filter: drop-shadow(0px 0px 5px #AEEAF5);
     }
     .specialization-container{
         transition-duration: 1s;
@@ -724,8 +743,14 @@ export default {
     .margin-auto{
         margin: auto;
     }
+    .hover-button{
+        background-color: #C27538;
+        border: none
+    }
     .hover-button:hover{
-        filter: drop-shadow(0px 0px 5px #78da4b);
+        // filter: drop-shadow(0px 0px 5px #78da4b);
+        background-color: #0D6675;
+        filter: drop-shadow(0px 0px 5px #0D6675);
     }
 
     @media all and (max-width: 992px) {
@@ -738,6 +763,9 @@ export default {
         }
         
         .big-screen-review-button{
+            display: none;
+        }
+        .big-screen-success{
             display: none;
         }
     }
@@ -758,6 +786,10 @@ export default {
         .contact-button{
             display: none;
         }
+        .small-screen-review-button{
+            background-color: #C27538;
+            border: none;
+        }
     }
 
     @media all and (min-width: 576px) {
@@ -765,14 +797,22 @@ export default {
             display: flex;
             justify-content: space-between;
         }
+        .big-screen-review-button{
+            background-color: #C27538;
+            border: none;
+        }
         .small-screen-review-button{
-            margin-bottom: 10px;
+            margin-bottom: .5rem;
+            background-color: #C27538;
+            border: none
         }
     }  
 
     @media all and (max-width: 365px) {
         .small-screen-review-button{
             margin-bottom: .5rem;
+            background-color: #C27538;
+            border: none
         }
     }
 </style>
