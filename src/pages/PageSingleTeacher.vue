@@ -425,12 +425,13 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- reviews  -->
             <div class="col-4 reviews my-4">
                 <h4 class="text-break text-center my-3">
                     <strong>Reviews</strong>
                 </h4>
                 <div v-if="profile.reviews.length > 0">
-                    <div v-for="(review, index) in profile.reviews" :key="review"  class="p-2 mb-2">
+                    <div v-for="(review, index) in profile.reviews" :key="review"  class="p-2 mb-2 top-review-container">
                         <p>
                             <strong v-if="review.name">
                                 <font-awesome-icon icon="fa-solid fa-user" class="icon-color"/> {{ review.name }} {{ review.surname }}
@@ -467,7 +468,7 @@ export default {
                 <h4 class="text-break  text-uppercase" >
                     <strong>Specializzations</strong>
                 </h4>
-                <div v-for="(specialization, index) in profile.specializations" class="border border-success border-opacity-75 rounded p-2 mb-2 specialization-container">
+                <div v-for="(specialization, index) in profile.specializations" class="container-border p-2 mb-2 specialization-container">
                     <p class="text-break">
                         <strong>
                             Field: {{ specialization.field }}
@@ -484,13 +485,13 @@ export default {
 
         <!-- reviews section  -->
         <div class="row justify-content-center">
-            <div class="col-11 col-sm-8 reviews-small-screen my-4 border border-success border-opacity-75 rounded p-3">
+            <div class="col-11 col-sm-8 reviews-small-screen my-4 p-3 container-border">
                 <h4 class="text-break text-center my-3">
                     <strong>Reviews</strong>
                 </h4>
                 <div v-if="profile.reviews.length > 0">
                     <div v-for="(review, index) in profile.reviews" :key="review"  class="mb-2">
-                        <p class="border border-success border-opacity-75 rounded p-2">
+                        <p class="container-border p-2 review-container">
                             <strong v-if="review.name">
                                 <font-awesome-icon icon="fa-solid fa-user" class="icon-color"/> {{ review.name }} {{ review.surname }}
                             </strong>
@@ -523,8 +524,6 @@ export default {
                         <div v-if="voteError" class="fw-bold text-center success margin-auto p-2 w-75" :class="voteError.success?'':'display-none'">{{ voteError.success }}</div>
                     </div>
                 </section>
-                <!-- <section class="d-flex justify-content-center my-3">
-                </section> -->
             </div>
         </div>
 
@@ -668,8 +667,22 @@ export default {
         overflow: scroll;
         max-height: 30rem;
     }
+    .top-review-container{
+        background-color: #7f937a;
+        border-radius: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    }
+    .top-review-container:hover{
+        filter: drop-shadow(0px 0px 5px $btn-primary-bg);
+    
+    }
     .reviews-small-screen{
         display: none;
+    }
+    .container-border{
+        border: 1px solid $secondary-color;
+        border-radius: .6rem;
     }
     #reviewModel{
         color: black;
@@ -723,6 +736,9 @@ export default {
     }
     .specialization-container:hover{
         transform: scale(1.1);
+    }
+    .review-container:hover{
+        filter: drop-shadow(0px 0px 5px $btn-primary-bg);
     }
     .success{
         background-color: #78da4bc1;
