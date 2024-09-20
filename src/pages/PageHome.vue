@@ -1,13 +1,21 @@
 <script>
-import CarouselHome from '@/components/CarouselHome.vue';
+import HomeTeachersShowcase from '@/components/HomeTeachersShowcase.vue';
+import Jumbotron from '@/components/Jumbotron.vue';
+import ExploreSpecializations from '@/components/ExploreSpecializations.vue';
 import { store } from '@/store';
+import AboutUs from './AboutUs.vue';
+import QuestSection from './QuestSection.vue';
 // import ProjectsList from '../components/ProjectsList.vue';
 
 export default {
 
     components: {
-        CarouselHome
+        HomeTeachersShowcase,
+        Jumbotron,
+        ExploreSpecializations,
         // ProjectsList,
+        AboutUs,
+        QuestSection
     },
 
     data() {
@@ -30,42 +38,10 @@ export default {
 
 <template>
     <main>
-        <div class="home-page">
-            <!-- Sezione Hero -->
-            <section class="hero-section mb-4">
-                <div class="container text-center ">
-                    <h1 class="display-3">Benvenuto su BTeachers!</h1>
-                    <p class="lead">Trova l'insegnante perfetto per imparare ciò che desideri.</p>
-                    <div class="mt-4">
-                        <!-- <router-link :to="{ name: 'projects-list' }" class="btn btn-main btn-lg">Trova il tuo Insegnante</router-link> -->
-                    </div>
-                    <div class="btn btn-primary">
-                        <a href="http://127.0.0.1:8000/">
-                            Sei un insegnante?
-                        </a>
-                    </div>
-                    <div class="filter mb-3">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8 col-sm-12">
-                                    <select class="form-select " aria-label="default"
-                                        @change="getSpecialization($event.target.value)">
-                                        <option value="" selected>
-                                            Select desired specialization
-                                        </option>
-                                        <option v-for="specialization in store.specializations"
-                                            :value="specialization.field">
-                                            {{ specialization.field }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <!-- Sezione Caratteristiche -->
+        <!-- Sezione Hero -->
+        <Jumbotron />
+
+        <!-- Sezione Caratteristiche
         <section class="features-section">
             <div class="container">
                 <div class="row d-flex justify-content-between mb-3">
@@ -152,7 +128,7 @@ export default {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="container">
                 <div class="row">
                     <div class="col-md-4 text-center">
@@ -172,54 +148,20 @@ export default {
                     </div>
                 </div>
             </div> -->
-        </section>
-        <section>
-            <div class="row carousel justify-content-end">
-                <div class="col-12 ">
-                    <CarouselHome />
-                </div>
-            </div>
-        </section>
-    </main>
+        <!-- </section> -->
+
+        <HomeTeachersShowcase />
+        <ExploreSpecializations />
+        <AboutUs />
+        <QuestSection/>
+        
+</main>
 </template>
 
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
 .home-page {
-    .hero-section {
-        background-color: $primary-color;
-        color: #fff;
-        padding: 100px 0;
-
-        h1 {
-            font-weight: 700;
-        }
-
-        .btn-main {
-            background-color: $main-btn-primary-bg;
-            border-color: $main-btn-primary-border;
-            color: #fff;
-
-            &:hover {
-                background-color: $main-btn-primary-hover-bg;
-                border-color: $main-btn-primary-hover-border;
-            }
-        }
-
-        .btn-teacher {
-            background-color: $main-btn-primary-bg; // Arancione intenso
-            border-color: $secondary-border-color; // Arancione intenso
-            color: $main-background-color; // Bianco
-            border-radius: 8px;
-
-            &:hover {
-                background-color: $main-btn-primary-hover-bg; // Arancione molto scuro
-                border-color: $main-btn-primary-hover-border; // Arancione molto scuro
-                color: $main-background-color; // Bianco
-            }
-        }
-    }
 
     .features-section {
         padding: 60px 0;

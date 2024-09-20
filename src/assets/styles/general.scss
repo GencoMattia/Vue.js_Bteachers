@@ -6,6 +6,14 @@ body {
     color: $text-color;
     margin: 0;
     padding: 0;
+    position: relative;
+}
+
+header{
+    background-color: $secondary-color !important;
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }
 
 .container {
@@ -18,8 +26,8 @@ body {
     color: #fff;
 
     &:hover {
-    background-color: $primary-hover-color;
-    border-color: $primary-hover-color;
+    background-color: $btn-primary-hover-color;
+    border-color: $btn-primary-hover-color;
     }
 }
 
@@ -31,4 +39,46 @@ router-link{
 a {
     text-decoration: none;
     color:inherit;
+}
+
+/* mulstiselect scss */
+
+.centered-placeholder .multiselect__single,
+.centered-placeholder .multiselect__placeholder {
+   font-size: 1rem;
+   /* white-space: nowrap;       
+   overflow: hidden;          
+   text-overflow: ellipsis;   
+   max-width: 160px; */
+}
+
+
+.centered-placeholder .multiselect__select::before{
+    top: 77%;
+
+p {
+    margin: 0;
+}
+}
+
+@media screen and (max-width: 991px) {
+    .centered-placeholder .multiselect__single,
+.centered-placeholder .multiselect__placeholder {
+   
+   white-space: nowrap;       
+   overflow: hidden;          
+   text-overflow: ellipsis;   
+   max-width: 160px;
+}
+}
+
+@media screen and (max-width: 766px) {
+    .centered-placeholder .multiselect__single,
+.centered-placeholder .multiselect__placeholder {
+   
+   white-space: nowrap;       
+   overflow: hidden;          
+   text-overflow: ellipsis;   
+   max-width: 100%;
+}
 }

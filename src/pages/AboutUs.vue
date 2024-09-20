@@ -1,0 +1,125 @@
+<script>
+
+import QuestSection from './QuestSection.vue';
+
+export default {
+    
+    components: {
+        QuestSection
+    },
+
+    data() {
+        return {
+            
+        };
+    },
+
+    computed: {
+        
+    },
+
+    props: {
+
+    }
+};
+</script>
+
+<template>
+    <section class="container">
+        <div class="row mb-2">
+            <div class="col-md-6 col-sm-12 ">
+                <h2>About Us</h2>
+                <p class="mb-4">At BTeachers, our mission is to empower learners by connecting them with exceptional educators who inspire and facilitate their educational journeys. We envision being the leading platform for personalized learning experiences, where every student can find the right teacher to unlock their potential.</p>
+                <div class="col-12 d-flex flex-wrap justify-content-around">
+                    <div class="col-md-6 col-sm-12 ">
+                        <h2>5000 teachers</h2>
+                        <p>Since our inception, we have successfully connected over 100 students with qualified teachers, ensuring a tailored learning experience that meets individual needs.</p>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <h2>20 specializations</h2>
+                        <p>Our platform features a diverse range of 50 specializations, from math and science to languages and the arts, allowing learners to explore various subjects and find their perfect match.</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 ">
+                        <h2>100 countries</h2>
+                        <p>BTeachers has expanded its reach to 15 countries, making quality education accessible to learners around the globe, regardless of their location.</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <h2>100
+                            values</h2>
+                        <p>We uphold 4 core values: Diversity, Quality, Accessibility, and Community, ensuring that our platform remains a supportive environment for both learners and educators.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 d-flex">
+                <img class="img-fluid  rounded" src="../assets/img/faq-section-image.webp" alt="Responsive image teacher-img">
+            </div>
+        </div>
+    </section>
+</template>
+
+<style lang="scss" scoped>
+@use "../assets/styles/partials/variables" as *;
+
+
+section.container{
+    color: black;
+}
+
+.teacher-card {
+    margin-bottom: $card-margin-bottom;
+    box-shadow: $card-box-shadow;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: $background-color;
+
+    &:hover {
+        transform: $card-hover-transform;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-bottom: 2px solid $secondary-color;
+    }
+
+    .card-body {
+        padding: 20px;
+        text-align: center;
+
+        .card-title {
+            color: $primary-color;
+            margin-bottom: 10px;
+        }
+
+        .specialization {
+            
+            color: $text-color;
+        }
+
+        .teacher-info {
+            font-size: 0.9rem;
+            
+            margin-top: 10px;
+
+            p {
+                margin: 0;
+            }
+
+            strong {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+.router-link {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+</style>
