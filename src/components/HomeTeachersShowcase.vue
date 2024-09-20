@@ -47,7 +47,7 @@ export default {
 
 <template>
     <section class="container mb-5">
-        <div class="text-center mb-5">
+        <div class="text-center mb-5 text-black">
             <h1>
                 Meet Our Expert Teachers
             </h1>
