@@ -591,6 +591,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use "../assets/styles/partials/variables" as *;
+
     .line{
         width: 8rem;
         height: .3rem;
@@ -629,34 +631,29 @@ export default {
         border-radius: 5px;
     }
     .gold{
-        // color: #ff7b00;
-        // filter: drop-shadow(0px 0px 5px #ff7b00);
-        color: #AEEAF5;
-        filter: drop-shadow(0px 0px 5px #AEEAF5);
+        color: $link-hover-color;
+        filter: drop-shadow(0px 0px 5px $link-hover-color);
     }
     .gold-line{
-        // background-color: #ff7b00;
-        // color: #ff7b00;
-        // filter: drop-shadow(0px 0px 5px #ff7b00);
-        background-color: #0D6675;
-        color: #0D6675;
-        filter: drop-shadow(0px 0px 5px #0D6675);
+        background-color: $btn-primary-hover-color;
+        color: $btn-primary-hover-color;
+        filter: drop-shadow(0px 0px 5px $btn-primary-hover-color);
     }
     .gold-text{
-        color: #0D6675;
-        filter: drop-shadow(0px 0px 5px #0D6675);
+        color: $btn-primary-hover-color;
+        filter: drop-shadow(0px 0px 5px $btn-primary-hover-color);
     }
     .icon-color{
         // color: #78da4b;
         // color: #C27538;
-        color: #0F8EA3;
+        color: $secondary-color;
     }
     .icon-star{
-        color: #AEEAF5;
-        filter: drop-shadow(0px 0px 5px #AEEAF5);
+        color: $link-hover-color;
+        filter: drop-shadow(0px 0px 5px $link-hover-color);
     }
     .contact-button{
-        background-color: #C27538;
+        background-color: $btn-primary-bg;
         color: white;
     }
     .specialization{
@@ -691,9 +688,6 @@ export default {
         // border: 1px solid goldenrod;
         background-color: rgba(255, 255, 255, 0.493);
     }
-    .review-inputs{
-        // color: white;
-    }
     #vote-model-content{
         background-image:  linear-gradient(rgba(199, 226, 78, 0.39), rgba(70, 230, 193, 0.312)),url(../assets/img/hd-five-stars-customer-rating-feedback-concept-yellow-background_1409-4935.avif);
         background-size: cover;
@@ -712,7 +706,7 @@ export default {
         box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
     }
     .message-button{
-        background-color: #C27538;
+        background-color: $btn-primary-bg;
         border: none;
     }
 
@@ -720,8 +714,8 @@ export default {
     .hover-filter:hover{
         // color: #78da4b;
         // filter: drop-shadow(0px 0px 5px #78da4b);
-        color: #AEEAF5;
-        filter: drop-shadow(0px 0px 5px #AEEAF5);
+        color: $link-hover-color;
+        filter: drop-shadow(0px 0px 5px $link-hover-color);
     }
     .specialization-container{
         transition-duration: 1s;
@@ -744,13 +738,13 @@ export default {
         margin: auto;
     }
     .hover-button{
-        background-color: #C27538;
+        background-color: $btn-primary-bg;
         border: none
     }
     .hover-button:hover{
         // filter: drop-shadow(0px 0px 5px #78da4b);
-        background-color: #0D6675;
-        filter: drop-shadow(0px 0px 5px #0D6675);
+        background-color: $btn-primary-hover-color;
+        filter: drop-shadow(0px 0px 5px $btn-primary-hover-color);
     }
 
     @media all and (max-width: 992px) {
@@ -787,7 +781,7 @@ export default {
             display: none;
         }
         .small-screen-review-button{
-            background-color: #C27538;
+            background-color: $btn-primary-bg;
             border: none;
         }
     }
@@ -798,12 +792,12 @@ export default {
             justify-content: space-between;
         }
         .big-screen-review-button{
-            background-color: #C27538;
+            background-color: $btn-primary-bg;
             border: none;
         }
         .small-screen-review-button{
             margin-bottom: .5rem;
-            background-color: #C27538;
+            background-color: $btn-primary-bg;
             border: none
         }
     }  
@@ -811,7 +805,7 @@ export default {
     @media all and (max-width: 365px) {
         .small-screen-review-button{
             margin-bottom: .5rem;
-            background-color: #C27538;
+            background-color: $btn-primary-bg;
             border: none
         }
     }
