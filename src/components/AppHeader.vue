@@ -40,8 +40,8 @@ export default {
         <nav class="navbar navbar-expand-lg">
     <div class="container-fluid d-flex flex-row">
         <a class="navbar-brand navbar-expand-lg" href="#">
-            <router-link class="logo" :to="{ name: navLinkNames[1].name }">
-                BTeacher
+            <router-link  :to="{ name: navLinkNames[1].name }">
+                <img class="logo" src="../assets/img/abc123.png" alt="">
             </router-link>
         </a>
 
@@ -148,6 +148,10 @@ export default {
         flex-grow: 0;
     }
 
+    .logo {
+            height: 56px;
+            width: 100%;
+        }
     
     // Header
     .header {
@@ -159,10 +163,7 @@ export default {
         
 
         }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+        
 
         .nav-links {
             list-style: none;
