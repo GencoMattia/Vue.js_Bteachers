@@ -64,6 +64,7 @@ export default {
             axios.get("http://127.0.0.1:8000/api/profiles", { params })
                 .then((response) => {
                     if (reset) {
+                        console.log(this.selectedSpecialization);
                         this.teachers = response.data.results.data;
                     } else {
                         this.teachers.push(...response.data.results.data);
@@ -77,7 +78,9 @@ export default {
         },
 
         onSpecializationChange(specialization) {
+            console.log(this.selectedSpecialization);
             this.selectedSpecialization = specialization || null;
+            
         },
 
         onVoteChange(vote) {
@@ -112,8 +115,15 @@ export default {
         // Recupera la specializzazione dai parametri URL se presente
         const specializationFromUrl = this.$route.query.specialization;
         if (specializationFromUrl) {
-            this.selectedSpecialization = specializationFromUrl;
+            for (let i = 0; i < store.options.length; i++) {
+                if(specializationFromUrl == store.options[i].field){
+                    this.selectedSpecialization = [
+                { field: specializationFromUrl, emoji: store.options[i].emoji }
+            ]
             this.fetchTeachersProfiles(1, true); // Avvia subito la ricerca
+                };
+            }
+            
         } else {
             this.fetchTeachersProfiles();
         }

@@ -64,14 +64,14 @@ export default {
              
             <div class="filter mb-3">
                 <div class="container">
-                    <div class="row">
+                    <div class="row d-flex justify-content-center">
                         <div class="col-lg-8 col-md-8 col-sm-12">
                             <select class="form-select " aria-label="default"
                                 @change="getSpecialization($event.target.value)">
                                 <option value="" selected>
                                     Select desired specialization
                                 </option>
-                                <option v-for="specialization in store.specializations" :value="specialization.field">
+                                <option v-for="specialization in store.options" :value="specialization.field">
                                     {{ specialization.field }}
                                 </option>
                             </select>
