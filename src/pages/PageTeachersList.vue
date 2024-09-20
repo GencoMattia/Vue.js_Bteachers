@@ -112,8 +112,15 @@ export default {
         // Recupera la specializzazione dai parametri URL se presente
         const specializationFromUrl = this.$route.query.specialization;
         if (specializationFromUrl) {
-            this.selectedSpecialization = specializationFromUrl;
+            for (let i = 0; i < store.options.length; i++) {
+                if(specializationFromUrl == store.options[i].field){
+                    this.selectedSpecialization = [
+                { field: specializationFromUrl, emoji: store.options[i].emoji }
+            ]
             this.fetchTeachersProfiles(1, true); // Avvia subito la ricerca
+                };
+            }
+            
         } else {
             this.fetchTeachersProfiles();
         }
