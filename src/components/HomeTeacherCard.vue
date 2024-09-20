@@ -132,22 +132,10 @@ export default {
     transition: all 0.5s ease-in-out 0s;
 }
 
-.card .profile-pic svg {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: 0px 0px;
-    object-position: 0px 0px;
-    transform-origin: 45% 20%;
-    transition: all 0.5s ease-in-out 0s;
-}
-
 .card .bottom {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Assicura che gli elementi all'interno siano separati verticalmente */
     position: absolute;
     bottom: 3px;
     left: 3px;
@@ -161,14 +149,21 @@ export default {
     transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 }
 
+/* Allineamento del contenuto della card */
 .card .bottom .content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
+    justify-content: flex-start; /* Allinea il testo in alto */
+    align-items: center;         /* Centra il testo orizzontalmente */
+    height: 100%;
     padding: 1rem;
-    /* Aggiungi padding per evitare che gli elementi tocchino i bordi */
+    transition: all 0.5s ease;   /* Transizione per l'hover */
+}
+
+/* Durante l'hover, il testo si centra verticalmente e orizzontalmente */
+.card:hover .bottom .content {
+    justify-content: center; /* Allinea il testo al centro verticale */
+    align-items: center;     /* Mantiene il testo al centro orizzontale */
 }
 
 .card .bottom .content .name {
@@ -187,12 +182,10 @@ export default {
 
 .card .bottom .bottom-bottom {
     margin-top: auto;
-    /* Sposta la sezione in basso */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    /* Aggiungi padding */
 }
 
 .card .bottom .bottom-bottom .social-links-container {
@@ -243,7 +236,6 @@ export default {
     top: 10px;
     left: 10px;
     border-radius: 50%;
-    
     z-index: 3;
     border: 7px solid $secondary-color;
     box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
@@ -260,8 +252,6 @@ export default {
     -o-object-position: top;
     object-position: top;
     transition: all 0.5s ease-in-out 0.5s;
-    
-
 }
 
 .card:hover .profile-pic svg {
@@ -269,3 +259,4 @@ export default {
     transition: all 0.5s ease-in-out 0.5s;
 }
 </style>
+
