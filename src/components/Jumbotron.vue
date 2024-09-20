@@ -42,7 +42,7 @@ export default {
 
 <template>
     <section class="hero-section mb-4">
-        <div class="container text-center ">
+        <div class="container text-container text-center">
             <h1 class="display-3">Welcome on BTeachers!</h1>
             <h2 class="lead mb-5">Where you can find the
                 <!-- Contenitore per testo e SVG -->
@@ -90,7 +90,7 @@ export default {
 @use "../assets/styles/partials/variables" as *;
 
 .hero-section {
-    background-image: url(../assets/img/jumbotron-background.jpg);
+    background-image: url(../assets/img/Jumbo-img-02.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -99,6 +99,12 @@ export default {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     transition: background-position 0.1s ease-out;
+
+    .text-container {
+        background-color: rgba(63, 107, 90, 0.2);
+        box-shadow: 0 0 15px 5px rgba(63, 107, 90, 0.3);
+        border-radius: 10px;
+    }
 
     h1 {
         font-weight: 700;
