@@ -47,9 +47,9 @@ export default {
 
 
         <!-- Hamburger button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
 
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -89,6 +89,12 @@ export default {
 
 <style lang="scss" scoped>
     @use "../assets/styles/partials/variables" as *;
+    .custom-toggler{
+        border-color: white;
+    }
+    .custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
     .search_lg{
         width: 58vw;
         
