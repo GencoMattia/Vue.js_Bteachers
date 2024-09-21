@@ -52,7 +52,10 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
-
+section.container{
+    color: black;
+    padding-bottom: 12rem;
+}
 
 html,
     body {
