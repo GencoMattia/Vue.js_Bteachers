@@ -613,6 +613,7 @@ export default {
         align-self: center;
         .profile-img{
             width: 100%;
+            max-height: 630px;
             border: 0px solid transparent;
             border-radius: 1.5rem;
             align-items: center;

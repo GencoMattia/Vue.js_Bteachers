@@ -63,6 +63,7 @@ export default {
 
 section.container{
     color: black;
+    padding-bottom: 18.5rem;
 }
 
 .teacher-card {
