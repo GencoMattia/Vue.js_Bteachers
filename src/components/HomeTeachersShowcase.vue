@@ -36,7 +36,7 @@ export default {
         }
     },
     loadMore() {
-        this.fetchTeachersProfiles(this.currentPage + 1);
+        this.getTeacher(this.currentPage + 1);
     },
 
     created() {
