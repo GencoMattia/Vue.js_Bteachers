@@ -20,24 +20,28 @@ export default {
     },
 
     methods: {
-        getTeacher(page = 1) {
+        getTeacher(page = 1 , reset = false) {
             axios.get("http://127.0.0.1:8000/api/profiles/premium", {
                 params: {
                     page: page
                 }
             }).then((response) => {
                 /* console.log(response.data.results); */
-
-                this.teachers.push(...response.data.results.data);
-                this.currentPage = response.data.results.currentPage;
+                if (reset) {
+                        this.teachers = response.data.results.data;
+                    } else {
+                        this.teachers.push(...response.data.results.data);
+                    }
+                    this.currentPage = page;
             }).catch((err) => {
                 console.error();
             })
-        }
+        },
+        loadMore() {
+        this.getTeacher(this.currentPage + 1);
     },
-    loadMore() {
-        this.fetchTeachersProfiles(this.currentPage + 1);
     },
+
 
     created() {
         this.getTeacher();
