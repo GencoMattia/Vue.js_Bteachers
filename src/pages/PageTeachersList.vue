@@ -133,7 +133,7 @@ export default {
         <section class="teacher-list-section">
             <div class="container mt-4 text-center">
                 <h1 class="display-4">Find your perfect teacher</h1>
-                <p class="lead mb-5">Discover teacher profiles and find the one that’s perfect for your learning needs!</p>
+                <p class="lead mb-5 text-black">Discover teacher profiles and find the one that’s perfect for your learning needs!</p>
             </div>
             <div class="container">
                 <div class="row">
