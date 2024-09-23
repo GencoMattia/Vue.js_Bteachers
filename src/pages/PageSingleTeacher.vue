@@ -370,19 +370,20 @@ export default {
                                 </div>
                                 <!-- reviewer email  -->
                                 <div class="mb-3">
-                                    <label for="reviewer-email" class="col-form-label">Email</label>
+                                    <label for="reviewer-email" class="col-form-label">Email*</label>
                                     <input type="email" class="form-control transparent review-inputs" id="reviewer-email" name="email">
                                     <!-- email error  -->
                                     <span v-if="reviewError.email" class="text-danger fw-bold">{{ reviewError.email }}</span>
                                 </div>
                                 <!-- review text  -->
                                 <div class="mb-3">
-                                    <label for="review-text" class="col-form-label">Review</label>
+                                    <label for="review-text" class="col-form-label">Review*</label>
                                     <textarea class="form-control transparent review-inputs" id="review-text" name="review_text"></textarea>
                                 <!-- text error  -->
                                 <span v-if="reviewError.review_text" class="text-danger fw-bold">{{ reviewError.review_text }}</span>
                                 </div>
                                 </form>
+                                <span>*Required fields</span>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -557,7 +558,7 @@ export default {
                     <section class="display-flex">
                         <!-- messager email  -->
                         <div class="col-sm-5 message-inputs">
-                            <label class="col-form-label">Email</label>
+                            <label class="col-form-label">Email*</label>
                             <input type="email" class="form-control" id="messager-email">
                             <!-- email error  -->
                             <span v-if="messageError" class="text-danger fw-bold">{{ messageError.email }}</span>
@@ -572,12 +573,13 @@ export default {
                     </section>
                     <!-- message text  -->
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Message</label>
+                        <label for="message-text" class="col-form-label">Message*</label>
                         <textarea class="form-control" id="message-text" name="messageData.message_text"></textarea>
                         <!-- message text error  -->
                         <span v-if="messageError" class="text-danger fw-bold">{{ messageError.message_text }}</span>
                     </div>
                 </form>
+                <span>*Required fields</span>
                 <div class="d-flex justify-content-center">
                     <span v-if="messageError" class="fw-bold  text-dark text-center success p-2" :class="messageError.success?'':'display-none'">{{ messageError.success }}</span>
                 </div>
